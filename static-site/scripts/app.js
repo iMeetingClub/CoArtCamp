@@ -42,7 +42,7 @@ function renderTopNav() {
           <p class="top-nav__zh">${esc(page.navLabelZh)}</p>
         </div>
       </div>
-      <div class="top-nav__number">${esc(page.pageNumber)}</div>
+      <div class="top-nav__identity">${esc(page.topbarIdentity || "")}</div>
     </header>
   `;
 }
@@ -281,15 +281,8 @@ function renderDrawer() {
         ${renderMenuButton()}
         <div class="drawer__brand">
           <h2 class="drawer__brand-title">南塘艺术共创营</h2>
-          <p class="drawer__brand-subtitle">侧边栏打开态</p>
         </div>
       </div>
-      <section class="drawer__intro">
-        <p class="drawer__eyebrow">活动页面导航</p>
-        <h3 class="drawer__title">页面导览</h3>
-        <div class="drawer__rule"></div>
-        <p class="drawer__text">选择想浏览的页面，继续阅读历期共创营与第三期故事。</p>
-      </section>
       <nav class="drawer__nav" aria-label="页面导航">${links}</nav>
       <div class="drawer__footer">
         <div class="drawer__footer-rule"></div>
@@ -304,12 +297,16 @@ function renderPage() {
   app.innerHTML = `
     <main class="page-shell">
       <section class="app-screen" style="--screen-width:${page.width}px">
-        <div class="screen-surface">
+        <div class="screen-topbar">
           ${renderTopNav()}
+        </div>
+        <div class="screen-surface">
           ${renderBanner()}
           ${page.sections.map(renderSection).join("")}
         </div>
-        <img class="surface-bird" src="assets/images/feature-bird-cutout.png" alt="">
+        <section class="screen-extension" aria-hidden="true">
+          <img class="screen-extension__bird" src="assets/images/feature-bird-cutout.png" alt="">
+        </section>
       </section>
     </main>
     ${renderDrawer()}

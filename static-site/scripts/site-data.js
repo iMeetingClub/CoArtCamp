@@ -11,6 +11,7 @@ export const pages = {
     width: 430,
     navLabelEn: "NANTANG ART CAMP",
     navLabelZh: "首页导览",
+    topbarIdentity: "活动首页",
     pageNumber: "01",
     banner: {
       kicker: "艺文共创 / 展览导览",
@@ -88,6 +89,7 @@ export const pages = {
     width: 430,
     navLabelEn: "NANTANG ART CAMP",
     navLabelZh: "现场回声",
+    topbarIdentity: "第一期 · 南塘",
     pageNumber: "02",
     banner: {
       kicker: "ISSUE 01 / FIELD NOTE",
@@ -144,6 +146,7 @@ export const pages = {
     width: 430,
     navLabelEn: "NANTANG ART CAMP",
     navLabelZh: "现场回声",
+    topbarIdentity: "第二期 · 南塘人物志",
     pageNumber: "03",
     banner: {
       kicker: "ISSUE 02 / RESPONSE NOTE",
@@ -200,6 +203,7 @@ export const pages = {
     width: 430,
     navLabelEn: "NANTANG ART CAMP",
     navLabelZh: "现场回声",
+    topbarIdentity: "第三期 · 寻找",
     pageNumber: "04",
     banner: {
       kicker: "ISSUE 03 / ONGOING FIELD",
@@ -278,6 +282,7 @@ export const pages = {
     width: 488,
     navLabelEn: "NANTANG ART CAMP",
     navLabelZh: "共创纪事",
+    topbarIdentity: "第三期 · 共创纪事",
     pageNumber: "05",
     banner: {
       kicker: "CO-CREATION STORY",
