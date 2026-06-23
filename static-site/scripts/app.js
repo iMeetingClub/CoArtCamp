@@ -1,4 +1,4 @@
-import { navItems, pages } from "./site-data.js";
+﻿import { navItems, pages } from "./site-data.js";
 
 const pageKey = document.body.dataset.page || "home";
 const page = pages[pageKey];
@@ -85,7 +85,7 @@ function renderArchiveItem(item) {
   return `
     <a class="archive-card${item.reverse ? " archive-card--reverse" : ""}" href="${esc(item.href)}">
       <div class="archive-card__media-row">
-        ${item.reverse ? renderArchiveRail(item) + renderArchiveImage() : renderArchiveImage() + renderArchiveRail(item)}
+        ${item.reverse ? renderArchiveRail(item) + renderArchiveImage(item) : renderArchiveImage(item) + renderArchiveRail(item)}
       </div>
       <div class="archive-card__detail">
         <p class="archive-card__tag">${esc(item.tag)}</p>
@@ -96,7 +96,10 @@ function renderArchiveItem(item) {
   `;
 }
 
-function renderArchiveImage() {
+function renderArchiveImage(item) {
+  if (item && item.image) {
+    return `<img class="archive-image" src="${esc(item.image)}" alt="${esc(item.tag)}" loading="lazy">`;
+  }
   return `<div class="placeholder-media placeholder-media--archive" aria-hidden="true"></div>`;
 }
 
@@ -108,6 +111,7 @@ function renderArchiveRail(item) {
         <p class="archive-rail__tag">${esc(item.tag)}</p>
         <p class="archive-rail__line">${esc(item.line)}</p>
       </div>
+      <p class="archive-rail__cta">点击查看 →</p>
     </div>
   `;
 }
@@ -157,7 +161,7 @@ function renderWorks(section) {
         ${section.items.map((item, index) => `
           <article class="work-card">
             <div class="work-card__top${item.reverse ? " work-card__top--reverse" : ""}">
-              ${item.reverse ? renderWorkRail(item) + renderWorkImage() : renderWorkImage() + renderWorkRail(item)}
+              ${item.reverse ? renderWorkRail(item) + renderWorkImage(item) : renderWorkImage(item) + renderWorkRail(item)}
             </div>
             <div class="work-card__detail">
               <p class="work-card__meta">作品 ${String(index + 1).padStart(2, "0")}</p>
@@ -170,7 +174,10 @@ function renderWorks(section) {
   `;
 }
 
-function renderWorkImage() {
+function renderWorkImage(item) {
+  if (item && item.image) {
+    return `<img class="work-image" src="${esc(item.image)}" alt="${esc(item.sideTitle)}" loading="lazy">`;
+  }
   return `<div class="placeholder-media placeholder-media--work" aria-hidden="true"></div>`;
 }
 
@@ -193,7 +200,7 @@ function renderCoCreators(section) {
       <div class="people-list">
         ${section.items.map((item) => `
           <article class="person-card${item.reverse ? " person-card--reverse" : ""}">
-            ${item.reverse ? renderPersonInfo(item) + renderPersonAvatar() : renderPersonAvatar() + renderPersonInfo(item)}
+            ${item.reverse ? renderPersonInfo(item) + renderPersonAvatar(item.image) : renderPersonAvatar(item.image) + renderPersonInfo(item)}
           </article>
         `).join("")}
       </div>
@@ -201,7 +208,10 @@ function renderCoCreators(section) {
   `;
 }
 
-function renderPersonAvatar() {
+function renderPersonAvatar(imageSrc) {
+  if (imageSrc) {
+    return `<img class="person-image" src="${esc(imageSrc)}" alt="" loading="lazy">`;
+  }
   return `<div class="placeholder-media placeholder-media--person" aria-hidden="true"></div>`;
 }
 
@@ -234,7 +244,7 @@ function renderTimeline(section) {
               <p class="eyebrow eyebrow--small">${esc(item.phase)}</p>
               <h3 class="timeline-item__title">${esc(item.title)}</h3>
               <p class="timeline-item__body">${esc(item.body)}</p>
-              ${item.image ? '<div class="timeline-item__image" aria-hidden="true"></div>' : ""}
+              ${item.image ? (typeof item.image === "string" ? `<img class="timeline-item__image" src="${item.image}" alt="">` : `<div class="timeline-item__image" aria-hidden="true"></div>`) : ""}
             </div>
           </article>
         `).join("")}
@@ -293,6 +303,50 @@ function renderDrawer() {
   `;
 }
 
+function renderLightbox() {
+  return `
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox__close" type="button" aria-label="关闭">&times;</button>
+      <img class="lightbox__img" src="" alt="">
+    </div>
+  `;
+}
+
+function initLightbox() {
+  const lightbox = document.getElementById("lightbox");
+  const img = lightbox.querySelector(".lightbox__img");
+  let isOpen = false;
+
+  function open(src) {
+    img.src = src;
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    isOpen = true;
+  }
+
+  function close() {
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    img.src = "";
+    isOpen = false;
+  }
+
+  document.addEventListener("click", function(e) {
+    const target = e.target.closest(".work-image, .archive-image");
+    if (target) { e.preventDefault(); open(target.src); }
+  });
+
+  lightbox.addEventListener("click", function(e) {
+    if (e.target === lightbox || e.target.closest(".lightbox__close")) { close(); }
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && isOpen) { close(); }
+  });
+
+  window.closeLightbox = close;
+}
+
 function renderPage() {
   app.innerHTML = `
     <main class="page-shell">
@@ -308,6 +362,7 @@ function renderPage() {
           <img class="screen-extension__bird" src="assets/images/feature-bird-cutout.png" alt="">
         </section>
       </section>
+      ${renderLightbox()}
     </main>
     ${renderDrawer()}
   `;
@@ -353,6 +408,7 @@ function setActiveNav() {
 }
 
 function bindSwipeToClose() {
+
   drawer.addEventListener("touchstart", (event) => {
     if (!document.body.classList.contains("drawer-open")) {
       return;
@@ -404,6 +460,8 @@ document.addEventListener("keydown", (event) => {
 
 setActiveNav();
 bindSwipeToClose();
+
+initLightbox();
 
 window.openDrawer = openDrawer;
 window.closeDrawer = closeDrawer;

@@ -1,4 +1,4 @@
-const http = require("http");
+﻿const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
@@ -33,7 +33,8 @@ http.createServer((req, res) => {
     }
 
     const ext = path.extname(filePath).toLowerCase();
-    res.writeHead(200, { "Content-Type": mimeTypes[ext] || "application/octet-stream" });
+    const isCacheable = ext === ".html" || ext === ".js" || ext === ".css";
+res.writeHead(200, { "Content-Type": mimeTypes[ext] || "application/octet-stream", ...(isCacheable ? { "Cache-Control": "no-cache, no-store, must-revalidate" } : {}) });
     res.end(data);
   });
 }).listen(port, () => {
