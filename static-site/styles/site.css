@@ -978,8 +978,8 @@ body.drawer-open .drawer-backdrop {
 }
 
 @keyframes cta-breathe {
-  0%, 100% { opacity: 0.55; transform: translateX(0); }
-  50% { opacity: 1; transform: translateX(5px); }
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 @keyframes stage-in {

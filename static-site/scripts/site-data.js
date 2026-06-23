@@ -569,6 +569,7 @@ export const pages = {
             sideTitle: "属于我的只有自己",
             sideLine: "荆棘丛中，守住本心",
             body: "置身茂密的仙人掌丛，周遭满是隔阂与疏离，独留一人在此徘徊探索，在独处中与内心对话。外界皆是荆棘，唯有守住本心，学会依靠自己，完成自我找寻。",
+            image: "assets/images/phase3/manman.jpg",
           },
           {
             reverse: true,
@@ -576,6 +577,7 @@ export const pages = {
             sideTitle: "书中自成风景",
             sideLine: "方寸之间，寻见自然",
             body: "书页为塘，荷风自来。方寸之间，寻见自然。",
+            image: "assets/images/phase3/gloria.jpg",
           },
           {
             reverse: false,
@@ -583,6 +585,7 @@ export const pages = {
             sideTitle: "真·假",
             sideLine: "假作真时真亦假",
             body: "假作真时真亦假，真作假时假亦真。",
+            image: "assets/images/phase3/xigua.jpg",
           },
           {
             reverse: true,
@@ -590,13 +593,15 @@ export const pages = {
             sideTitle: "与柚眠",
             sideLine: "做一场睡在柚子里的美梦",
             body: "柚子花开了，请和小猫蛋黄一起做一个睡在柚子里的美梦吧～",
+            image: "assets/images/phase3/yun.jpg",
           },
           {
             reverse: false,
-            meta: "共创人",
+            meta: "念儿",
             sideTitle: "共栖之境",
             sideLine: "允许所有情绪都有停留的位置",
-            body: "作品以心脏作为内在自我的象征，以环绕其周围牵手而行的星星代表不同的情绪状态。冷暖交织的色彩并非对立，而是情绪共同存在的写照。画面通过内外两个空间构建出心灵与世界的关系。",
+            body: "作品以心脏作为内在自我的象征，以环绕其周围牵手而行的星星代表不同的情绪状态。冷暖交织的色彩并非对立，而是情绪共同存在的写照。画面通过内外两个空间构建出心灵与世界的关系：内在世界如梦境般温柔丰盈，外在世界充满未知与可能；表达一种对自我的接纳——允许所有抵达心中的情绪，都能拥有停留的位置。",
+            image: "assets/images/phase3/nianer.jpg",
           },
           {
             reverse: true,
@@ -604,6 +609,7 @@ export const pages = {
             sideTitle: "心花怒放",
             sideLine: "心如画师造万象",
             body: "妙手拈莲藏赤心，星河作境绘凡尘。心如画师造万象，方寸莲台容乾坤。素莲一点纳仓宇，柔指拈花证本真。吾身本是大千界，一念随心造古今。",
+            image: "assets/images/phase3/hongxin.jpg",
           },
           {
             reverse: false,
@@ -611,6 +617,7 @@ export const pages = {
             sideTitle: "行走南塘",
             sideLine: "向内自省，向外观世",
             body: "以行禅、观心、绘画向内自省；以采风、务农、相伴向外观世，找寻本真自我。取《心经》“颠倒梦想，究竟涅槃”之意，借倒置画面自警：破虚妄，离执念，得自在。",
+            image: "assets/images/phase3/moranchenguang.jpg",
           },
           {
             reverse: true,
@@ -618,6 +625,7 @@ export const pages = {
             sideTitle: "赤色呼吸",
             sideLine: "聆听大地脉搏",
             body: "自然从不是一成不变的景致，寻找自然，实则是聆听大地脉搏。落日缓缓铺开霞光，轻轻笼罩山野天地。愿我们在感知里，静心观天地，与万物相融共生。",
+            image: "assets/images/phase3/zhelibuchiyu.jpg",
           },
           {
             reverse: false,
@@ -625,6 +633,7 @@ export const pages = {
             sideTitle: "沃土新翼",
             sideLine: "田垄与墨痕在此相望",
             body: "麦穗沉实，凝着南塘世代深扎的乡土根脉；书卷轻启，新枝舒放，蓝鸟划破旧日寂静，衔来时代回响，映照求新求变的智识光芒。田垄与墨痕在此相望，底蕴与拓新悄然共生。",
+            image: "assets/images/phase3/yinsi.jpg",
           },
           {
             reverse: true,
@@ -632,6 +641,7 @@ export const pages = {
             sideTitle: "“鸭”比囧囧囧",
             sideLine: "奔赴认清自我的必经之路",
             body: "裹着花瓣斗篷的小鸭眉眼低落，困在柔软云团里迷茫彷徨。祥云环绕，温柔色彩包裹着懵懂不安，描绘自我找寻途中的低落时刻，即便满心囧态，也是奔赴认清自我的必经之路。",
+            image: "assets/images/phase3/qingzi.jpg",
           },
         ],
       },
