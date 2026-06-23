@@ -141,7 +141,7 @@ function renderCredits(section) {
       <div class="credits-grid">
         ${section.people.map((person) => `
           <article class="credit-card">
-            <div class="credit-card__avatar" aria-hidden="true"></div>
+            ${person.image ? `<img class="credit-card__avatar credit-card__avatar--photo" src="${encodeURI(person.image)}" alt="${esc(person.name)}" loading="lazy">` : `<div class="credit-card__avatar" aria-hidden="true"></div>`}
             <h3 class="credit-card__name">${esc(person.name)}</h3>
             <p class="credit-card__role">${esc(person.role)}</p>
           </article>

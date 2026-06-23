@@ -647,10 +647,20 @@ body.drawer-open {
 }
 
 .credits-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 6px;
   margin-top: 8px;
+}
+
+.credit-card:nth-child(1),
+.credit-card:nth-child(2) {
+  flex: 0 0 calc(50% - 6px);
+}
+
+.credit-card:nth-child(n+3) {
+  flex: 0 0 calc(33.333% - 6px);
 }
 
 .credit-card {
@@ -666,6 +676,12 @@ body.drawer-open {
   border-radius: 50%;
   border: 1px solid #aec0be;
   background: #d4e0de;
+  object-fit: cover;
+}
+
+.credit-card__avatar--photo {
+  border: 0;
+  background: transparent;
 }
 
 .credit-card__name {
@@ -1100,8 +1116,16 @@ body.drawer-open .drawer-backdrop {
   }
 
   .credits-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 14px;
+    gap: 14px 6px;
+  }
+
+  .credit-card:nth-child(1),
+  .credit-card:nth-child(2) {
+    flex: 0 0 calc(50% - 7px);
+  }
+
+  .credit-card:nth-child(n+3) {
+    flex: 0 0 calc(50% - 7px);
   }
 
   .timeline-item {
