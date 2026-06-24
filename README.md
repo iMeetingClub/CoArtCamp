@@ -35,6 +35,10 @@ node serve.js
 http://127.0.0.1:4173
 ```
 
+## 自动部署
+
+推送到 `main` 分支后，GitHub Actions 会自动将 `static-site/` 发布到 GitHub Pages。也可以在仓库的 Actions 页面手动触发 `Deploy static site to GitHub Pages`。
+
 ## 说明
 
 - 当前仓库以静态资源为主，适合展示、整理与后续迭代
