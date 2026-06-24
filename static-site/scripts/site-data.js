@@ -1,9 +1,9 @@
 export const navItems = [
   { key: "home", index: "01", title: "活动首页", subtitle: "活动总览与历期入口", href: "index.html" },
-  { key: "phase-1", index: "02", title: "第一期", subtitle: "第一期详情页", href: "phase-1.html" },
-  { key: "phase-2", index: "03", title: "第二期", subtitle: "第二期详情页", href: "phase-2.html" },
-  { key: "phase-3", index: "04", title: "第三期", subtitle: "第三期主详情页", href: "phase-3.html" },
-  { key: "story", index: "05", title: "共创故事", subtitle: "第三期时间线记录", href: "story.html" },
+  { key: "phase-1", index: "02", title: "第一期", subtitle: "第一期 | 南塘", href: "phase-1.html" },
+  { key: "phase-2", index: "03", title: "第二期", subtitle: "第二期 | 人物志", href: "phase-2.html" },
+  { key: "phase-3", index: "04", title: "第三期", subtitle: "第三期 | 寻找", href: "phase-3.html" },
+  { key: "story", index: "05", title: "iMeeting共创故事", subtitle: "第三期共识生成记录", href: "story.html" },
 ];
 
 export const pages = {
@@ -19,20 +19,18 @@ export const pages = {
       title: "南塘艺术\n共创营",
       intro: "不是一次传统的艺术课，也不是一次标准的乡村旅行——这是一场关于创作、协作与共同生活的开放式实验。从第一期的探索，到第二期的深耕，再到第三期的城市快闪展，这件事正在持续发生。",
       status: "第三期 · 城市快闪展",
-      noteTitle: "缘起",
-      noteText: "利用“南塘十二条”议事规则，让一群人能坐下来把话讲清楚：是什么，做什么，怎么做。从29人到40人再到24人，每一期都在迭代。",
     },
     sections: [
       {
         type: "text-card",
-        eyebrow: "ABOUT THE CAMP",
-        title: "一场持续生长的共创实验",
+        eyebrow: "ORIGIN",
+        title: "缘起",
         paragraphs: [
-          "南塘艺术共创营以“南塘十二条”议事规则为基础，让来自不同地方的人能共同决策、共同创作。每一期的主题都由集体讨论确定——不预设一切，但愿意回应一切。",
-          "目前已完成三期：\n第一期\u201C南塘\u201D（2025.11）——传承工笔，共创南塘，招募12人实际扩至29人。\n第二期\u201C南塘人物志\u201D（2026.1-2）——第一期参与者转为共建者，聚焦村庄人物与故事，40人。\n第三期\u201C寻找\u201D（2026.6.7-6.21）——向内生长，十天共创后自发催生了城市快闪展，24人。",
-          "我们的逻辑一直是：先做出来，再让价值自己浮现。第四期已在筹备中。",
+          "一位来自北京的画师，为了寻找绘画灵感来到南塘。原本只是一次向乡村取景、向生活取材的停留，却在日复一日的田园生活里，看见了更多可能。",
+          "蓦然回首，他发现灵感并不只在远方，也在院落、田埂、饭桌、闲谈和人与人的相处之间。于是，一个念头慢慢成形：能不能以自己的绘画专业为底色，邀请在地青年和远道而来的青年，一起在南塘生活、创作、相互看见？",
+          "南塘艺术共创营因此诞生。它发生在南塘合作社，也发生在南塘这片乡村生活之中。我们邀请大家来到这里，共同进行艺术共创，体会生活中的美，也体会群体合作中的美。",
         ],
-        note: "目前已完成了三期，第四期已在筹备中。",
+        note: "从一个人的灵感寻找，走向一群人的共同创作。",
       },
       {
         type: "archive",
@@ -78,15 +76,40 @@ export const pages = {
       },
       {
         type: "credits",
-        eyebrow: "CREDITS",
-        title: "工作人员",
+        eyebrow: "ORGANIZING",
+        title: "组办",
         people: [
-          { name: "砚仁", role: "发起人", image: "assets/images/staff/砚仁.png" },
-          { name: "䂫", role: "组办人员", image: "assets/images/staff/䂫.jpg" },
-          { name: "若曦", role: "组办人员", image: "assets/images/staff/若曦.jpg" },
-          { name: "朝林", role: "组办人员", image: "assets/images/staff/朝林.png" },
-          { name: "富章", role: "组办人员", image: "assets/images/staff/富章.jpg" },
+          { name: "砚仁", role: "发起 / 组办", image: "assets/images/staff/砚仁.png" },
+          { name: "䂫", role: "组办", image: "assets/images/staff/䂫.jpg" },
+          { name: "若曦", role: "组办", image: "assets/images/staff/若曦.jpg" },
+          { name: "朝林", role: "组办", image: "assets/images/staff/朝林.png" },
+          { name: "富章", role: "组办", image: "assets/images/staff/富章.jpg" },
         ],
+      },
+      {
+        type: "side-project",
+        eyebrow: "SIDE PROJECT / CO-CREATE",
+        title: "共创与支持",
+        intro: "这部分仍在持续更新中，先记录目前参与支持页面与项目呈现的单位、伙伴和外部协作者。",
+        statusLabel: "持续更新中",
+        lanes: [
+          {
+            label: "Co-Create",
+            groups: [
+              {
+                label: "外部协作者",
+                items: ["南塘DAO", "南塘合作社", "南塘素社", "禧九诚食", "童彩梦·美述馆", "淅淅", "木木曦", "跳跳", "淑惠", "小白", "张超", "文峰", "明皓"],
+              },
+            ],
+            chips: [],
+          },
+        ],
+        contract: {
+          before: "本页面是一个 AI Side Project，它是通过",
+          linkLabel: "“共同契约”",
+          after: "由淑慧、跳跳支持产出的，是一个MVP，如有错误、欠妥、考虑不周之处，请提供宝贵的可执行修改方法给 富章。",
+          href: "https://fchuang508.github.io/M2C/03-coart-create-promotion/",
+        },
       },
     ],
   },
@@ -739,17 +762,17 @@ export const pages = {
   story: {
     width: 488,
     navLabelEn: "NANTANG ART CAMP",
-    navLabelZh: "共创纪事",
-    topbarIdentity: "第三期 · 共创纪事",
+    navLabelZh: "iMeeting共创故事",
+    topbarIdentity: "第三期 · iMeeting共创故事",
     pageNumber: "05",
     banner: {
-      kicker: "CO-CREATION STORY",
-      handline: "把过程留给时间",
-      title: "共创纪事",
-      intro: "这一页记录第三期共创营从筹备到城市快闪展的过程纪事。按照阶段顺序向下展开，让每一段发生、讨论与回响都能被清楚看见。",
-      status: "第三期过程纪事",
-      noteTitle: "按阶段阅读过程",
-      noteText: "每一则纪事都以时间、阶段与正文展开，重点保留讨论脉络、现场变化与共创推进。",
+      kicker: "IMEETING CO-CREATION STORY",
+      handline: "青年版可操作的民主",
+      title: "iMeeting共创故事",
+      intro: "这一页记录第三期共创营从筹备到城市快闪展的过程纪事。它的底色，是一场青年版的可操作民主：用现代工具保存表达，用共同规则凝聚共识，再把共识推进成可实践的合作。",
+      status: "可实践的合作",
+      noteTitle: "从表达，到共识",
+      noteText: "第三期的许多决定，并不是预先写好的，而是在 iMeeting 中被提出、记录、修正和确认。萝卜规则让每个人依次表达，南塘十二条让讨论有章可循；于是会议不只是流程，而成为把个人声音凝聚为共识、把共识落到行动里的合作现场。",
     },
     sections: [
       

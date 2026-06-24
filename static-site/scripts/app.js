@@ -1,4 +1,4 @@
-﻿import { navItems, pages } from "./site-data.js";
+﻿import { navItems, pages } from "./site-data.js?v=2";
 
 const pageKey = document.body.dataset.page || "home";
 const page = pages[pageKey];
@@ -48,8 +48,15 @@ function renderTopNav() {
 }
 
 function renderBanner() {
+  const note = page.banner.noteTitle && page.banner.noteText ? `
+      <section class="hero-note">
+        <h2 class="hero-note__title">${esc(page.banner.noteTitle)}</h2>
+        <p class="hero-note__text">${esc(page.banner.noteText)}</p>
+      </section>
+  ` : "";
+
   return `
-    <section class="hero-card">
+    <section class="hero-card${note ? "" : " hero-card--compact"}">
       <div class="hero-card__mist"></div>
       <div class="hero-card__sun"></div>
       <div class="hero-card__curve hero-card__curve--one"></div>
@@ -59,10 +66,7 @@ function renderBanner() {
       <h1 class="hero-card__title">${nlToBr(page.banner.title)}</h1>
       <p class="hero-card__intro">${esc(page.banner.intro)}</p>
       <div class="status-pill">${esc(page.banner.status)}</div>
-      <section class="hero-note">
-        <h2 class="hero-note__title">${esc(page.banner.noteTitle)}</h2>
-        <p class="hero-note__text">${esc(page.banner.noteText)}</p>
-      </section>
+      ${note}
     </section>
   `;
 }
@@ -147,6 +151,65 @@ function renderCredits(section) {
           </article>
         `).join("")}
       </div>
+    </section>
+  `;
+}
+
+function renderSideProject(section) {
+  return `
+    <section class="side-project-section">
+      <div class="side-project-head">
+        <div>
+          <p class="eyebrow">${esc(section.eyebrow)}</p>
+          <h2 class="section-title">${esc(section.title)}</h2>
+        </div>
+        <span class="side-status">${esc(section.statusLabel)}</span>
+      </div>
+      <p class="body-copy body-copy--compact">${esc(section.intro)}</p>
+      <div class="side-map" aria-label="${esc(section.title)}">
+        ${section.lanes.map((lane) => `
+          <article class="side-lane-card">
+            <p class="side-lane-card__label">${esc(lane.label)}</p>
+            ${lane.title ? `<h3 class="side-lane-card__title">${esc(lane.title)}</h3>` : ""}
+            ${lane.meta ? `<p class="side-lane-card__meta">${esc(lane.meta)}</p>` : ""}
+            ${lane.body ? `<p class="side-lane-card__body">${esc(lane.body)}</p>` : ""}
+            ${lane.names ? `<div class="side-lane-card__names">${lane.names.map((name) => `<span>${esc(name)}</span>`).join("")}</div>` : ""}
+            ${lane.groups ? `
+              <div class="side-lane-card__groups">
+                ${lane.groups.map((group) => `
+                  <div class="side-lane-card__group">
+                    <p class="side-lane-card__group-label">${esc(group.label)}</p>
+                    <div class="side-lane-card__names">
+                      ${group.items.map((item) => `<span>${esc(item)}</span>`).join("")}
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            ` : ""}
+            ${lane.chips && lane.chips.length ? `
+              <div class="side-lane-card__chips">
+                ${lane.chips.map((chip) => `<span>${esc(chip)}</span>`).join("")}
+              </div>
+            ` : ""}
+          </article>
+        `).join("")}
+      </div>
+      ${section.groups ? `
+        <div class="side-groups">
+          ${section.groups.map((group) => `
+            <div class="side-group">
+              <p class="side-group__label">${esc(group.label)}</p>
+              <p class="side-group__text">${esc(group.items.join("、"))}${group.suffix ? esc(group.suffix) : ""}</p>
+            </div>
+          `).join("")}
+        </div>
+      ` : ""}
+      <div class="side-contract">
+        <p>
+          ${section.contract.before ? `${esc(section.contract.before)}<a href="${esc(section.contract.href)}">${esc(section.contract.linkLabel)}</a>${esc(section.contract.after)}` : `${esc(section.contract.text)} <a href="${esc(section.contract.href)}">${esc(section.contract.linkLabel)}</a>`}
+        </p>
+      </div>
+      ${section.caption ? `<p class="side-project-caption">${esc(section.caption)}</p>` : ""}
     </section>
   `;
 }
@@ -261,6 +324,8 @@ function renderSection(section) {
       return renderArchive(section);
     case "credits":
       return renderCredits(section);
+    case "side-project":
+      return renderSideProject(section);
     case "works":
       return renderWorks(section);
     case "cocreators":

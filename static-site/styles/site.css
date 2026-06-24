@@ -255,6 +255,10 @@ body.drawer-open {
   overflow: hidden;
 }
 
+.hero-card--compact {
+  min-height: 486px;
+}
+
 .hero-card__mist {
   position: absolute;
   inset: 0;
@@ -453,7 +457,8 @@ body.drawer-open {
 .archive-section,
 .works-section,
 .people-section,
-.timeline-section {
+.timeline-section,
+.side-project-section {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -697,6 +702,211 @@ body.drawer-open {
   color: var(--green-500);
   font-size: 10px;
   line-height: 1.5;
+}
+
+.side-project-section {
+  margin-top: 2px;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--line-muted);
+}
+
+.side-project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.side-status {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  padding: 7px 10px;
+  border: 1px solid #b4c6bc;
+  border-radius: var(--radius-pill);
+  background: rgba(248, 252, 248, 0.86);
+  color: var(--blue-700);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.side-map {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.side-lane-card {
+  position: relative;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(247, 251, 246, 0.78);
+  box-shadow: 0 6px 18px rgba(143, 163, 135, 0.07);
+}
+
+.side-lane-card__label {
+  margin: 0;
+  color: var(--blue-700);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.side-lane-card__title {
+  margin: 10px 0 0;
+  color: var(--green-900);
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.side-lane-card__meta {
+  margin: 7px 0 0;
+  color: var(--green-700);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.side-lane-card__body {
+  margin: 8px 0 0;
+  color: var(--green-500);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.side-lane-card__names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.side-lane-card__groups {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(193, 208, 198, 0.76);
+}
+
+.side-lane-card__group {
+  min-width: 0;
+}
+
+.side-lane-card__group-label {
+  margin: 0;
+  color: rgba(111, 142, 160, 0.86);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.side-lane-card__names span {
+  padding: 6px 10px;
+  border: 1px solid #c2d0c5;
+  border-radius: var(--radius-pill);
+  background: rgba(241, 248, 240, 0.86);
+  color: var(--green-900);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.side-lane-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.side-lane-card__chips span {
+  padding: 5px 8px;
+  border: 1px solid #c4d1c6;
+  border-radius: var(--radius-pill);
+  background: #eef6ee;
+  color: var(--green-700);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.side-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(190, 205, 195, 0.78);
+  border-radius: 20px;
+  background: rgba(247, 251, 246, 0.52);
+}
+
+.side-group {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.side-group__label,
+.side-group__text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.side-group__label {
+  color: var(--blue-700);
+  font-weight: 600;
+}
+
+.side-group__text {
+  color: rgba(96, 112, 88, 0.86);
+}
+
+.side-contract {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 2px 0;
+  border-top: 1px solid rgba(184, 201, 190, 0.76);
+}
+
+.side-contract p {
+  margin: 0;
+  color: rgba(96, 112, 88, 0.72);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.side-contract a {
+  width: fit-content;
+  max-width: 100%;
+  color: rgba(111, 142, 160, 0.78);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  overflow-wrap: anywhere;
+}
+
+.side-contract a:focus-visible {
+  outline: 2px solid rgba(82, 100, 110, 0.82);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.side-project-caption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
 }
 
 .work-card {

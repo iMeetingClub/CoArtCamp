@@ -5,7 +5,7 @@
 - `index.html` 活动首页
 - `phase-1.html` 第一期详情页
 - `phase-2.html` 第二期详情页
-- `phase-3.html` 第三期主详情页
+- `phase-3.html` 第三期详情页
 - `story.html` 第三期共创故事页
 - `styles/site.css` 公共样式
 - `scripts/app.js` 页面渲染与交互
