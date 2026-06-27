@@ -1,6 +1,12 @@
-# 南塘艺术共创营
+# 艺术共创营（CoArtCamp）
 
-南塘艺术共创营项目资料仓库，包含静态网页、设计稿导出图、底图素材，以及第一二期作品集相关文件。
+道南堂“艺术共创营”（CoArtCamp）项目资料仓库，包含静态网页、设计稿导出图、底图素材、历期作品集与会议资料。
+
+GitHub 仓库地址：
+
+```text
+https://github.com/DAO-NanTang/CoArtCamp
+```
 
 ## 主要内容
 
@@ -9,7 +15,7 @@
 - `导出预览/`：预览导出文件
 - `底图/`：页面使用的底图与素材
 - `第一二期作品集/`：历期作品资料
-- `南塘艺术共创营-页面结构说明.md`：页面结构与内容说明
+- `艺术共创营-页面结构说明.md`：页面结构与内容说明
 
 ## 网页入口
 
@@ -37,7 +43,21 @@ http://127.0.0.1:4173
 
 ## 自动部署
 
-推送到 `main` 分支后，GitHub Actions 会自动将 `static-site/` 发布到 GitHub Pages。也可以在仓库的 Actions 页面手动触发 `Deploy static site to GitHub Pages`。
+推送到 `main` 分支后，GitHub Actions 会尝试将 `static-site/` 发布到 GitHub Pages。也可以在仓库的 Actions 页面手动触发 `Deploy CoArtCamp static site to GitHub Pages`。
+
+当前 Cloudflare Pages 项目仍可继续使用原项目名：
+
+```text
+nantang-gongchuangying
+```
+
+Cloudflare 已连接的 GitHub 仓库应确认更新为：
+
+```text
+DAO-NanTang/CoArtCamp
+```
+
+如仓库保持私有，GitHub Pages 是否可发布取决于当前 GitHub 账号/组织套餐与 Pages 设置；Cloudflare Pages 可作为主要对外部署入口继续使用。
 
 ## 说明
 

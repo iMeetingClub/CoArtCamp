@@ -355,7 +355,7 @@ function renderDrawer() {
       <div class="drawer__header">
         ${renderMenuButton()}
         <div class="drawer__brand">
-          <h2 class="drawer__brand-title">南塘艺术共创营</h2>
+          <h2 class="drawer__brand-title">艺术共创营</h2>
         </div>
       </div>
       <nav class="drawer__nav" aria-label="页面导航">${links}</nav>

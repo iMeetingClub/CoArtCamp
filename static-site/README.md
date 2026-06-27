@@ -1,4 +1,6 @@
-# 南塘艺术共创营静态站
+# 艺术共创营（CoArtCamp）静态站
+
+本目录是道南堂“艺术共创营”项目的前端静态站点，作为 GitHub 仓库 `DAO-NanTang/CoArtCamp` 的主要网页内容。
 
 ## 目录
 
@@ -25,6 +27,12 @@ node serve.js
 ```text
 http://127.0.0.1:4173
 ```
+
+## 部署说明
+
+- GitHub Actions 会从仓库根目录读取 `static-site/` 并上传为 GitHub Pages artifact。
+- Cloudflare Pages 当前项目名可继续使用 `nantang-gongchuangying`，但连接仓库应确认为 `DAO-NanTang/CoArtCamp`。
+- 若 GitHub Pages 因私有仓库权限受限，Cloudflare Pages 可作为主要访问入口。
 
 ## 说明
 

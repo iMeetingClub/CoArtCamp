@@ -3,7 +3,7 @@
 Reference set:
 - `.pen` 正式页面结构
 - 对应 PNG 导出图
-- `南塘艺术共创营-页面结构说明.md`
+- `艺术共创营-页面结构说明.md`
 
 Prototype target:
 - Local static site served from `http://127.0.0.1:4173`
