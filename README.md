@@ -8,6 +8,12 @@ GitHub 仓库地址：
 https://github.com/DAO-NanTang/CoArtCamp
 ```
 
+正式访问地址：
+
+```text
+https://coartcamp.imeeting.club/
+```
+
 ## 主要内容
 
 - `static-site/`：前端静态站点主目录
@@ -41,23 +47,30 @@ node serve.js
 http://127.0.0.1:4173
 ```
 
-## 自动部署
+## 部署
 
-推送到 `main` 分支后，GitHub Actions 会尝试将 `static-site/` 发布到 GitHub Pages。也可以在仓库的 Actions 页面手动触发 `Deploy CoArtCamp static site to GitHub Pages`。
+本项目主要使用 Cloudflare 的 Workers 和 Pages 服务发布，其中当前网站采用的是 Cloudflare Pages。Pages 适合发布静态网站，并可连接 GitHub 仓库实现 Auto Deploy。
 
-当前 Cloudflare Pages 项目仍可继续使用原项目名：
+当前部署方式：
 
-```text
-nantang-gongchuangying
-```
+- Cloudflare 产品：Workers 和 Pages 中的 Pages
+- GitHub 仓库：`DAO-NanTang/CoArtCamp`
+- 生产分支：`main`
+- 发布目录：`static-site`
+- 自动部署：已启用，推送到 `main` 后由 Cloudflare Pages 自动部署
+- Cloudflare Pages 项目名：`coartcamp`
+- Cloudflare 默认域名：`https://coartcamp.pages.dev/`
+- 自定义域名：`https://coartcamp.imeeting.club/`
 
-Cloudflare 已连接的 GitHub 仓库应确认更新为：
+基本操作流程：
 
-```text
-DAO-NanTang/CoArtCamp
-```
+1. 在 Cloudflare Dashboard 进入 Workers 和 Pages。
+2. 创建或选择 Pages 项目。
+3. 选择 GitHub 作为来源，并关联 `DAO-NanTang/CoArtCamp` 仓库。
+4. 设置生产分支为 `main`，发布目录为 `static-site`。
+5. 保存后启用 Auto Deploy，之后每次推送 `main` 都会自动发布。
 
-如仓库保持私有，GitHub Pages 是否可发布取决于当前 GitHub 账号/组织套餐与 Pages 设置；Cloudflare Pages 可作为主要对外部署入口继续使用。
+仓库中仍保留 GitHub Pages workflow 作为备用发布尝试；如仓库保持私有，GitHub Pages 是否可发布取决于当前 GitHub 账号/组织套餐与 Pages 设置。
 
 ## 说明
 

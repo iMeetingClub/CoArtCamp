@@ -30,9 +30,11 @@ http://127.0.0.1:4173
 
 ## 部署说明
 
-- GitHub Actions 会从仓库根目录读取 `static-site/` 并上传为 GitHub Pages artifact。
-- Cloudflare Pages 当前项目名可继续使用 `nantang-gongchuangying`，但连接仓库应确认为 `DAO-NanTang/CoArtCamp`。
-- 若 GitHub Pages 因私有仓库权限受限，Cloudflare Pages 可作为主要访问入口。
+- 正式访问地址为 `https://coartcamp.imeeting.club/`。
+- Cloudflare Pages 项目名为 `coartcamp`，默认域名为 `https://coartcamp.pages.dev/`。
+- Cloudflare Pages 连接 GitHub 仓库 `DAO-NanTang/CoArtCamp`，从 `main` 分支自动部署。
+- 发布目录为仓库根目录下的 `static-site`。
+- GitHub Pages workflow 保留为备用发布尝试；主要对外入口以 Cloudflare Pages 为准。
 
 ## 说明
 
