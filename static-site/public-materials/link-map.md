@@ -1,6 +1,6 @@
 # 对外材料搬迁索引
 
-本索引用来说明仓库整理前后，对外展示材料的位置变化。`public-materials/` 是公开材料归档目录，但 Cloudflare Pages 当前只发布 `static-site/`，所以这些文件不会自动拥有 `coartcamp.imeeting.club` 下的独立文件地址。
+本索引用来说明仓库整理前后，对外展示材料的位置变化。`public-materials/` 是公开材料归档目录；为了维持对外访问，当前已同步一份到 `static-site/public-materials/`，由 Cloudflare Pages 发布。
 
 如果需要把某份材料放入正式网站页面，应再把内容整理进 `static-site/`。
 
@@ -27,8 +27,8 @@
 
 为避免旧的 `coartcamp.imeeting.club/...` 网站路径完全失效，`static-site/_redirects` 已加入兼容跳转：
 
-- 旧的一二期作品集目录会跳到对应的新 GitHub 归档位置，或对应期数页面。
-- 旧的第三期共创人照片与第三期作品介绍会跳到新的 GitHub 归档位置。
-- 旧的根目录媒体图会跳到新的 GitHub 文件位置。
+- 旧的一二期作品集文件会跳到 `coartcamp.imeeting.club/public-materials/...` 下的公开文件。
+- 旧的第三期共创人照片与第三期作品介绍会跳到 `coartcamp.imeeting.club/public-materials/...` 下的公开文件。
+- 旧的根目录媒体图会跳到 `coartcamp.imeeting.club/public-materials/media/...` 下的公开文件。
 
-GitHub 自身的旧文件链接无法由 Cloudflare 接管跳转；如果外部使用的是 GitHub 旧路径，应改用本索引中的新路径。
+GitHub 自身的旧文件链接无法由 Cloudflare 接管跳转；如果外部使用的是 GitHub 旧路径，应改用本索引中的新路径，或使用正式站的 `/public-materials/...` 文件地址。
