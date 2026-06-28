@@ -1,9 +1,9 @@
 # Design QA
 
 Reference set:
-- `.pen` 正式页面结构
+- `project-files/design/untitled.pen` 正式页面结构
 - 对应 PNG 导出图
-- `艺术共创营-页面结构说明.md`
+- `project-files/page-planning/艺术共创营-页面结构说明.md`
 
 Prototype target:
 - Local static site served from `http://127.0.0.1:4173`

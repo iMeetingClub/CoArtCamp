@@ -15,7 +15,7 @@ const TARGET_ORGS = [
   { id: '69e09099a299f2bcf3e63d30', name: 'Dao南塘艺术共创营（第三期）' },
 ];
 
-const OUTPUT_DIR = path.join(__dirname, '会议记录（所有）');
+const OUTPUT_DIR = path.join(__dirname, '..', 'meetings', 'all-meetings');
 const REQUEST_DELAY_MS = 600;
 
 function httpGet(hostname, method, requestPath, headers, bodyData) {
