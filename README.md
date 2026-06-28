@@ -19,7 +19,6 @@ https://coartcamp.imeeting.club/
 - `static-site/`：前端静态站点主目录，也是 Cloudflare Pages 当前发布目录。
 - `public-materials/`：可对外使用或分享的作品、照片、展览与宣传材料。
 - `project-files/`：项目过程文件，包括会议记录、设计稿、页面规划、原始素材和整理脚本。
-- `.github/`：GitHub Actions 等仓库自动化配置。
 
 ## 目录规则
 
@@ -80,7 +79,13 @@ http://127.0.0.1:4173
 4. 设置生产分支为 `main`，发布目录为 `static-site`。
 5. 保存后启用 Auto Deploy，之后每次推送 `main` 都会自动发布。
 
-仓库中仍保留 GitHub Pages workflow 作为备用发布尝试；如仓库保持私有，GitHub Pages 是否可发布取决于当前 GitHub 账号/组织套餐与 Pages 设置。
+本项目不再使用 GitHub Pages 作为正式部署路径，原 GitHub Pages workflow 已停用并移除。之后请以 Cloudflare Pages 的部署记录和 `https://coartcamp.imeeting.club/` 的访问结果判断正式网站是否发布成功。
+
+更完整的部署说明见：
+
+```text
+project-files/deployment/README.md
+```
 
 ## 说明
 

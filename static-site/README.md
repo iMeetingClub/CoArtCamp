@@ -34,7 +34,7 @@ http://127.0.0.1:4173
 - Cloudflare Pages 项目名为 `coartcamp`，默认域名为 `https://coartcamp.pages.dev/`。
 - Cloudflare Pages 连接 GitHub 仓库 `DAO-NanTang/CoArtCamp`，从 `main` 分支自动部署。
 - 发布目录为仓库根目录下的 `static-site`。
-- GitHub Pages workflow 保留为备用发布尝试；主要对外入口以 Cloudflare Pages 为准。
+- GitHub Pages workflow 已停用并从仓库移除；主要对外入口以 Cloudflare Pages 为准。
 
 ## 说明
 
