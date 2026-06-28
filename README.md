@@ -31,7 +31,7 @@ public-materials/link-map.md
 这个仓库按用途分成三类：
 
 - 网站代码放在 `static-site/`，只有这里会被 Cloudflare Pages 自动发布到正式网站。
-- 对外材料放在 `public-materials/`，这些内容可以用于网站、宣传、展览或对外分享，但不一定直接发布。
+- 对外材料放在 `public-materials/`，并同步到 `static-site/public-materials/` 供 Cloudflare Pages 对外发布。
 - 项目文件放在 `project-files/`，这里保存内部过程资料、会议记录、设计源文件和整理脚本。
 
 如需新增网站页面或调整线上呈现，优先改 `static-site/`。

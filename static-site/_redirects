@@ -1,23 +1,23 @@
 # Compatibility redirects for public material paths before the repository reorganization.
-# Cloudflare Pages only publishes static-site/, so materials now stored under
-# public-materials/ are redirected to either the current site pages or GitHub.
+# Public materials are mirrored under static-site/public-materials/ so Cloudflare
+# Pages can serve them as public files without changing the current site UI.
 
-/第一二期作品集/第一期·工笔画群展/* https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/phase-01-工笔画群展/works/:splat 302
-/第一二期作品集/第二期·人物志/* https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/phase-02-南塘人物志/works/:splat 302
+/第一二期作品集/第一期·工笔画群展/* /public-materials/phase-01-工笔画群展/works/:splat 302
+/第一二期作品集/第二期·人物志/* /public-materials/phase-02-南塘人物志/works/:splat 302
 /第一二期作品集/* /phase-1.html 302
 
-/第三期共创人照片/* https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/phase-03-寻找/cocreator-portraits/:splat 302
-/第三期/第三期作品介绍.txt https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/phase-03-寻找/第三期作品介绍.txt 302
+/第三期共创人照片/* /public-materials/phase-03-寻找/cocreator-portraits/:splat 302
+/第三期/第三期作品介绍.txt /public-materials/phase-03-寻找/第三期作品介绍.txt 302
 /第三期/* /phase-3.html 302
 
-/南塘艺术共创营·城市快闪展%20开幕致辞.md https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/exhibition/城市快闪展-开幕致辞.md 302
+/南塘艺术共创营·城市快闪展%20开幕致辞.md /public-materials/exhibition/城市快闪展-开幕致辞.md 302
 
-/特征图.jpg https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/特征图.jpg 302
-/第一期人物照片.jpg https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/第一期人物照片.jpg 302
-/第二期照片.jpg https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/第二期照片.jpg 302
-/第二期照片2.jpg https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/第二期照片2.jpg 302
-/第二期活动照片.jpg https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/第二期活动照片.jpg 302
-/第三期ai照片.jpg https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/第三期ai照片.jpg 302
-/第三期共创人照片.png https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/第三期共创人照片.png 302
-/第三期照片.jpg https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/第三期照片.jpg 302
-/第三期照片2.jpg https://github.com/DAO-NanTang/CoArtCamp/blob/main/public-materials/media/第三期照片2.jpg 302
+/特征图.jpg /public-materials/media/特征图.jpg 302
+/第一期人物照片.jpg /public-materials/media/第一期人物照片.jpg 302
+/第二期照片.jpg /public-materials/media/第二期照片.jpg 302
+/第二期照片2.jpg /public-materials/media/第二期照片2.jpg 302
+/第二期活动照片.jpg /public-materials/media/第二期活动照片.jpg 302
+/第三期ai照片.jpg /public-materials/media/第三期ai照片.jpg 302
+/第三期共创人照片.png /public-materials/media/第三期共创人照片.png 302
+/第三期照片.jpg /public-materials/media/第三期照片.jpg 302
+/第三期照片2.jpg /public-materials/media/第三期照片2.jpg 302
