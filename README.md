@@ -20,6 +20,12 @@ https://coartcamp.imeeting.club/
 - `public-materials/`：可对外使用或分享的作品、照片、展览与宣传材料。
 - `project-files/`：项目过程文件，包括会议记录、设计稿、页面规划、原始素材和整理脚本。
 
+目录整理前后的对外材料路径对应关系见：
+
+```text
+public-materials/link-map.md
+```
+
 ## 目录规则
 
 这个仓库按用途分成三类：
