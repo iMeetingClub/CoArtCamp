@@ -1,6 +1,6 @@
 # 艺术共创营（CoArtCamp）
 
-道南堂“艺术共创营”（CoArtCamp）项目资料仓库，包含静态网页、设计稿导出图、底图素材、历期作品集与会议资料。
+DAO南塘“艺术共创营”（CoArtCamp）项目资料仓库，包含静态网页、对外材料、设计与会议等项目文件。
 
 GitHub 仓库地址：
 
@@ -8,14 +8,35 @@ GitHub 仓库地址：
 https://github.com/DAO-NanTang/CoArtCamp
 ```
 
+正式访问地址：
+
+```text
+https://coartcamp.imeeting.club/
+```
+
 ## 主要内容
 
-- `static-site/`：前端静态站点主目录
-- `前端ui设计稿/`：页面设计稿导出图
-- `导出预览/`：预览导出文件
-- `底图/`：页面使用的底图与素材
-- `第一二期作品集/`：历期作品资料
-- `艺术共创营-页面结构说明.md`：页面结构与内容说明
+- `static-site/`：前端静态站点主目录，也是 Cloudflare Pages 当前发布目录。
+- `public-materials/`：可对外使用或分享的作品、照片、展览与宣传材料。
+- `project-files/`：项目过程文件，包括会议记录、设计稿、页面规划、原始素材和整理脚本。
+
+目录整理前后的对外材料路径对应关系见：
+
+```text
+public-materials/link-map.md
+```
+
+## 目录规则
+
+这个仓库按用途分成三类：
+
+- 网站代码放在 `static-site/`，只有这里会被 Cloudflare Pages 自动发布到正式网站。
+- 对外材料放在 `public-materials/`，并同步到 `static-site/public-materials/` 供 Cloudflare Pages 对外发布。
+- 项目文件放在 `project-files/`，这里保存内部过程资料、会议记录、设计源文件和整理脚本。
+
+如需新增网站页面或调整线上呈现，优先改 `static-site/`。
+如需新增作品集、展览照片、开幕文案等对外材料，优先放 `public-materials/`。
+如需保存会议记录、设计过程、原始底图或工作脚本，优先放 `project-files/`。
 
 ## 网页入口
 
@@ -41,26 +62,39 @@ node serve.js
 http://127.0.0.1:4173
 ```
 
-## 自动部署
+## 部署
 
-推送到 `main` 分支后，GitHub Actions 会尝试将 `static-site/` 发布到 GitHub Pages。也可以在仓库的 Actions 页面手动触发 `Deploy CoArtCamp static site to GitHub Pages`。
+本项目主要使用 Cloudflare 的 Workers 和 Pages 服务发布，其中当前网站采用的是 Cloudflare Pages。Pages 适合发布静态网站，并可连接 GitHub 仓库实现 Auto Deploy。
 
-当前 Cloudflare Pages 项目仍可继续使用原项目名：
+当前部署方式：
+
+- Cloudflare 产品：Workers 和 Pages 中的 Pages
+- GitHub 仓库：`DAO-NanTang/CoArtCamp`
+- 生产分支：`main`
+- 发布目录：`static-site`
+- 自动部署：已启用，推送到 `main` 后由 Cloudflare Pages 自动部署
+- Cloudflare Pages 项目名：`coartcamp`
+- Cloudflare 默认域名：`https://coartcamp.pages.dev/`
+- 自定义域名：`https://coartcamp.imeeting.club/`
+
+基本操作流程：
+
+1. 在 Cloudflare Dashboard 进入 Workers 和 Pages。
+2. 创建或选择 Pages 项目。
+3. 选择 GitHub 作为来源，并关联 `DAO-NanTang/CoArtCamp` 仓库。
+4. 设置生产分支为 `main`，发布目录为 `static-site`。
+5. 保存后启用 Auto Deploy，之后每次推送 `main` 都会自动发布。
+
+本项目不再使用 GitHub Pages 作为正式部署路径，原 GitHub Pages workflow 已停用并移除。之后请以 Cloudflare Pages 的部署记录和 `https://coartcamp.imeeting.club/` 的访问结果判断正式网站是否发布成功。
+
+更完整的部署说明见：
 
 ```text
-nantang-gongchuangying
+project-files/deployment/README.md
 ```
-
-Cloudflare 已连接的 GitHub 仓库应确认更新为：
-
-```text
-DAO-NanTang/CoArtCamp
-```
-
-如仓库保持私有，GitHub Pages 是否可发布取决于当前 GitHub 账号/组织套餐与 Pages 设置；Cloudflare Pages 可作为主要对外部署入口继续使用。
 
 ## 说明
 
-- 当前仓库以静态资源为主，适合展示、整理与后续迭代
+- 当前仓库以静态网站和项目档案为主，适合展示、整理与后续迭代
 - 页面相关实现集中在 `static-site/` 中
 - 图片与资料文件较多，首次克隆或下载体积会相对较大
