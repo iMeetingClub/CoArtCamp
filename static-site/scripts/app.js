@@ -206,7 +206,7 @@ function renderSideProject(section) {
       ` : ""}
       <div class="side-contract">
         <p>
-          ${section.contract.before ? `${esc(section.contract.before)}<a href="${esc(section.contract.href)}">${esc(section.contract.linkLabel)}</a>${esc(section.contract.after)}` : `${esc(section.contract.text)} <a href="${esc(section.contract.href)}">${esc(section.contract.linkLabel)}</a>`}
+          ${section.contract.before ? `${esc(section.contract.before)}<a href="${esc(section.contract.href)}" target="_blank" rel="noopener noreferrer">${esc(section.contract.linkLabel)}</a>${esc(section.contract.after)}` : `${esc(section.contract.text)} <a href="${esc(section.contract.href)}" target="_blank" rel="noopener noreferrer">${esc(section.contract.linkLabel)}</a>`}
         </p>
       </div>
       ${section.caption ? `<p class="side-project-caption">${esc(section.caption)}</p>` : ""}
