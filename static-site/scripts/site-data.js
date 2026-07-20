@@ -108,7 +108,7 @@ export const pages = {
           before: "本页面是一个 AI Side Project，它是通过",
           linkLabel: "“共同契约”",
           after: "由淑慧、跳跳支持产出的，是一个MVP，如有错误、欠妥、考虑不周之处，请提供宝贵的可执行修改方法给 富章。",
-          href: "https://fchuang508.github.io/M2C/03-coart-create-promotion/",
+          href: "https://imeeting.club/C03-coart-create-promotion/",
         },
       },
     ],
