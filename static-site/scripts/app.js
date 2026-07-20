@@ -1,4 +1,4 @@
-﻿import { navItems, pages } from "./site-data.js?v=2";
+﻿import { navItems, pages } from "./site-data.js?v=3";
 
 const pageKey = document.body.dataset.page || "home";
 const page = pages[pageKey];
