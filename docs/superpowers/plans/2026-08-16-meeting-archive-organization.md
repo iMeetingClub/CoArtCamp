@@ -30,15 +30,15 @@
 - Consumes: Existing parent-directory meeting IDs and each file's content type and extension.
 - Produces: One unique destination path for every existing source file.
 
-- [ ] **Step 1: Inventory existing files by phase, meeting ID, content type, and extension**
+- [x] **Step 1: Inventory existing files by phase, meeting ID, content type, and extension**
 
 Run a repository inventory and confirm the starting totals are 16 files in phase one, 66 in phase two, and 100 in phase three.
 
-- [ ] **Step 2: Match every existing meeting ID to iMeeting metadata**
+- [x] **Step 2: Match every existing meeting ID to iMeeting metadata**
 
 Require one metadata match per existing meeting ID and select the corresponding `script`, `scriptMd`, `minutes`, or `minutesMd` timestamp according to the file's existing type and extension.
 
-- [ ] **Step 3: Validate destinations before moving files**
+- [x] **Step 3: Validate destinations before moving files**
 
 Require 182 sources, 182 unique destinations, no missing source paths, and no destination collisions.
 
@@ -52,15 +52,15 @@ Require 182 sources, 182 unique destinations, no missing source paths, and no de
 - Consumes: The validated source-to-destination manifest from Task 1.
 - Produces: Three flat phase directories containing the same 182 files.
 
-- [ ] **Step 1: Move each tracked file to its canonical phase-level path**
+- [x] **Step 1: Move each tracked file to its canonical phase-level path**
 
 Use Git-aware renames so history records the operation as path changes rather than delete-and-recreate operations.
 
-- [ ] **Step 2: Confirm per-meeting directories are empty and removed**
+- [x] **Step 2: Confirm per-meeting directories are empty and removed**
 
 Verify there are no files deeper than the phase-directory level.
 
-- [ ] **Step 3: Confirm no untracked example files were included**
+- [x] **Step 3: Confirm no untracked example files were included**
 
 Verify the four user-provided Markdown examples remain outside the commit unless they were already tracked.
 
@@ -73,19 +73,19 @@ Verify the four user-provided Markdown examples remain outside the commit unless
 - Consumes: The flattened archive from Task 2.
 - Produces: Evidence that structure, naming, formats, and contents satisfy the approved rules.
 
-- [ ] **Step 1: Verify counts and allowed extensions**
+- [x] **Step 1: Verify counts and allowed extensions**
 
 Require phase totals of 16, 66, and 100 files; allow only `.md` and `.docx`.
 
-- [ ] **Step 2: Verify the filename grammar**
+- [x] **Step 2: Verify the filename grammar**
 
 Require every basename to match the approved timestamped pattern and its directory's phase name.
 
-- [ ] **Step 3: Verify byte preservation**
+- [x] **Step 3: Verify byte preservation**
 
 Compare the multiset of Git blob object IDs before and after reorganization; require an exact match.
 
-- [ ] **Step 4: Verify website isolation**
+- [x] **Step 4: Verify website isolation**
 
 Confirm deployment still serves only `static-site/` and repository code contains no references to the old meeting paths.
 
