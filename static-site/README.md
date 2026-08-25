@@ -1,6 +1,6 @@
 # 艺术共创营（CoArtCamp）静态站
 
-本目录是道南堂“艺术共创营”项目的前端静态站点，作为 GitHub 仓库 `DAO-NanTang/CoArtCamp` 的主要网页内容。
+本目录是道南堂“艺术共创营”项目的前端静态站点，作为 GitHub 仓库 `iMeetingClub/CoArtCamp` 的主要网页内容。
 
 ## 目录
 
@@ -31,8 +31,9 @@ http://127.0.0.1:4173
 ## 部署说明
 
 - 正式访问地址为 `https://coartcamp.imeeting.club/`。
-- Cloudflare Pages 项目名为 `coartcamp`，默认域名为 `https://coartcamp.pages.dev/`。
-- Cloudflare Pages 连接 GitHub 仓库 `DAO-NanTang/CoArtCamp`，从 `main` 分支自动部署。
+- Cloudflare Pages 项目名为 `coartcamp`。
+- `https://coartcamp.pages.dev/` 是 Cloudflare 提供的 Pages 域名，不作为公开分享入口；后续应在 Cloudflare 侧设置 redirect 或 Access 验证。
+- Cloudflare Pages 连接 GitHub 仓库 `iMeetingClub/CoArtCamp`，从 `main` 分支自动部署。
 - 发布目录为仓库根目录下的 `static-site`。
 - GitHub Pages workflow 已停用并从仓库移除；主要对外入口以 Cloudflare Pages 为准。
 
