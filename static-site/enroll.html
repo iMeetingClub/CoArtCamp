@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>报名加入 · 南塘艺术共创营第四期</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <style>
+      :root {
+        --pine: #55644e;
+        --pine-soft: #6d7d64;
+        --seal: #a3281d;
+        --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+        --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+      }
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        background: #edf4ed;
+        transition: background 0.35s ease;
+      }
+      .stage {
+        position: relative;
+        width: 100%;
+        max-width: 430px;
+        min-height: 100vh;
+        background: #edf4ed;
+        transition: background 0.35s ease;
+        overflow: hidden;
+      }
+
+      /* ── 主题变量：浅色屏默认，.dark 深墨绿屏 ──
+         可读性修正（2026-08-29）：原 #708186 在灰底屏上仅 1.1–2.5:1，
+         placeholder #9aa59d 在 #9aa59d 底上 1:1 隐形。改为逐屏覆盖，全部文字 ≥3.3:1。 */
+      .screen {
+        --c-label: #55644e; /* CampLabel + ProgressText（原 #708186，屏1-4 上 5.65:1） */
+        --c-track: #dbe3d7;
+        --c-fill: #55644e;
+        --c-actline: #55644e;
+        --c-ink: #2b2b2b; /* 标题/输入/正文 */
+        --c-muted: #55644e; /* hint（原 #708186，屏1-4 上 5.65:1） */
+        --c-underline: #55644e;
+        --c-chip-border: #c9d4c6;
+        --c-chip-ink: #2b2b2b;
+        --c-chip-sel-bg: #55644e;
+        --c-chip-sel-ink: #f2f5f2;
+        --c-ta-bg: rgba(255, 255, 255, 0.33);
+        --c-ta-border: #c9d4c6;
+        --c-prev-border: #c9d4c6;
+        --c-prev-ink: #2b2b2b;
+        --c-next-bg: #55644e;
+        --c-next-ink: #f2f5f2;
+        --c-ph: #5a6d61; /* placeholder（原 #9aa59d 2.3:1 → 4.94:1） */
+        --pad: 24px;
+        --gap: 14px;
+      }
+      .screen.dark {
+        --c-label: #cfddd3;
+        --c-track: #5a6d61;
+        --c-fill: #a8c3ae;
+        --c-actline: #5a6d61;
+        --c-ink: #f2f5f2;
+        --c-muted: #cfddd3;
+        --c-underline: #84988a; /* 原 #5a6d61 仅 2.58:1 → 4.66:1（输入线/焦点框可见） */
+        --c-chip-border: #5a6d61;
+        --c-chip-ink: #e7efe8;
+        --c-chip-sel-bg: #f2f5f2;
+        --c-chip-sel-ink: #1d2e24;
+        --c-ta-bg: rgba(255, 255, 255, 0.13);
+        --c-ta-border: #5a6d61;
+        --c-prev-border: #5a6d61;
+        --c-prev-ink: #cfddd3;
+        --c-next-bg: #f2f5f2;
+        --c-next-ink: #1d2e24;
+        --c-ph: rgba(207, 221, 211, 0.55); /* 原 0.35 → 6.04:1 */
+        --pad: 20px;
+        --gap: 10px;
+      }
+      /* 屏5-7 灰绿底 #c3ccc5：#708186 仅 2.47:1 → 加深 */
+      .screen.bg-2 {
+        --c-label: #42524a; /* 5.03:1 */
+        --c-muted: #42524a; /* 5.03:1 */
+        --c-ph: #55644e; /* 3.85:1，弱于 label 保持层级 */
+      }
+      /* 屏8-9 中灰绿底 #9aa59d：#708186 仅 1.59:1、placeholder 隐形 → 转深绿 */
+      .screen.bg-3 {
+        --c-label: #2e3a33; /* 4.66:1 */
+        --c-muted: #2e3a33; /* 4.66:1 */
+        --c-actline: #42524a; /* 3.25:1 */
+        --c-underline: #42524a; /* 3.25:1（原 pine 2.48:1） */
+        --c-chip-border: #42524a; /* 3.25:1 */
+        --c-ta-border: #42524a;
+        --c-prev-border: #42524a;
+        --c-ph: #333f38; /* 4.32:1 */
+      }
+      /* 屏10 深灰绿底 #707d74：反转亮字体系（白字最高 4.31:1，物理上限） */
+      .screen.bg-4 {
+        --c-label: #ffffff; /* 4.31:1 */
+        --c-muted: #ffffff; /* 4.31:1 */
+        --c-actline: #ffffff;
+        --c-ink: #f2f5f2; /* 3.92:1 */
+        --c-underline: #e7efe8; /* 3.67:1 */
+        --c-chip-border: #cfddd3; /* 3.06:1 */
+        --c-chip-ink: #f2f5f2; /* 3.92:1 */
+        --c-ta-bg: rgba(0, 0, 0, 0.18); /* 原白透明底衬不出亮字 → 深底，输入文字 4.57:1 */
+        --c-ta-border: #cfddd3; /* 3.27:1 */
+        --c-prev-border: #cfddd3; /* 3.06:1 */
+        --c-prev-ink: #f2f5f2; /* 3.92:1 */
+        --c-ph: rgba(255, 255, 255, 0.6); /* ≈2.98:1，弱于输入值 */
+      }
+      .bg-1 { background: #edf4ed; }
+      .bg-2 { background: #c3ccc5; }
+      .bg-3 { background: #9aa59d; }
+      .bg-4 { background: #707d74; }
+      .bg-dark { background: #1d2e24; }
+
+      .screen {
+        display: none;
+        flex-direction: column;
+        /* 顶部多留 40px：避让固定定位的抽屉菜单按钮（42px 高 + 14px 顶距） */
+        padding: calc(var(--pad) + 40px) var(--pad) var(--pad);
+        min-height: 100vh;
+        gap: var(--gap);
+      }
+      .screen.active {
+        display: flex;
+      }
+
+      /* ── 顶栏 ── */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .camp-label {
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: var(--c-label);
+      }
+      .progress-text {
+        font-size: 11px;
+        color: var(--c-label);
+        font-variant-numeric: tabular-nums;
+      }
+      .progress-track {
+        height: 2px;
+        background: var(--c-track);
+      }
+      .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--c-fill);
+        transition: width 0.3s ease;
+      }
+
+      /* ── 幕标 ── */
+      .act-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .act-line {
+        width: 22px;
+        height: 1px;
+        background: var(--c-actline);
+        flex-shrink: 0;
+      }
+      .act-text {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--c-label);
+      }
+
+      /* ── 内容区 ── */
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+      }
+      .question {
+        font-family: var(--font-serif);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 35px;
+        color: var(--c-ink);
+      }
+      .subq {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.5;
+        color: var(--c-ink);
+      }
+      .hint {
+        font-size: 13px;
+        line-height: 22px;
+        color: var(--c-muted);
+      }
+
+      /* ── 输入 ── */
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .input-line {
+        width: 100%;
+        border: none;
+        border-bottom: 1.5px solid var(--c-underline);
+        background: transparent;
+        font-family: var(--font-sans);
+        font-size: 17px;
+        padding: 6px 2px;
+        color: var(--c-ink);
+        outline: none;
+        border-radius: 0;
+        -webkit-appearance: none;
+      }
+      .input-line:focus {
+        border-bottom-width: 2px;
+      }
+      .input-line::placeholder {
+        color: var(--c-ph);
+      }
+      .input-num {
+        width: 110px;
+      }
+      textarea.input-line {
+        border: 1.5px solid var(--c-ta-border);
+        border-radius: 12px;
+        background: var(--c-ta-bg);
+        padding: 16px;
+        font-size: 13px;
+        line-height: 22px;
+        resize: none;
+        min-height: 90px;
+      }
+      textarea.input-line:focus {
+        border-color: var(--c-underline);
+      }
+
+      /* ── 芯片 ── */
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chip {
+        border: 1.5px solid var(--c-chip-border);
+        border-radius: 999px;
+        padding: 9px 16px;
+        font-size: 13px;
+        color: var(--c-chip-ink);
+        background: transparent;
+        cursor: pointer;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.15s ease;
+        font-family: var(--font-sans);
+      }
+      .chip.selected {
+        background: var(--c-chip-sel-bg);
+        border-color: var(--c-chip-sel-bg);
+        color: var(--c-chip-sel-ink);
+      }
+      .chip.selected::before {
+        content: "✓ ";
+      }
+
+      /* ── 按钮 ── */
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 8px;
+      }
+      .actions.push-right {
+        justify-content: flex-end;
+      }
+      .btn-next {
+        min-height: 44px;
+        border: none;
+        border-radius: 999px;
+        background: var(--c-next-bg);
+        color: var(--c-next-ink);
+        font-size: 14px;
+        padding: 13px 34px;
+        cursor: pointer;
+        font-family: var(--font-sans);
+      }
+      .btn-next:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      .btn-prev {
+        border: 1.5px solid var(--c-prev-border);
+        background: transparent;
+        border-radius: 999px;
+        color: var(--c-prev-ink);
+        font-size: 13px;
+        padding: 9px 18px;
+        min-height: 44px;
+        cursor: pointer;
+        font-family: var(--font-sans);
+      }
+      .btn-next.shake {
+        animation: shake 0.4s ease;
+      }
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-6px); }
+        75% { transform: translateX(6px); }
+      }
+
+      /* ── 回顾页 ── */
+      .review-list {
+        overflow-y: auto;
+        flex: 1;
+        -webkit-overflow-scrolling: touch;
+      }
+      .review-item {
+        display: flex;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        cursor: pointer;
+        min-height: 44px;
+      }
+      .review-item .rv-q {
+        font-size: 11px;
+        color: #a8c3ae;
+        padding-top: 3px;
+        font-variant-numeric: tabular-nums;
+      }
+      .review-item .rv-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .review-item .rv-label {
+        font-size: 12px;
+        color: #cfddd3;
+      }
+      .review-item .rv-ans {
+        font-size: 14px;
+        line-height: 20px;
+        color: #f2f5f2;
+        word-break: break-all;
+        white-space: pre-wrap;
+      }
+      .review-item .rv-ans.empty {
+        color: rgba(207, 221, 211, 0.5);
+      }
+
+      /* ── 完成页 ── */
+      .screen-done {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 22px;
+        color: #f2f5f2;
+      }
+      .seal {
+        width: 84px;
+        height: 84px;
+        border-radius: 999px;
+        background: var(--seal);
+        color: #fbfaf7;
+        font-family: var(--font-serif);
+        font-size: 16px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: rotate(9deg);
+        opacity: 0;
+      }
+      .screen-done.active .seal {
+        animation: seal-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards;
+      }
+      @keyframes seal-pop {
+        0% {
+          opacity: 0;
+          transform: rotate(9deg) scale(0.4);
+        }
+        70% {
+          opacity: 1;
+          transform: rotate(9deg) scale(1.12);
+        }
+        100% {
+          opacity: 1;
+          transform: rotate(9deg) scale(1);
+        }
+      }
+      .done-thanks {
+        font-family: var(--font-serif);
+        font-size: 20px;
+        line-height: 32px;
+      }
+      .done-lead {
+        font-size: 13px;
+        color: #cfddd3;
+        margin-top: 4px;
+      }
+      .done-qr {
+        width: 120px;
+        height: 120px;
+        border: 1.5px solid #cfddd3;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #cfddd3;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .done-qr-note {
+        font-size: 11px;
+        color: #cfddd3;
+        margin-top: -12px;
+      }
+      .fail-box {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(207, 221, 211, 0.3);
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin-top: 8px;
+        text-align: left;
+        width: 100%;
+      }
+      .fail-box .t {
+        font-size: 13px;
+        font-weight: 600;
+        color: #f2f5f2;
+        margin-bottom: 6px;
+      }
+      .fail-box .d {
+        font-size: 12px;
+        color: #a8c3ae;
+        line-height: 1.7;
+      }
+      .fail-box button {
+        width: 100%;
+        min-height: 44px;
+        border: 1px solid #5a6d61;
+        border-radius: 999px;
+        background: transparent;
+        color: #f2f5f2;
+        font-size: 13px;
+        margin-top: 10px;
+        cursor: pointer;
+        font-family: var(--font-sans);
+      }
+      .field-err {
+        font-size: 12px;
+        color: #a3281d; /* 朱砂系，浅绿底上 ≈9:1 */
+        line-height: 1.5;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+      @media (min-width: 431px) {
+        .stage {
+          margin: 24px 0;
+          min-height: calc(100vh - 48px);
+          border-radius: 28px;
+          box-shadow: 0 22px 48px rgba(126, 152, 142, 0.12);
+        }
+        .screen {
+          min-height: calc(100vh - 48px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage" id="stage">
+      <!-- 屏1 · ACT I -->
+      <section class="screen bg-1" id="s-q1" data-next="s-q2" data-progress="1">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">1</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT I · 认识你</span></div>
+          <div class="question">你叫什么名字？*</div>
+          <div class="hint">用于后续面试沟通与身份确认，我们习惯以真名相称，营造真诚的社区氛围。</div>
+          <div class="field"><input class="input-line" id="q1" placeholder="怎么称呼你" autocomplete="name" /></div>
+        </div>
+        <div class="actions push-right"><button class="btn-next" data-next="s-q2">继续</button></div>
+      </section>
+
+      <!-- 屏2 · ACT I -->
+      <section class="screen bg-1" id="s-q2" data-next="s-q3" data-progress="3">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">3</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT I · 认识你</span></div>
+          <div class="question">你的性别？年龄？</div>
+          <div class="field">
+            <div class="subq">性别</div>
+            <div class="hint">便于我们安排住宿等后勤事宜。</div>
+            <div class="chips" data-single="q2">
+              <button type="button" class="chip" data-v="男">男</button>
+              <button type="button" class="chip" data-v="女">女</button>
+              <button type="button" class="chip" data-v="其他">其他</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="subq">年龄</div>
+            <div class="hint">我们希望组建一个多元的社区，了解年龄分布有助于我们设计更合适的互动方式。</div>
+            <input class="input-line input-num" id="q3" type="number" inputmode="numeric" min="1" max="120" placeholder="岁" />
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q1">上一步</button>
+          <button class="btn-next" data-next="s-q3">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏3 · ACT I -->
+      <section class="screen bg-1" id="s-q3" data-next="s-q4" data-progress="4">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">4</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT I · 认识你</span></div>
+          <div class="question">你在哪个城市？</div>
+          <div class="hint">来自天南地北的我们，因南塘而相遇，这本身就是一件浪漫的事。</div>
+          <div class="field"><input class="input-line" id="q4" placeholder="城市 / 家乡" autocomplete="address-level2" /></div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q2">上一步</button>
+          <button class="btn-next" data-next="s-q4">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏4 · ACT I -->
+      <section class="screen bg-1" id="s-q4" data-next="s-q5" data-progress="7">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">7</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT I · 认识你</span></div>
+          <div class="question">怎么联系到你？</div>
+          <div class="field">
+            <div class="subq">电话*</div>
+            <div class="hint">确保在紧急情况下能够及时联系到你。</div>
+            <input class="input-line" id="q5" type="tel" inputmode="tel" placeholder="手机号码" autocomplete="tel" />
+            <div class="field-err" id="q5-err" hidden>请输入有效的 11 位手机号（用于报名去重与联系）</div>
+          </div>
+          <div class="field">
+            <div class="subq">微信</div>
+            <div class="hint">若通过初筛，我们将通过微信与你联系并安排面试。</div>
+            <input class="input-line" id="q6" placeholder="微信号" autocomplete="off" />
+          </div>
+          <div class="field">
+            <div class="subq">邮箱</div>
+            <div class="hint">用于发送重要的正式通知与活动资料。</div>
+            <input class="input-line" id="q7" type="email" inputmode="email" placeholder="邮箱地址" autocomplete="email" />
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q3">上一步</button>
+          <button class="btn-next" data-next="s-q5">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏5 · ACT II -->
+      <section class="screen bg-2" id="s-q5" data-next="s-q6" data-progress="8">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">8</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT II · 光谱</span></div>
+          <div class="question">你的职业/专业背景是？*</div>
+          <div class="hint">你的专业和经历是宝贵的资源，或许能在不经意间为社区带来启发。</div>
+          <div class="field"><input class="input-line" id="q8" placeholder="职业 / 专业" autocomplete="organization-title" /></div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q4">上一步</button>
+          <button class="btn-next" data-next="s-q6">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏6 · ACT II -->
+      <section class="screen bg-2" id="s-q6" data-next="s-q7" data-progress="9">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">9</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT II · 光谱</span></div>
+          <div class="question">请诚实评估你的绘画/艺术基础：*</div>
+          <div class="hint">请完全无需担心水平！了解大家的起点，是为了让导师更好地准备分层教学，确保零基础跟得上，有基础有突破。</div>
+          <div class="chips" data-single="q9">
+            <button type="button" class="chip" data-v="零基础，但充满好奇与热情">零基础，但充满好奇与热情</button>
+            <button type="button" class="chip" data-v="业余爱好者，有少量自学或体验经历">业余爱好者，有少量自学或体验经历</button>
+            <button type="button" class="chip" data-v="有一定基础，参加过系统课程">有一定基础，参加过系统课程</button>
+            <button type="button" class="chip" data-v="艺术相关专业/从业者">艺术相关专业/从业者</button>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q5">上一步</button>
+          <button class="btn-next" data-next="s-q7">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏7 · ACT II -->
+      <section class="screen bg-2" id="s-q7" data-next="s-q8" data-progress="10">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">10</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT II · 光谱</span></div>
+          <div class="question">除绘画外，你是否拥有其他可能对社区有益的技能？*</div>
+          <div class="hint">社区因多元而精彩！无论是会摄影、爱做饭、懂园艺还是能组织活动，你的任何技能都可能成为点亮社区的时刻。</div>
+          <div class="chips" data-multi="q10">
+            <button type="button" class="chip" data-v="摄影/摄像">摄影/摄像</button>
+            <button type="button" class="chip" data-v="写作/编辑">写作/编辑</button>
+            <button type="button" class="chip" data-v="音乐/乐器">音乐/乐器</button>
+            <button type="button" class="chip" data-v="活动组织">活动组织</button>
+            <button type="button" class="chip" data-v="烹饪/烘焙">烹饪/烘焙</button>
+            <button type="button" class="chip" data-v="园艺/农耕">园艺/农耕</button>
+            <button type="button" class="chip" data-v="手工技艺">手工技艺</button>
+            <button type="button" class="chip" data-v="其他">其他</button>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q6">上一步</button>
+          <button class="btn-next" data-next="s-q8">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏8 · ACT III -->
+      <section class="screen bg-3" id="s-q8" data-next="s-q9" data-progress="11">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">11</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT III · 相遇</span></div>
+          <div class="question">是什么吸引你报名本次共创营？*</div>
+          <div class="hint">没有标准答案。我们想找到那些真正被「共创」、「DAO」、「社区」等核心概念吸引的同路人。</div>
+          <div class="chips" data-multi="q11">
+            <button type="button" class="chip" data-v="对工笔画艺术的学习兴趣">对工笔画艺术的学习兴趣</button>
+            <button type="button" class="chip" data-v="体验一种不同的乡村生活">体验一种不同的乡村生活</button>
+            <button type="button" class="chip" data-v="对DAO、代币经济等概念感到好奇，想亲身实践">对DAO、代币经济等概念感到好奇，想亲身实践</button>
+            <button type="button" class="chip" data-v="希望暂时逃离都市，在自然中疗愈自己">希望暂时逃离都市，在自然中疗愈自己</button>
+            <button type="button" class="chip" data-v="渴望结识一群志同道合、有趣的朋友">渴望结识一群志同道合、有趣的朋友</button>
+            <button type="button" class="chip" data-v="其他">其他</button>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q7">上一步</button>
+          <button class="btn-next" data-next="s-q9">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏9 · ACT III -->
+      <section class="screen bg-3" id="s-q9" data-next="s-q10" data-progress="13">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">13</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT III · 相遇</span></div>
+          <div class="field">
+            <div class="subq">你如何看待「共创」这个词？你认为自己能为这个临时社区带来什么？*</div>
+            <div class="hint">这是本次实验的灵魂问题。我们看重的不只是你的收获，更是你愿意主动付出的「共创者」心态。</div>
+            <textarea class="input-line" id="q12" rows="4"></textarea>
+          </div>
+          <div class="field">
+            <div class="subq">活动规则明确：作品需用NT积分兑换，且可能参与后续收益分配。你对此规则有何看法？*</div>
+            <div class="hint">理解并认同规则是愉快合作的基础。我们希望确保你完全理解并认可这套全新的价值交换实验。</div>
+            <textarea class="input-line" id="q13" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q8">上一步</button>
+          <button class="btn-next" data-next="s-q10">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏10 · ACT IV -->
+      <section class="screen bg-4" id="s-q10" data-next="s-q11" data-progress="15">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">15</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT IV · 共同生活</span></div>
+          <div class="field">
+            <div class="subq">对于营期的集体乡村生活（包括简单的素食、规律的劳动、共享空间），你有哪些期待或担忧？*</div>
+            <div class="hint">提前了解你的期待与顾虑，能帮助我们更好地完善活动细节，并在过程中给予你需要的支持。</div>
+            <textarea class="input-line" id="q14" rows="4"></textarea>
+          </div>
+          <div class="field">
+            <div class="subq">在团队中，你通常扮演什么角色？*</div>
+            <div class="hint">一个平衡的团队需要不同的角色。你的自我认知能帮助我们组建一个角色互补、协作高效的团体。</div>
+            <div class="chips" data-single="q15">
+              <button type="button" class="chip" data-v="积极的发起者和组织者">积极的发起者和组织者</button>
+              <button type="button" class="chip" data-v="踏实的支持者和执行者">踏实的支持者和执行者</button>
+              <button type="button" class="chip" data-v="活跃气氛的沟通者">活跃气氛的沟通者</button>
+              <button type="button" class="chip" data-v="冷静的观察者和思考者">冷静的观察者和思考者</button>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q9">上一步</button>
+          <button class="btn-next" data-next="s-q11">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏11 · ACT V -->
+      <section class="screen bg-dark dark" id="s-q11" data-next="s-review" data-progress="19">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">19</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="content">
+          <div class="act-label"><span class="act-line"></span><span class="act-text">ACT V · 照顾你</span></div>
+          <div class="field">
+            <div class="subq">如果社区会议上出现意见分歧，你倾向于如何处理？*</div>
+            <div class="hint">我们使用议事规则，但也想了解你本能的冲突处理方式，这有助于我们引导社区达成良性共识。</div>
+            <textarea class="input-line" id="q16" rows="3"></textarea>
+          </div>
+          <div class="field">
+            <div class="subq">是否有任何饮食禁忌、健康状况或过敏史需要我们提前知晓？*</div>
+            <div class="hint">请务必如实告知，这关乎你的健康与安全，让我们能提前与素社沟通，妥善安排。</div>
+            <textarea class="input-line" id="q17" rows="3"></textarea>
+          </div>
+          <div class="field">
+            <div class="subq">（选填）请提供您的1-2个社交媒体主页（如小红书、豆瓣、微博等）</div>
+            <div class="hint">这能帮助我们看到一个更立体、生动的你。此项为选填，我们完全尊重你的隐私。</div>
+            <input class="input-line" id="q18" placeholder="小红书 / 豆瓣 / 微博" autocomplete="off" />
+          </div>
+          <div class="field">
+            <div class="subq">你是通过什么渠道了解到本次活动的？*</div>
+            <div class="hint">帮助我们了解哪些渠道连接了我和你，让我们能向推荐方致谢，并优化未来的传播。</div>
+            <div class="chips" data-single="q19">
+              <button type="button" class="chip" data-v="朋友推荐">朋友推荐</button>
+              <button type="button" class="chip" data-v="微信公众号">微信公众号</button>
+              <button type="button" class="chip" data-v="小红书">小红书</button>
+              <button type="button" class="chip" data-v="其他">其他</button>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q10">上一步</button>
+          <button class="btn-next" data-next="s-review">继续</button>
+        </div>
+      </section>
+
+      <!-- 屏12 · 回顾 -->
+      <section class="screen bg-dark dark" id="s-review" data-progress="19">
+        <div class="header">
+          <span class="camp-label">南塘共创营 · 第四期</span>
+          <span class="progress-text"><b class="p-n">19</b> / 19</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+        <div class="content">
+          <div class="question">回顾你的答案</div>
+          <div class="hint">点击任意一条可返回修改。确认无误后，点击下方「提交」。</div>
+          <div class="review-list" id="review-list"></div>
+        </div>
+        <div class="actions">
+          <button class="btn-prev" data-prev="s-q11">上一步</button>
+          <button class="btn-next" id="btn-submit">提交</button>
+        </div>
+      </section>
+
+      <!-- 屏13 · 完成 -->
+      <section class="screen bg-dark screen-done" id="s-done">
+        <div class="seal">已呈上</div>
+        <div class="done-thanks">
+          感谢你的耐心与真诚！<br />
+          我们期待阅读你的故事，并将在收到申请后的一周内，<br />
+          与心意相通的伙伴取得联系。
+        </div>
+        <div class="done-lead">扫码加入微信群，与我们一起开始这个故事</div>
+        <div class="done-qr">二维码</div>
+        <div class="done-qr-note">（群聊二维码图待提供）</div>
+        <div class="fail-box" id="fail-box" hidden>
+          <div class="t">提交可能未成功</div>
+          <div class="d">你的内容已保留在本地草稿，请勿盲目重试。可复制下方内容，直接发送给工作人员。</div>
+          <button type="button" id="btn-copy">一键复制报名内容</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="scripts/nav.js" type="module"></script>
+    <script>
+      (function () {
+        "use strict";
+
+        var DRAFT_KEY = "coartcamp-enroll-draft-v2";
+        /* 提交端：Cloudflare Pages Function → 飞书多维表格 API（服务端按手机号查重，409 = 已提交过） */
+        var API_ENDPOINT = "/api/enrollments";
+        var SCREEN_ORDER = ["s-q1", "s-q2", "s-q3", "s-q4", "s-q5", "s-q6", "s-q7", "s-q8", "s-q9", "s-q10", "s-q11", "s-review", "s-done"];
+
+        /* ── 回顾页：15 条合并（画布 10 条 + 追加 5 条），点击跳回对应屏 ── */
+        var REVIEW_GROUPS = [
+          { label: "姓名", keys: ["q1"], target: "s-q1" },
+          { label: "性别 / 年龄", keys: ["q2", "q3"], target: "s-q2" },
+          { label: "所在城市", keys: ["q4"], target: "s-q3" },
+          { label: "联系方式", keys: ["q5", "q6", "q7"], target: "s-q4" },
+          { label: "职业/专业背景", keys: ["q8"], target: "s-q5" },
+          { label: "绘画/艺术基础", keys: ["q9"], target: "s-q6" },
+          { label: "技能", keys: ["q10"], target: "s-q7" },
+          { label: "吸引原因", keys: ["q11"], target: "s-q8" },
+          { label: "共创与规则", keys: ["q12", "q13"], target: "s-q9" },
+          { label: "角色", keys: ["q15"], target: "s-q10" },
+          { label: "共同生活", keys: ["q14"], target: "s-q10" },
+          { label: "分歧处理", keys: ["q16"], target: "s-q11" },
+          { label: "健康状况", keys: ["q17"], target: "s-q11" },
+          { label: "社交主页", keys: ["q18"], target: "s-q11" },
+          { label: "了解渠道", keys: ["q19"], target: "s-q11" }
+        ];
+        /* 必填映射：target 屏 = 进入该屏前必须已填的题（画布星标：Q1/Q8/Q9/Q10/Q11/Q12/Q13/Q14/Q15/Q16/Q17/Q19；Q2-Q7/Q18 选填；
+           2026-08-29 补充：q5 电话标必填——报名去重与联系均以手机号为准） */
+        var REQUIRED_CHECK = {
+          "s-q5": ["q5"],
+          "s-q2": ["q1"],
+          "s-q6": ["q8"],
+          "s-q7": ["q9"],
+          "s-q8": ["q10"],
+          "s-q9": ["q11"],
+          "s-q10": ["q12", "q13"],
+          "s-q11": ["q14", "q15"],
+          "s-review": ["q16", "q17", "q19"]
+        };
+
+        var stage = document.getElementById("stage");
+        var current = "s-q1";
+        var answers = loadDraft() || {};
+
+        /* ── 草稿：Q17 健康信息不入草稿 ── */
+        function loadDraft() {
+          try {
+            var raw = localStorage.getItem(DRAFT_KEY);
+            if (!raw) return null;
+            var d = JSON.parse(raw);
+            if (d && typeof d === "object") {
+              delete d.q17;
+              return d;
+            }
+          } catch (e) {}
+          return null;
+        }
+        function saveDraft() {
+          var copy = {};
+          for (var k in answers) if (answers.hasOwnProperty(k) && k !== "q17") copy[k] = answers[k];
+          try {
+            localStorage.setItem(DRAFT_KEY, JSON.stringify(copy));
+          } catch (e) {}
+        }
+        function clearDraft() {
+          try {
+            localStorage.removeItem(DRAFT_KEY);
+          } catch (e) {}
+        }
+
+        /* ── 读写答案 ── */
+        function readScreen(id) {
+          var s = document.getElementById(id);
+          s.querySelectorAll("[data-single]").forEach(function (box) {
+            var q = box.getAttribute("data-single");
+            var sel = box.querySelector(".chip.selected");
+            answers[q] = sel ? sel.getAttribute("data-v") : "";
+          });
+          s.querySelectorAll("[data-multi]").forEach(function (box) {
+            var q = box.getAttribute("data-multi");
+            answers[q] = Array.prototype.map.call(box.querySelectorAll(".chip.selected"), function (c) {
+              return c.getAttribute("data-v");
+            });
+          });
+          s.querySelectorAll("input.input-line, textarea.input-line").forEach(function (el) {
+            if (el.id) answers[el.id] = el.value.trim();
+          });
+        }
+        function writeScreen(id) {
+          var s = document.getElementById(id);
+          s.querySelectorAll("[data-single]").forEach(function (box) {
+            var q = box.getAttribute("data-single");
+            var v = answers[q];
+            box.querySelectorAll(".chip").forEach(function (c) {
+              c.classList.toggle("selected", c.getAttribute("data-v") === v);
+            });
+          });
+          s.querySelectorAll("[data-multi]").forEach(function (box) {
+            var q = box.getAttribute("data-multi");
+            var arr = Array.isArray(answers[q]) ? answers[q] : [];
+            box.querySelectorAll(".chip").forEach(function (c) {
+              c.classList.toggle("selected", arr.indexOf(c.getAttribute("data-v")) !== -1);
+            });
+          });
+          s.querySelectorAll("input.input-line, textarea.input-line").forEach(function (el) {
+            if (el.id && answers[el.id] != null) el.value = answers[el.id];
+          });
+        }
+
+        /* ── 导航 ── */
+        function syncBg(id) {
+          var s = document.getElementById(id);
+          var bg = s.classList.contains("bg-1") ? "#edf4ed" : s.classList.contains("bg-2") ? "#c3ccc5" : s.classList.contains("bg-3") ? "#9aa59d" : s.classList.contains("bg-4") ? "#707d74" : "#1d2e24";
+          stage.style.background = bg;
+          document.body.style.background = bg;
+        }
+        function go(id, opts) {
+          opts = opts || {};
+          readScreen(current);
+          var prevEl = document.getElementById(current);
+          var nextEl = document.getElementById(id);
+          prevEl.classList.remove("active");
+          nextEl.classList.add("active");
+          current = id;
+
+          syncBg(id);
+          var n = nextEl.querySelector(".p-n");
+          if (n) n.textContent = nextEl.getAttribute("data-progress") || "19";
+          var fill = nextEl.querySelector(".progress-fill");
+          if (fill && nextEl.getAttribute("data-progress")) {
+            fill.style.width = Math.round((parseInt(nextEl.getAttribute("data-progress"), 10) / 19) * 100) + "%";
+          }
+          if (id !== "s-review" && id !== "s-done") writeScreen(id);
+          if (id === "s-review") renderReview();
+
+          if (opts.history !== false) {
+            try {
+              history.pushState({ s: id }, "", "#" + id);
+            } catch (e) {}
+          }
+          focusFirst(nextEl);
+          if (id !== "s-done") saveDraft();
+        }
+        function focusFirst(s) {
+          var el = s.querySelector(".input-line, .chip, .btn-next");
+          if (el) {
+            try {
+              el.focus({ preventScroll: true });
+            } catch (e) {}
+          }
+        }
+
+        /* ── 事件：芯片 + 按钮 ── */
+        stage.addEventListener("click", function (e) {
+          var chip = e.target.closest(".chip");
+          if (chip) {
+            var box = chip.closest("[data-single], [data-multi]");
+            if (!box) return;
+            if (box.hasAttribute("data-single")) {
+              box.querySelectorAll(".chip.selected").forEach(function (c) { c.classList.remove("selected"); });
+              chip.classList.add("selected");
+            } else {
+              chip.classList.toggle("selected");
+            }
+            readScreen(box.closest(".screen").id);
+            saveDraft();
+            return;
+          }
+          var nextBtn = e.target.closest(".btn-next[data-next]");
+          if (nextBtn) {
+            readScreen(current);
+            var target = nextBtn.getAttribute("data-next");
+            /* q5 手机号必填+格式校验（大陆 11 位；空值/格式错 → 红字提示；仅屏4离开时检查） */
+            var q5Err = current === "s-q4" ? document.getElementById("q5-err") : null;
+            if (q5Err && !/^1[3-9]\d{9}$/.test(answers.q5 || "")) {
+              q5Err.hidden = false;
+              shakeIt(nextBtn);
+              return;
+            }
+            if (q5Err) q5Err.hidden = true;
+            var req = REQUIRED_CHECK[target] || [];
+            for (var i = 0; i < req.length; i++) {
+              var v = answers[req[i]];
+              var ok = Array.isArray(v) ? v.length > 0 : !!v;
+              if (!ok) { shakeIt(nextBtn); return; }
+            }
+            go(target);
+            return;
+          }
+          var prevBtn = e.target.closest(".btn-prev");
+          if (prevBtn) {
+            go(prevBtn.getAttribute("data-prev"));
+          }
+        });
+        function shakeIt(btn) {
+          btn.classList.add("shake");
+          setTimeout(function () { btn.classList.remove("shake"); }, 400);
+        }
+
+        /* ── IME 守卫：Enter 前进（textarea 内回车除外）── */
+        stage.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" && !e.isComposing && e.keyCode !== 229) {
+            var t = e.target;
+            if (t.tagName === "TEXTAREA") return;
+            var nextBtn = document.getElementById(current).querySelector(".btn-next[data-next]");
+            if (nextBtn) { e.preventDefault(); nextBtn.click(); }
+          }
+        });
+
+        /* ── 回顾页渲染 ── */
+        function fmtVal(k) {
+          var v = answers[k];
+          if (Array.isArray(v)) return v.join(" · ");
+          return v == null ? "" : String(v);
+        }
+        function renderReview() {
+          var list = document.getElementById("review-list");
+          list.innerHTML = "";
+          REVIEW_GROUPS.forEach(function (g, i) {
+            var texts = g.keys.map(fmtVal).filter(Boolean);
+            var item = document.createElement("div");
+            item.className = "review-item";
+            var qEl = document.createElement("div");
+            qEl.className = "rv-q";
+            qEl.textContent = String(i + 1).padStart(2, "0");
+            var col = document.createElement("div");
+            col.className = "rv-col";
+            var lEl = document.createElement("div");
+            lEl.className = "rv-label";
+            lEl.textContent = g.label;
+            var aEl = document.createElement("div");
+            aEl.className = "rv-ans" + (texts.length ? "" : " empty");
+            aEl.textContent = texts.length ? texts.join("\n") : "（未填写）";
+            col.appendChild(lEl);
+            col.appendChild(aEl);
+            item.appendChild(qEl);
+            item.appendChild(col);
+            item.addEventListener("click", function () {
+              go(g.target);
+            });
+            list.appendChild(item);
+          });
+        }
+
+        /* ── 提交 ── */
+        document.getElementById("btn-submit").addEventListener("click", function () {
+          readScreen("s-q11");
+          var btn = this;
+          btn.disabled = true;
+          btn.textContent = "提交中…";
+          var payload = {
+            id: (crypto.randomUUID ? crypto.randomUUID() : "id-" + Date.now() + "-" + Math.random().toString(16).slice(2)),
+            submittedAt: new Date().toISOString(),
+            source: "enroll.html",
+            answers: {}
+          };
+          REVIEW_GROUPS.forEach(function (g) {
+            g.keys.forEach(function (k) { payload.answers[k] = answers[k]; });
+          });
+          payload.answers.q17 = answers.q17 || "";
+
+          fetch(API_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          })
+            .then(function (r) {
+              if (r.status === 409) throw { dup: true };
+              if (!r.ok) throw new Error("http " + r.status);
+              return r.json();
+            })
+            .then(function () { finishSuccess(payload); })
+            .catch(function (e) {
+              btn.disabled = false;
+              btn.textContent = "提交";
+              showFail(!!e.dup);
+            });
+        });
+        function finishSuccess() {
+          clearDraft();
+          document.getElementById("fail-box").hidden = true;
+          try { history.replaceState({ s: "s-done" }, "", "#s-done"); } catch (e) {}
+          go("s-done", { history: false });
+        }
+        function showFail(dup) {
+          var box = document.getElementById("fail-box");
+          box.hidden = false;
+          if (dup) {
+            box.querySelector(".t").textContent = "你已提交过报名";
+            box.querySelector(".d").textContent = "同一手机号仅可报名一次。如需修改已提交的信息，请联系工作人员。";
+            box.querySelector("button").hidden = true;
+          } else {
+            box.querySelector(".t").textContent = "提交可能未成功";
+            box.querySelector(".d").textContent = "你的内容已保留在本地草稿，请勿盲目重试。可复制下方内容，直接发送给工作人员。";
+            box.querySelector("button").hidden = false;
+          }
+          box.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        document.getElementById("btn-copy").addEventListener("click", function () {
+          var text = REVIEW_GROUPS.map(function (g) {
+            return g.label + "：" + (g.keys.map(fmtVal).filter(Boolean).join(" · ") || "（未填写）");
+          }).join("\n");
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              this.textContent = "已复制";
+            }.bind(this));
+          } else {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+            this.textContent = "已复制";
+          }
+        });
+
+        /* ── 初始化：恢复草稿 + popstate ── */
+        window.addEventListener("popstate", function (e) {
+          if (e.state && e.state.s && SCREEN_ORDER.indexOf(e.state.s) !== -1) {
+            go(e.state.s, { history: false });
+          }
+        });
+        var hash = location.hash.replace("#", "");
+        if (SCREEN_ORDER.indexOf(hash) !== -1) {
+          go(hash, { history: false });
+        } else {
+          go("s-q1", { history: false });
+        }
+      })();
+    </script>
+  </body>
+</html>
