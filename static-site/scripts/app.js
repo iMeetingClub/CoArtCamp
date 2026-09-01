@@ -137,6 +137,22 @@ function renderArchive(section) {
   `;
 }
 
+function renderCtaCard(section) {
+  return `
+    <a class="section-card cta-card" href="${esc(section.href)}">
+      <p class="eyebrow">${esc(section.eyebrow)}</p>
+      <h2 class="section-title">${esc(section.title)}</h2>
+      <div class="copy-stack">
+        ${section.paragraphs.map((text) => `<p class="body-copy">${esc(text)}</p>`).join("")}
+      </div>
+      <div class="cta-card__foot">
+        ${section.note ? `<p class="section-note cta-card__note">${esc(section.note)}</p>` : ""}
+        <span class="cta-card__button">${esc(section.buttonLabel)} →</span>
+      </div>
+    </a>
+  `;
+}
+
 function renderCredits(section) {
   return `
     <section class="credits-section">
@@ -306,10 +322,86 @@ function renderTimeline(section) {
             <div class="timeline-item__card">
               <p class="eyebrow eyebrow--small">${esc(item.phase)}</p>
               <h3 class="timeline-item__title">${esc(item.title)}</h3>
-              <p class="timeline-item__body">${esc(item.body)}</p>
+              <p class="timeline-item__body">${nlToBr(item.body)}</p>
               ${item.image ? (typeof item.image === "string" ? `<img class="timeline-item__image" src="${item.image}" alt="">` : `<div class="timeline-item__image" aria-hidden="true"></div>`) : ""}
             </div>
           </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderStoryPhase(section) {
+  const refPage = pages[section.ref];
+  const list = refPage ? refPage.sections : [];
+  const items = (section.include || []).map((i) => list[i]);
+  const sliced = section.slice
+    ? items.map((s) => (s.items ? { ...s, items: s.items.slice(0, section.slice) } : s))
+    : items;
+  const children = sliced.map(renderSection).join("");
+  const gratitude = section.gratitude ? `
+    <section class="gratitude-note">
+      <p class="eyebrow">${esc(section.gratitude.eyebrow)}</p>
+      <h3 class="gratitude-note__title">${esc(section.gratitude.title)}</h3>
+      ${section.gratitude.intro ? `<p class="body-copy body-copy--compact">${esc(section.gratitude.intro)}</p>` : ""}
+      <div class="gratitude-note__grid">
+        ${section.gratitude.rows.map((row) => `
+          <div class="gratitude-note__row">
+            <p class="gratitude-note__label">${esc(row.label)}</p>
+            <p class="gratitude-note__value">${esc(row.value)}</p>
+            ${row.note ? `<p class="gratitude-note__note">${esc(row.note)}</p>` : ""}
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  ` : "";
+  const more = section.more ? `
+    <a class="story-more" href="${esc(section.more.href)}">${esc(section.more.label)} →</a>
+  ` : "";
+  return `
+    <section class="story-phase" id="${esc(section.id)}">
+      <header class="story-phase__head">
+        <span class="story-phase__index">${esc(section.phaseIndex)}</span>
+        <h2 class="story-phase__title">${esc(section.title)}</h2>
+      </header>
+      <div class="story-phase__hook">${esc(section.hook)}</div>
+      <div class="story-phase__body">
+        ${children}
+        ${gratitude}
+      </div>
+      ${more}
+    </section>
+  `;
+}
+
+function renderEnrollLine(section) {
+  return `
+    <section class="enroll-line" id="${esc(section.id)}">
+      <p class="eyebrow">${esc(section.eyebrow)}</p>
+      <h2 class="section-title">${esc(section.title)}</h2>
+      <div class="copy-stack">
+        ${section.paragraphs.map((text) => `<p class="body-copy">${esc(text)}</p>`).join("")}
+      </div>
+      <a class="enroll-line__button" href="${esc(section.href)}">${esc(section.buttonLabel)} →</a>
+      ${section.note ? `<p class="section-note enroll-line__note">${esc(section.note)}</p>` : ""}
+    </section>
+  `;
+}
+
+function renderDonationHistory(section) {
+  return `
+    <section class="donation-history">
+      <p class="eyebrow">${esc(section.eyebrow)}</p>
+      <h2 class="section-title">${esc(section.title)}</h2>
+      <p class="body-copy body-copy--compact">${esc(section.intro)}</p>
+      <div class="donation-history__list">
+        ${section.rows.map((row) => `
+          <div class="donation-history__row">
+            <p class="donation-history__label">${esc(row.label)}</p>
+            <p class="donation-history__value">${esc(row.value)}</p>
+            ${row.note ? `<span class="donation-history__note">${esc(row.note)}</span>` : ""}
+          </div>
         `).join("")}
       </div>
     </section>
@@ -322,6 +414,8 @@ function renderSection(section) {
       return renderTextCard(section);
     case "archive":
       return renderArchive(section);
+    case "cta-card":
+      return renderCtaCard(section);
     case "credits":
       return renderCredits(section);
     case "side-project":
@@ -332,6 +426,12 @@ function renderSection(section) {
       return renderCoCreators(section);
     case "timeline":
       return renderTimeline(section);
+    case "story-phase":
+      return renderStoryPhase(section);
+    case "enroll-line":
+      return renderEnrollLine(section);
+    case "donation-history":
+      return renderDonationHistory(section);
     default:
       return "";
   }
@@ -434,6 +534,22 @@ function renderPage() {
 }
 
 renderPage();
+
+// SPA 锚点：渲染后按 hash 定位（浏览器在 JS 注入前找不到锚点，需手动滚动）
+// 滚动途中懒加载图片会改变文档高度——分段校准，覆盖漂移
+function scrollToHash() {
+  const hash = window.location.hash;
+  if (!hash) return;
+  const el = document.getElementById(hash.slice(1));
+  if (!el) return;
+  let tries = 0;
+  (function align() {
+    el.scrollIntoView();
+    if (tries++ < 10) setTimeout(align, 180);
+  })();
+}
+window.addEventListener("hashchange", scrollToHash);
+scrollToHash();
 
 const drawer = document.querySelector(".drawer");
 const backdrop = document.querySelector(".drawer-backdrop");

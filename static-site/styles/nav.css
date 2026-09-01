@@ -1,0 +1,249 @@
+/* ============================================================
+   site-nav 组件样式 — 从 styles/site.css 提取的抽屉导航
+   供自包含页面（gratitude-design / nt-flow-progression / 募捐 / 报名 / 钱包）
+   复用全站抽屉导航。与 SPA 的 drawer 视觉保持一致。
+   改动 site.css 的 drawer 部分时，需同步此处。
+   ============================================================ */
+
+/* ---- 变量（与 site.css 的 :root 一致，仅抽屉用到的子集） ---- */
+.site-nav {
+  --drawer-surface: rgba(247, 250, 246, 0.98);
+  --line-drawer: #d7e0db;
+  --line-muted: #c7d5cb;
+  --muted: #708186;
+  --overlay: rgba(101, 118, 122, 0.58);
+  --drawer-width: min(316px, 79vw);
+  --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  --blue-400: #7a96a6;
+  --blue-600: #7d98a8;
+}
+
+.site-nav * {
+  box-sizing: border-box;
+}
+
+/* ---- 左上角菜单按钮（fixed，悬浮在页面左上角） ---- */
+.site-nav .menu-button {
+  position: fixed;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  left: calc(14px + env(safe-area-inset-left, 0px));
+  z-index: 30;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #b7c7be;
+  border-radius: 21px;
+  background: rgba(241, 246, 243, 0.92);
+  box-shadow: 0 6px 18px rgba(126, 152, 169, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-nav .menu-button span {
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: #5f6f57;
+  display: block;
+}
+
+.site-nav .menu-button:focus-visible,
+.site-nav .drawer-link:focus-visible {
+  outline: 2px solid rgba(82, 100, 110, 0.82);
+  outline-offset: 3px;
+}
+
+/* ---- 遮罩与抽屉主体 ---- */
+.site-nav .drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+  z-index: 39;
+}
+
+.site-nav .drawer {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--drawer-width);
+  max-width: 100%;
+  background: var(--drawer-surface);
+  border-right: 1px solid #cbd6d1;
+  box-shadow: 18px 0 40px rgba(82, 99, 95, 0.1);
+  transform: translateX(-100%);
+  transition: transform 280ms ease;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 40;
+  touch-action: pan-y;
+  overflow: hidden;
+}
+
+.site-nav[data-open="true"] .drawer-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.site-nav[data-open="true"] .drawer {
+  transform: translateX(0);
+}
+
+body.site-nav-open {
+  overflow: hidden;
+}
+
+/* ---- 抽屉头 ---- */
+.site-nav .drawer__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-nav .drawer__brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-nav .drawer__brand-title {
+  margin: 0;
+  color: #364a50;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ---- 导航列表 ---- */
+.site-nav .drawer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  scrollbar-gutter: stable;
+}
+
+.site-nav .drawer__nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.site-nav .drawer__nav::-webkit-scrollbar-track {
+  background: rgba(215, 224, 219, 0.55);
+  border-radius: 999px;
+}
+
+.site-nav .drawer__nav::-webkit-scrollbar-thumb {
+  background: rgba(112, 129, 134, 0.65);
+  border-radius: 999px;
+}
+
+.site-nav .drawer-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid var(--line-drawer);
+  background: rgba(249, 251, 248, 0.96);
+  color: #55644e;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.site-nav .drawer-link.is-active {
+  background: #e8eee9;
+}
+
+.site-nav .drawer-link__index {
+  width: 38px;
+  height: 38px;
+  border-radius: 18px;
+  border: 1px solid var(--line-drawer);
+  background: #eef3ef;
+  color: var(--blue-400);
+  font-family: var(--font-serif);
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.site-nav .drawer-link.is-active .drawer-link__index {
+  background: #d8e5de;
+  border-color: #d8e5de;
+}
+
+.site-nav .drawer-link__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 158px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.site-nav .drawer-link__title {
+  color: #364a50;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.site-nav .drawer-link__subtitle {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.site-nav .drawer-link__arrow {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---- 抽屉尾 ---- */
+.site-nav .drawer__footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.site-nav .drawer__footer-rule {
+  height: 1px;
+  background: var(--line-muted);
+}
+
+.site-nav .drawer__footer p {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.site-nav .drawer__bird {
+  position: absolute;
+  right: 4px;
+  bottom: 0;
+  width: 154px;
+  height: 154px;
+  object-fit: contain;
+  pointer-events: none;
+}
