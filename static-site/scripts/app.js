@@ -1,13 +1,7 @@
-﻿import { navItems, pages } from "./site-data.js?v=3";
+import { pages } from "./site-data.js?v=3";
 
 const pageKey = document.body.dataset.page || "home";
 const page = pages[pageKey];
-
-const state = {
-  startX: 0,
-  currentX: 0,
-  tracking: false,
-};
 
 const app = document.getElementById("app");
 
@@ -437,42 +431,11 @@ function renderSection(section) {
   }
 }
 
-function renderDrawer() {
-  const links = navItems.map((item) => `
-    <a class="drawer-link${item.key === pageKey ? " is-active" : ""}" href="${esc(item.href)}" data-nav-key="${esc(item.key)}">
-      <span class="drawer-link__index">${esc(item.index)}</span>
-      <span class="drawer-link__copy">
-        <span class="drawer-link__title">${esc(item.title)}</span>
-        <span class="drawer-link__subtitle">${esc(item.subtitle)}</span>
-      </span>
-      <span class="drawer-link__arrow">&gt;</span>
-    </a>
-  `).join("");
-
-  return `
-    <button class="drawer-backdrop" type="button" aria-label="关闭侧边栏"></button>
-    <aside class="drawer" aria-hidden="true">
-      <div class="drawer__header">
-        ${renderMenuButton()}
-        <div class="drawer__brand">
-          <h2 class="drawer__brand-title">艺术共创营</h2>
-        </div>
-      </div>
-      <nav class="drawer__nav" aria-label="页面导航">${links}</nav>
-      <div class="drawer__footer">
-        <div class="drawer__footer-rule"></div>
-        <p>点击右侧留白或再次点击左上角按钮关闭</p>
-      </div>
-      <img class="drawer__bird" src="assets/images/feature-bird-cutout.png" alt="">
-    </aside>
-  `;
-}
-
 function renderLightbox() {
   return `
-    <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="查看大图">
       <button class="lightbox__close" type="button" aria-label="关闭">&times;</button>
-      <img class="lightbox__img" src="" alt="">
+      <img class="lightbox__img" alt="">
     </div>
   `;
 }
@@ -480,25 +443,33 @@ function renderLightbox() {
 function initLightbox() {
   const lightbox = document.getElementById("lightbox");
   const img = lightbox.querySelector(".lightbox__img");
+  const closeBtn = lightbox.querySelector(".lightbox__close");
   let isOpen = false;
+  let lastTrigger = null;
 
-  function open(src) {
-    img.src = src;
+  function open(trigger) {
+    lastTrigger = trigger;
+    img.src = trigger.src;
+    img.alt = trigger.alt || "";
     lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("lightbox-open");
     isOpen = true;
+    closeBtn.focus();
   }
 
   function close() {
     lightbox.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lightbox-open");
-    img.src = "";
+    img.removeAttribute("src");
     isOpen = false;
+    if (lastTrigger && document.contains(lastTrigger)) { lastTrigger.focus(); }
+    lastTrigger = null;
   }
 
+  // 只放大非链接图片（作品图）；archive 卡整卡跳详情页，行为统一
   document.addEventListener("click", function(e) {
-    const target = e.target.closest(".work-image, .archive-image");
-    if (target) { e.preventDefault(); open(target.src); }
+    const target = e.target.closest(".work-image");
+    if (target) { e.preventDefault(); open(target); }
   });
 
   lightbox.addEventListener("click", function(e) {
@@ -529,7 +500,6 @@ function renderPage() {
       </section>
       ${renderLightbox()}
     </main>
-    ${renderDrawer()}
   `;
 }
 
@@ -551,101 +521,4 @@ function scrollToHash() {
 window.addEventListener("hashchange", scrollToHash);
 scrollToHash();
 
-const drawer = document.querySelector(".drawer");
-const backdrop = document.querySelector(".drawer-backdrop");
-
-function openDrawer() {
-  document.body.classList.add("drawer-open");
-  drawer.setAttribute("aria-hidden", "false");
-}
-
-function closeDrawer() {
-  document.body.classList.remove("drawer-open");
-  drawer.setAttribute("aria-hidden", "true");
-  drawer.style.transform = "";
-  state.startX = 0;
-  state.currentX = 0;
-  state.tracking = false;
-}
-
-function toggleDrawer() {
-  if (document.body.classList.contains("drawer-open")) {
-    closeDrawer();
-  } else {
-    openDrawer();
-  }
-}
-
-function setActiveNav() {
-  document.querySelectorAll("[data-nav-key]").forEach((node) => {
-    const active = node.getAttribute("data-nav-key") === pageKey;
-    node.classList.toggle("is-active", active);
-    if (active) {
-      node.setAttribute("aria-current", "page");
-    } else {
-      node.removeAttribute("aria-current");
-    }
-  });
-}
-
-function bindSwipeToClose() {
-
-  drawer.addEventListener("touchstart", (event) => {
-    if (!document.body.classList.contains("drawer-open")) {
-      return;
-    }
-    state.tracking = true;
-    state.startX = event.touches[0].clientX;
-    state.currentX = state.startX;
-  }, { passive: true });
-
-  drawer.addEventListener("touchmove", (event) => {
-    if (!state.tracking) {
-      return;
-    }
-    state.currentX = event.touches[0].clientX;
-    const delta = Math.min(0, state.currentX - state.startX);
-    drawer.style.transform = `translateX(${delta}px)`;
-  }, { passive: true });
-
-  drawer.addEventListener("touchend", () => {
-    if (!state.tracking) {
-      return;
-    }
-    const delta = state.currentX - state.startX;
-    if (delta < -70) {
-      closeDrawer();
-    } else {
-      drawer.style.transform = "";
-      state.startX = 0;
-      state.currentX = 0;
-      state.tracking = false;
-    }
-  });
-}
-
-document.querySelectorAll("[data-drawer-toggle]").forEach((button) => {
-  button.addEventListener("click", toggleDrawer);
-});
-
-backdrop.addEventListener("click", closeDrawer);
-drawer.querySelectorAll("[data-drawer-toggle]").forEach((button) => {
-  button.addEventListener("click", closeDrawer);
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && document.body.classList.contains("drawer-open")) {
-    closeDrawer();
-  }
-});
-
-setActiveNav();
-bindSwipeToClose();
-
 initLightbox();
-
-window.openDrawer = openDrawer;
-window.closeDrawer = closeDrawer;
-window.toggleDrawer = toggleDrawer;
-window.setActiveNav = setActiveNav;
-window.bindSwipeToClose = bindSwipeToClose;

@@ -30,6 +30,9 @@ import { navItems } from "./site-data.js";
   function init() {
     if (document.querySelector("[data-site-nav]")) return;
     var pageKey = currentPageKey();
+    // SPA 页（首页/分期/纪事）的顶栏已自带菜单按钮：只注入抽屉，不再叠一个固定按钮
+    var hasPageToggle = !!document.querySelector("[data-drawer-toggle]");
+    var lastOpener = null;
 
     var root = document.createElement("div");
     root.className = "site-nav";
@@ -52,11 +55,12 @@ import { navItems } from "./site-data.js";
       .join("");
 
     root.innerHTML =
+      (hasPageToggle ? "" :
       '<button class="menu-button" type="button" aria-label="打开侧边栏" data-drawer-toggle>' +
       "<span></span><span></span><span></span>" +
-      "</button>" +
+      "</button>") +
       '<button class="drawer-backdrop" type="button" aria-label="关闭侧边栏"></button>' +
-      '<aside class="drawer" aria-hidden="true">' +
+      '<aside class="drawer" aria-hidden="true" inert>' +
       '<div class="drawer__header">' +
       '<button class="menu-button" type="button" aria-label="关闭侧边栏" data-drawer-toggle>' +
       "<span></span><span></span><span></span>" +
@@ -78,19 +82,27 @@ import { navItems } from "./site-data.js";
     var state = { startX: 0, currentX: 0, tracking: false };
 
     function openDrawer() {
+      lastOpener = document.activeElement;
       root.setAttribute("data-open", "true");
       document.body.classList.add("site-nav-open");
+      drawer.removeAttribute("inert");
       drawer.setAttribute("aria-hidden", "false");
+      var target = drawer.querySelector(".drawer-link.is-active") || drawer.querySelector("[data-drawer-toggle]");
+      if (target) target.focus();
     }
 
     function closeDrawer() {
+      var focusInside = drawer.contains(document.activeElement);
       root.setAttribute("data-open", "false");
       document.body.classList.remove("site-nav-open");
+      drawer.setAttribute("inert", "");
       drawer.setAttribute("aria-hidden", "true");
       drawer.style.transform = "";
       state.startX = 0;
       state.currentX = 0;
       state.tracking = false;
+      if (focusInside && lastOpener && document.contains(lastOpener)) lastOpener.focus();
+      lastOpener = null;
     }
 
     function toggleDrawer() {
@@ -128,7 +140,7 @@ import { navItems } from "./site-data.js";
       }
     });
 
-    root.querySelectorAll("[data-drawer-toggle]").forEach(function (button) {
+    document.querySelectorAll("[data-drawer-toggle]").forEach(function (button) {
       button.addEventListener("click", toggleDrawer);
     });
     backdrop.addEventListener("click", closeDrawer);

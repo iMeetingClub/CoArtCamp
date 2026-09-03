@@ -22,7 +22,8 @@
       card.classList.toggle("is-active", opening);
       card.setAttribute("aria-expanded", opening ? "true" : "false");
       if (opening) {
-        panel.scrollIntoView({ behavior: "smooth", block: "start" });
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        panel.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
       }
     });
     card.addEventListener("keydown", function (event) {

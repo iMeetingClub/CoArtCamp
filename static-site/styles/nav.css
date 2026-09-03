@@ -10,7 +10,7 @@
   --drawer-surface: rgba(247, 250, 246, 0.98);
   --line-drawer: #d7e0db;
   --line-muted: #c7d5cb;
-  --muted: #708186;
+  --muted: #55644e;
   --overlay: rgba(101, 118, 122, 0.58);
   --drawer-width: min(316px, 79vw);
   --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -23,12 +23,8 @@
   box-sizing: border-box;
 }
 
-/* ---- 左上角菜单按钮（fixed，悬浮在页面左上角） ---- */
+/* ---- 菜单按钮基础样式（页首固定按钮与抽屉内关闭按钮共用） ---- */
 .site-nav .menu-button {
-  position: fixed;
-  top: calc(14px + env(safe-area-inset-top, 0px));
-  left: calc(14px + env(safe-area-inset-left, 0px));
-  z-index: 30;
   width: 42px;
   height: 42px;
   border: 1px solid #b7c7be;
@@ -43,6 +39,15 @@
   cursor: pointer;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* 只有直接挂在 .site-nav 根下的按钮才固定在视口左上角；
+   抽屉头部里的那颗是关闭钮，保持在文档流里，否则会盖住品牌名 */
+.site-nav > .menu-button {
+  position: fixed;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  left: calc(14px + env(safe-area-inset-left, 0px));
+  z-index: 30;
 }
 
 .site-nav .menu-button span {
@@ -67,7 +72,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 240ms ease;
-  z-index: 39;
+  z-index: 40;
 }
 
 .site-nav .drawer {
@@ -84,7 +89,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  z-index: 40;
+  z-index: 41;
   touch-action: pan-y;
   overflow: hidden;
 }
@@ -175,7 +180,7 @@ body.site-nav-open {
   border-radius: 18px;
   border: 1px solid var(--line-drawer);
   background: #eef3ef;
-  color: var(--blue-400);
+  color: #47626f;
   font-family: var(--font-serif);
   font-size: 16px;
   display: grid;
@@ -246,4 +251,11 @@ body.site-nav-open {
   height: 154px;
   object-fit: contain;
   pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav .drawer,
+  .site-nav .drawer-backdrop {
+    transition: none;
+  }
 }

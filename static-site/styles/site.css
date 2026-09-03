@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg: #edf4ed;
   --surface: rgba(238, 245, 238, 0.92);
   --surface-soft: rgba(245, 250, 244, 0.85);
@@ -12,7 +12,7 @@
   --blue-600: #7d98a8;
   --blue-500: #7e9ba9;
   --blue-400: #7a96a6;
-  --muted: #708186;
+  --muted: #55644e;
   --line: #b9c8bc;
   --line-soft: #bfd0b7;
   --line-muted: #c7d5cb;
@@ -46,7 +46,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-family: var(--font-sans);
-  color: var(--green-600);
+  color: var(--green-900);
   background:
     linear-gradient(rgba(246, 250, 244, 0.82), rgba(246, 250, 244, 0.82)),
     url("../assets/images/bg-8.png") center top / cover fixed no-repeat;
@@ -211,7 +211,7 @@ body.drawer-open {
 }
 
 .top-nav__en {
-  color: var(--blue-600);
+  color: #47626f;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 1.8px;
@@ -225,7 +225,7 @@ body.drawer-open {
 }
 
 .top-nav__identity {
-  color: var(--blue-700);
+  color: #47626f;
   font-family: var(--font-serif);
   font-size: 13px;
   font-weight: 600;
@@ -300,14 +300,14 @@ body.drawer-open {
 
 .eyebrow,
 .drawer__eyebrow {
-  color: var(--blue-700);
+  color: #47626f;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 1.8px;
 }
 
 .eyebrow--small {
-  color: var(--blue-500);
+  color: #47626f;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 1.4px;
@@ -323,7 +323,7 @@ body.drawer-open {
   position: relative;
   z-index: 1;
   margin: 26px 0 0;
-  color: var(--blue-500);
+  color: #47626f;
   font-family: var(--font-hand);
   font-size: 28px;
   line-height: 1;
@@ -347,7 +347,7 @@ body.drawer-open {
   z-index: 1;
   margin: 82px 0 0;
   max-width: 248px;
-  color: var(--green-500);
+  color: var(--green-900);
   font-size: 14px;
   line-height: 1.7;
   overflow-wrap: anywhere;
@@ -402,7 +402,7 @@ body.drawer-open {
 .timeline-item__body,
 .drawer__text,
 .drawer__footer p {
-  color: var(--green-500);
+  color: var(--green-900);
   font-size: 13px;
   line-height: 1.7;
 }
@@ -450,7 +450,7 @@ body.drawer-open {
 
 .section-note {
   margin-top: 12px;
-  color: #7d8e74;
+  color: #55644e;
   font-size: 12px;
 }
 
@@ -582,7 +582,7 @@ body.drawer-open {
 }
 
 .archive-rail__index {
-  color: var(--blue-700);
+  color: #47626f;
   font-family: var(--font-serif);
   font-size: 40px;
   font-weight: 700;
@@ -592,7 +592,7 @@ body.drawer-open {
 .archive-rail__tag,
 .work-rail__meta {
   margin: 0;
-  color: var(--blue-500);
+  color: #47626f;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 1.2px;
@@ -610,7 +610,7 @@ body.drawer-open {
 
 .archive-rail__cta {
   margin: 10px 0 0;
-  color: var(--blue-500);
+  color: #47626f;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 1.2px;
@@ -669,7 +669,7 @@ body.drawer-open {
 
 .archive-card__tag,
 .work-card__meta {
-  color: var(--blue-500);
+  color: #47626f;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 1.2px;
@@ -740,7 +740,7 @@ body.drawer-open {
 
 .credit-card__role {
   margin: 4px 0 0;
-  color: var(--green-500);
+  color: var(--green-900);
   font-size: 10px;
   line-height: 1.5;
 }
@@ -765,7 +765,7 @@ body.drawer-open {
   border: 1px solid #b4c6bc;
   border-radius: var(--radius-pill);
   background: rgba(248, 252, 248, 0.86);
-  color: var(--blue-700);
+  color: #47626f;
   font-size: 11px;
   font-weight: 600;
   line-height: 1;
@@ -789,7 +789,7 @@ body.drawer-open {
 
 .side-lane-card__label {
   margin: 0;
-  color: var(--blue-700);
+  color: #47626f;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -815,7 +815,7 @@ body.drawer-open {
 
 .side-lane-card__body {
   margin: 8px 0 0;
-  color: var(--green-500);
+  color: var(--green-900);
   font-size: 13px;
   line-height: 1.7;
 }
@@ -842,7 +842,7 @@ body.drawer-open {
 
 .side-lane-card__group-label {
   margin: 0;
-  color: rgba(111, 142, 160, 0.86);
+  color: #47626f;
   font-size: 12px;
   font-weight: 600;
   line-height: 1.5;
@@ -902,12 +902,12 @@ body.drawer-open {
 }
 
 .side-group__label {
-  color: var(--blue-700);
+  color: #47626f;
   font-weight: 600;
 }
 
 .side-group__text {
-  color: rgba(96, 112, 88, 0.86);
+  color: #55644e;
 }
 
 .side-contract {
@@ -920,7 +920,7 @@ body.drawer-open {
 
 .side-contract p {
   margin: 0;
-  color: rgba(96, 112, 88, 0.72);
+  color: #55644e;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.65;
@@ -929,7 +929,7 @@ body.drawer-open {
 .side-contract a {
   width: fit-content;
   max-width: 100%;
-  color: rgba(111, 142, 160, 0.78);
+  color: #47626f;
   font-size: 12px;
   font-weight: 500;
   text-decoration: none;
@@ -959,7 +959,7 @@ body.drawer-open {
 
 .work-rail__title {
   margin: 0;
-  color: var(--blue-700);
+  color: #47626f;
   font-family: var(--font-serif);
   font-size: 18px;
   font-weight: 700;
@@ -1026,7 +1026,7 @@ body.drawer-open {
 
 .timeline-item__date {
   width: 64px;
-  color: var(--blue-400);
+  color: #47626f;
   font-size: 10px;
   font-weight: 600;
   text-align: center;
@@ -1171,7 +1171,7 @@ body.drawer-open .drawer-backdrop {
   border-radius: 18px;
   border: 1px solid var(--line-drawer);
   background: #eef3ef;
-  color: var(--blue-400);
+  color: #47626f;
   font-family: var(--font-serif);
   font-size: 16px;
   display: grid;
@@ -1470,7 +1470,7 @@ body.lightbox-open {
 }
 
 .story-phase__index {
-  color: var(--blue-700);
+  color: #47626f;
   font-family: var(--font-serif);
   font-size: 13px;
   font-weight: 600;
@@ -1506,7 +1506,7 @@ body.lightbox-open {
 .story-more {
   display: inline-block;
   margin-top: 14px;
-  color: var(--blue-700);
+  color: #47626f;
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
@@ -1550,7 +1550,7 @@ body.lightbox-open {
 
 .gratitude-note__label {
   margin: 0;
-  color: var(--blue-600);
+  color: #47626f;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 1.2px;
@@ -1567,7 +1567,7 @@ body.lightbox-open {
 
 .gratitude-note__note {
   margin: 4px 0 0;
-  color: var(--green-500);
+  color: var(--green-900);
   font-size: 11px;
   line-height: 1.5;
 }
@@ -1634,7 +1634,7 @@ body.lightbox-open {
 .donation-history__label {
   margin: 0;
   flex: 0 0 auto;
-  color: var(--blue-700);
+  color: #47626f;
   font-family: var(--font-serif);
   font-size: 12px;
   font-weight: 600;
@@ -1651,10 +1651,31 @@ body.lightbox-open {
 
 .donation-history__note {
   flex: 0 0 auto;
-  color: var(--green-500);
+  color: var(--green-900);
   font-size: 11px;
   border: 1px solid var(--line-muted);
   border-radius: var(--radius-pill);
   padding: 2px 8px;
   white-space: nowrap;
+}
+
+/* ---- 减少动态偏好：入场/呼吸/过渡全部降级 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .screen-surface {
+    animation: none;
+  }
+
+  .archive-rail__cta {
+    animation: none;
+  }
+
+  .archive-card,
+  .cta-card,
+  .enroll-line__button,
+  .drawer,
+  .drawer-backdrop,
+  .lightbox,
+  .lightbox__close {
+    transition: none;
+  }
 }
