@@ -70,8 +70,8 @@ const ok = (name, cond, extra) => { console.log(`${cond ? '✓' : '✗'} ${name}
   wNums.forEach(([n, src]) => ok(`wallet 数字 ${n}（${src}）`, wText.includes(n)));
   const steps = await page.evaluate(() => document.querySelectorAll('.step-card').length);
   ok('wallet 四步卡片', steps === 4);
-  const wPlaceholder = await page.evaluate(() => !!document.querySelector('.placeholder'));
-  ok('wallet 云村登录占位', wPlaceholder);
+  const wLogin = await page.evaluate(() => { const a = document.querySelector('a[href*="nantangyuncun"]'); return a ? a.getAttribute('href') : null; });
+  ok('wallet 云村登录链接（用户 2026-09 提供）', wLogin === 'https://nantangyuncun.pages.dev');
   ok('wallet 无 JS 错误', errors.length === 0);
   errors.length = 0;
 
