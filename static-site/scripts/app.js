@@ -1,13 +1,7 @@
-﻿import { navItems, pages } from "./site-data.js?v=3";
+import { pages } from "./site-data.js?v=3";
 
 const pageKey = document.body.dataset.page || "home";
 const page = pages[pageKey];
-
-const state = {
-  startX: 0,
-  currentX: 0,
-  tracking: false,
-};
 
 const app = document.getElementById("app");
 
@@ -134,6 +128,22 @@ function renderArchive(section) {
         ${section.items.map(renderArchiveItem).join("")}
       </div>
     </section>
+  `;
+}
+
+function renderCtaCard(section) {
+  return `
+    <a class="section-card cta-card" href="${esc(section.href)}">
+      <p class="eyebrow">${esc(section.eyebrow)}</p>
+      <h2 class="section-title">${esc(section.title)}</h2>
+      <div class="copy-stack">
+        ${section.paragraphs.map((text) => `<p class="body-copy">${esc(text)}</p>`).join("")}
+      </div>
+      <div class="cta-card__foot">
+        ${section.note ? `<p class="section-note cta-card__note">${esc(section.note)}</p>` : ""}
+        <span class="cta-card__button">${esc(section.buttonLabel)} →</span>
+      </div>
+    </a>
   `;
 }
 
@@ -306,10 +316,93 @@ function renderTimeline(section) {
             <div class="timeline-item__card">
               <p class="eyebrow eyebrow--small">${esc(item.phase)}</p>
               <h3 class="timeline-item__title">${esc(item.title)}</h3>
-              <p class="timeline-item__body">${esc(item.body)}</p>
+              <p class="timeline-item__body">${nlToBr(item.body)}</p>
               ${item.image ? (typeof item.image === "string" ? `<img class="timeline-item__image" src="${item.image}" alt="">` : `<div class="timeline-item__image" aria-hidden="true"></div>`) : ""}
             </div>
           </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderStoryPhase(section) {
+  const refPage = pages[section.ref];
+  const list = refPage ? refPage.sections : [];
+  const items = (section.include || []).map((i) => list[i]);
+  const sliced = section.slice
+    ? items.map((s) => (s.items ? { ...s, items: s.items.slice(0, section.slice) } : s))
+    : items;
+  const children = sliced.map(renderSection).join("");
+  const gratitude = section.gratitude ? `
+    <section class="gratitude-note">
+      <p class="eyebrow">${esc(section.gratitude.eyebrow)}</p>
+      <h3 class="gratitude-note__title">${esc(section.gratitude.title)}</h3>
+      ${section.gratitude.intro ? `<p class="body-copy body-copy--compact">${esc(section.gratitude.intro)}</p>` : ""}
+      <div class="gratitude-note__grid">
+        ${section.gratitude.rows.map((row) => `
+          <div class="gratitude-note__row">
+            <p class="gratitude-note__label">${esc(row.label)}</p>
+            <p class="gratitude-note__value">${esc(row.value)}</p>
+            ${row.note ? `<p class="gratitude-note__note">${esc(row.note)}</p>` : ""}
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  ` : "";
+  const more = section.more ? `
+    <a class="story-more" href="${esc(section.more.href)}">${esc(section.more.label)} →</a>
+  ` : "";
+  const bodyId = "body-" + esc(section.id);
+  const toggleId = "toggle-" + esc(section.id);
+  return `
+    <section class="story-phase" id="${esc(section.id)}">
+      <h2 class="story-phase__head">
+        <button class="story-phase__toggle" type="button" id="${toggleId}" aria-expanded="true" aria-controls="${bodyId}">
+          <span class="story-phase__headrow">
+            <span class="story-phase__index">${esc(section.phaseIndex)}</span>
+            <span class="story-phase__title">${esc(section.title)}</span>
+            <span class="story-phase__chevron" aria-hidden="true">›</span>
+          </span>
+          <span class="story-phase__hook">${esc(section.hook)}</span>
+        </button>
+      </h2>
+      <div class="story-phase__body" id="${bodyId}" role="region" aria-labelledby="${toggleId}">
+        ${children}
+        ${gratitude}
+        ${more}
+      </div>
+    </section>
+  `;
+}
+
+function renderEnrollLine(section) {
+  return `
+    <section class="enroll-line" id="${esc(section.id)}">
+      <p class="eyebrow">${esc(section.eyebrow)}</p>
+      <h2 class="section-title">${esc(section.title)}</h2>
+      <div class="copy-stack">
+        ${section.paragraphs.map((text) => `<p class="body-copy">${esc(text)}</p>`).join("")}
+      </div>
+      <a class="enroll-line__button" href="${esc(section.href)}">${esc(section.buttonLabel)} →</a>
+      ${section.note ? `<p class="section-note enroll-line__note">${esc(section.note)}</p>` : ""}
+    </section>
+  `;
+}
+
+function renderDonationHistory(section) {
+  return `
+    <section class="donation-history">
+      <p class="eyebrow">${esc(section.eyebrow)}</p>
+      <h2 class="section-title">${esc(section.title)}</h2>
+      <p class="body-copy body-copy--compact">${esc(section.intro)}</p>
+      <div class="donation-history__list">
+        ${section.rows.map((row) => `
+          <div class="donation-history__row">
+            <p class="donation-history__label">${esc(row.label)}</p>
+            <p class="donation-history__value">${esc(row.value)}</p>
+            ${row.note ? `<span class="donation-history__note">${esc(row.note)}</span>` : ""}
+          </div>
         `).join("")}
       </div>
     </section>
@@ -322,6 +415,8 @@ function renderSection(section) {
       return renderTextCard(section);
     case "archive":
       return renderArchive(section);
+    case "cta-card":
+      return renderCtaCard(section);
     case "credits":
       return renderCredits(section);
     case "side-project":
@@ -332,47 +427,22 @@ function renderSection(section) {
       return renderCoCreators(section);
     case "timeline":
       return renderTimeline(section);
+    case "story-phase":
+      return renderStoryPhase(section);
+    case "enroll-line":
+      return renderEnrollLine(section);
+    case "donation-history":
+      return renderDonationHistory(section);
     default:
       return "";
   }
 }
 
-function renderDrawer() {
-  const links = navItems.map((item) => `
-    <a class="drawer-link${item.key === pageKey ? " is-active" : ""}" href="${esc(item.href)}" data-nav-key="${esc(item.key)}">
-      <span class="drawer-link__index">${esc(item.index)}</span>
-      <span class="drawer-link__copy">
-        <span class="drawer-link__title">${esc(item.title)}</span>
-        <span class="drawer-link__subtitle">${esc(item.subtitle)}</span>
-      </span>
-      <span class="drawer-link__arrow">&gt;</span>
-    </a>
-  `).join("");
-
-  return `
-    <button class="drawer-backdrop" type="button" aria-label="关闭侧边栏"></button>
-    <aside class="drawer" aria-hidden="true">
-      <div class="drawer__header">
-        ${renderMenuButton()}
-        <div class="drawer__brand">
-          <h2 class="drawer__brand-title">艺术共创营</h2>
-        </div>
-      </div>
-      <nav class="drawer__nav" aria-label="页面导航">${links}</nav>
-      <div class="drawer__footer">
-        <div class="drawer__footer-rule"></div>
-        <p>点击右侧留白或再次点击左上角按钮关闭</p>
-      </div>
-      <img class="drawer__bird" src="assets/images/feature-bird-cutout.png" alt="">
-    </aside>
-  `;
-}
-
 function renderLightbox() {
   return `
-    <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="查看大图">
       <button class="lightbox__close" type="button" aria-label="关闭">&times;</button>
-      <img class="lightbox__img" src="" alt="">
+      <img class="lightbox__img" alt="">
     </div>
   `;
 }
@@ -380,25 +450,33 @@ function renderLightbox() {
 function initLightbox() {
   const lightbox = document.getElementById("lightbox");
   const img = lightbox.querySelector(".lightbox__img");
+  const closeBtn = lightbox.querySelector(".lightbox__close");
   let isOpen = false;
+  let lastTrigger = null;
 
-  function open(src) {
-    img.src = src;
+  function open(trigger) {
+    lastTrigger = trigger;
+    img.src = trigger.src;
+    img.alt = trigger.alt || "";
     lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("lightbox-open");
     isOpen = true;
+    closeBtn.focus();
   }
 
   function close() {
     lightbox.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lightbox-open");
-    img.src = "";
+    img.removeAttribute("src");
     isOpen = false;
+    if (lastTrigger && document.contains(lastTrigger)) { lastTrigger.focus(); }
+    lastTrigger = null;
   }
 
+  // 只放大非链接图片（作品图）；archive 卡整卡跳详情页，行为统一
   document.addEventListener("click", function(e) {
-    const target = e.target.closest(".work-image, .archive-image");
-    if (target) { e.preventDefault(); open(target.src); }
+    const target = e.target.closest(".work-image");
+    if (target) { e.preventDefault(); open(target); }
   });
 
   lightbox.addEventListener("click", function(e) {
@@ -429,107 +507,85 @@ function renderPage() {
       </section>
       ${renderLightbox()}
     </main>
-    ${renderDrawer()}
   `;
 }
 
 renderPage();
 
-const drawer = document.querySelector(".drawer");
-const backdrop = document.querySelector(".drawer-backdrop");
+/* ═══════════ 章节卡手风琴（目录式故事书） ═══════════
+   默认全部收起（渐进增强：无 JS 时全部展开可读）；
+   排他——点开一章，其他章自动关上；锚点直达自动展开。 */
+const storyItems = (function initStoryAccordion() {
+  const items = [...document.querySelectorAll(".story-phase")]
+    .map((sec) => ({
+      sec,
+      toggle: sec.querySelector(".story-phase__toggle"),
+      body: sec.querySelector(".story-phase__body"),
+    }))
+    .filter((x) => x.toggle && x.body);
+  if (!items.length) return [];
 
-function openDrawer() {
-  document.body.classList.add("drawer-open");
-  drawer.setAttribute("aria-hidden", "false");
-}
+  const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function closeDrawer() {
-  document.body.classList.remove("drawer-open");
-  drawer.setAttribute("aria-hidden", "true");
-  drawer.style.transform = "";
-  state.startX = 0;
-  state.currentX = 0;
-  state.tracking = false;
-}
+  function setOpen(item, open) {
+    item.body.hidden = !open;
+    item.toggle.setAttribute("aria-expanded", String(open));
+    item.sec.classList.toggle("is-open", open);
+  }
 
-function toggleDrawer() {
-  if (document.body.classList.contains("drawer-open")) {
-    closeDrawer();
-  } else {
-    openDrawer();
+  function openExclusive(item) {
+    items.forEach((x) => setOpen(x, x === item));
+  }
+
+  items.forEach((item) => {
+    setOpen(item, false);
+    item.toggle.addEventListener("click", () => {
+      if (item.body.hidden) {
+        openExclusive(item);
+        item.sec.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" });
+      } else {
+        setOpen(item, false);
+      }
+    });
+  });
+
+  // 章节列表上方的操作提示
+  const first = items[0].sec;
+  if (first && !document.querySelector(".story-hint")) {
+    first.insertAdjacentHTML("beforebegin", '<p class="story-hint">点一期，展开那一期</p>');
+  }
+
+  return items;
+})();
+
+function expandStoryPhase(id) {
+  const item = storyItems.find((x) => x.sec.id === id);
+  if (item) {
+    storyItems.forEach((x) => {
+      const open = x === item;
+      x.body.hidden = !open;
+      x.toggle.setAttribute("aria-expanded", String(open));
+      x.sec.classList.toggle("is-open", open);
+    });
   }
 }
 
-function setActiveNav() {
-  document.querySelectorAll("[data-nav-key]").forEach((node) => {
-    const active = node.getAttribute("data-nav-key") === pageKey;
-    node.classList.toggle("is-active", active);
-    if (active) {
-      node.setAttribute("aria-current", "page");
-    } else {
-      node.removeAttribute("aria-current");
-    }
-  });
+// SPA 锚点：渲染后按 hash 定位（浏览器在 JS 注入前找不到锚点，需手动滚动）
+// 滚动途中懒加载图片会改变文档高度——分段校准，覆盖漂移
+function scrollToHash() {
+  const hash = window.location.hash;
+  if (!hash) return;
+  const el = document.getElementById(hash.slice(1));
+  if (!el) return;
+  const phase = el.closest(".story-phase");
+  if (phase) expandStoryPhase(phase.id);
+  let tries = 0;
+  (function align() {
+    el.scrollIntoView();
+    if (tries++ < 10) setTimeout(align, 180);
+  })();
 }
-
-function bindSwipeToClose() {
-
-  drawer.addEventListener("touchstart", (event) => {
-    if (!document.body.classList.contains("drawer-open")) {
-      return;
-    }
-    state.tracking = true;
-    state.startX = event.touches[0].clientX;
-    state.currentX = state.startX;
-  }, { passive: true });
-
-  drawer.addEventListener("touchmove", (event) => {
-    if (!state.tracking) {
-      return;
-    }
-    state.currentX = event.touches[0].clientX;
-    const delta = Math.min(0, state.currentX - state.startX);
-    drawer.style.transform = `translateX(${delta}px)`;
-  }, { passive: true });
-
-  drawer.addEventListener("touchend", () => {
-    if (!state.tracking) {
-      return;
-    }
-    const delta = state.currentX - state.startX;
-    if (delta < -70) {
-      closeDrawer();
-    } else {
-      drawer.style.transform = "";
-      state.startX = 0;
-      state.currentX = 0;
-      state.tracking = false;
-    }
-  });
-}
-
-document.querySelectorAll("[data-drawer-toggle]").forEach((button) => {
-  button.addEventListener("click", toggleDrawer);
-});
-
-backdrop.addEventListener("click", closeDrawer);
-drawer.querySelectorAll("[data-drawer-toggle]").forEach((button) => {
-  button.addEventListener("click", closeDrawer);
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && document.body.classList.contains("drawer-open")) {
-    closeDrawer();
-  }
-});
-
-setActiveNav();
-bindSwipeToClose();
+window.addEventListener("hashchange", scrollToHash);
+scrollToHash();
 
 initLightbox();
-
-window.openDrawer = openDrawer;
-window.closeDrawer = closeDrawer;
-window.toggleDrawer = toggleDrawer;
-window.setActiveNav = setActiveNav;
-window.bindSwipeToClose = bindSwipeToClose;

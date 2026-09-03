@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数字身份钱包 · 南塘艺术共创营</title>
+    <meta name="description" content="南塘云村使用区块链技术，把 NT 积分与你的贡献永久记录在链上。数字身份钱包，是这一切的入口。" />
+    <meta property="og:title" content="数字身份钱包 · 南塘艺术共创营" />
+    <meta property="og:description" content="南塘云村使用区块链技术，把 NT 积分与你的贡献永久记录在链上。数字身份钱包，是这一切的入口。" />
+    <link rel="icon" type="image/png" href="assets/images/feature-bird-cutout.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <style>
+      :root {
+        --pine: #55644e;
+        --pine-soft: #6d7d64;
+        --ink: #2b2b2b;
+        --muted: #55644e;
+        --line: #c9d4c6;
+        --card: #ffffff;
+        --bg: #edf4ed;
+        --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+        --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+      }
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        background: var(--bg);
+      }
+      .stage {
+        position: relative;
+        width: 100%;
+        max-width: 430px;
+        min-height: 100vh;
+        background: var(--bg);
+        padding: 0 20px 40px;
+      }
+      @media (min-width: 431px) {
+        body {
+          padding: 24px 0;
+        }
+        .stage {
+          border-radius: 28px;
+          box-shadow: 0 22px 48px rgba(126, 152, 142, 0.12);
+        }
+      }
+
+      /* ── 顶栏（避让抽屉按钮）── */
+      .page-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 66px 0 0;
+      }
+      .camp-label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .page-name {
+        font-family: var(--font-serif);
+        font-size: 15px;
+        color: var(--pine);
+        white-space: nowrap;
+      }
+
+      /* ── 区块 ── */
+      section {
+        margin-top: 44px;
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .eyebrow-line {
+        width: 22px;
+        height: 1px;
+        background: var(--pine);
+        flex-shrink: 0;
+      }
+      .eyebrow-text {
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: var(--muted);
+      }
+      .h1 {
+        font-family: var(--font-serif);
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--ink);
+        margin: 0 0 14px;
+      }
+      .h2 {
+        font-family: var(--font-serif);
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--ink);
+        margin: 0 0 12px;
+      }
+      .lead {
+        font-size: 15px;
+        line-height: 26px;
+        color: var(--ink);
+        margin: 0;
+      }
+      .body-text {
+        font-size: 14px;
+        line-height: 25px;
+        color: var(--ink);
+        margin: 0 0 12px;
+      }
+      .muted-note {
+        font-size: 12px;
+        line-height: 20px;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      /* ── 理念卡 ── */
+      .idea-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .idea-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 16px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .idea-card .i-no {
+        font-family: var(--font-serif);
+        font-size: 12px;
+        color: var(--pine);
+        border: 1px solid var(--pine);
+        border-radius: 999px;
+        padding: 2px 9px;
+        flex-shrink: 0;
+      }
+      .idea-card .i-text {
+        font-size: 13px;
+        line-height: 22px;
+        color: var(--ink);
+      }
+
+      /* ── 四步 ── */
+      .step-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px 16px;
+        margin-top: 14px;
+      }
+      .step-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .step-no {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        background: var(--pine);
+        color: #f2f5f2;
+        font-family: var(--font-serif);
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .step-title {
+        font-family: var(--font-serif);
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .step-desc {
+        font-size: 13px;
+        line-height: 22px;
+        color: var(--ink);
+      }
+      .step-desc b {
+        color: var(--pine);
+      }
+
+      /* ── 参数表 ── */
+      .kv {
+        margin: 12px 0 0;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .kv-row {
+        display: flex;
+        gap: 10px;
+        padding: 9px 12px;
+        font-size: 12px;
+        line-height: 20px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .kv-row + .kv-row {
+        border-top: 1px solid var(--line);
+      }
+      .kv-row .k {
+        color: var(--muted);
+        flex-shrink: 0;
+        width: 76px;
+      }
+      .kv-row .v {
+        color: var(--ink);
+        word-break: break-all;
+      }
+
+      /* ── 里程碑档位 ── */
+      .mile-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .mile-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .mile-row .icon {
+        font-size: 15px;
+        flex-shrink: 0;
+      }
+      .mile-row .name {
+        color: var(--ink);
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .mile-row .th {
+        color: var(--muted);
+        margin-left: auto;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ── 按钮 ── */
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 13px 30px;
+        border: none;
+        border-radius: 999px;
+        background: var(--pine);
+        color: #f2f5f2;
+        font-size: 14px;
+        font-family: var(--font-sans);
+        text-decoration: none;
+        cursor: pointer;
+        margin-top: 12px;
+      }
+      .btn-primary:active {
+        transform: scale(0.98);
+      }
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 10px 24px;
+        border: 1.5px solid var(--pine-soft);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--pine);
+        font-size: 13px;
+        font-family: var(--font-sans);
+        text-decoration: none;
+        cursor: pointer;
+        margin-top: 12px;
+      }
+      .placeholder {
+        margin-top: 12px;
+        border: 1.5px dashed var(--pine-soft);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 12px;
+        line-height: 19px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      /* ── 提示 ── */
+      .tip-list {
+        margin: 14px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .tip-list li {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 13px;
+        line-height: 21px;
+        color: var(--ink);
+      }
+      .tip-list li b {
+        color: var(--pine);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <header class="page-head">
+        <span class="camp-label">NANTANG ART CAMP</span>
+        <span class="page-name">数字身份钱包</span>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">DIGITAL IDENTITY</span></div>
+        <h1 class="h1">你的劳动，<br />值得被永久记录</h1>
+        <p class="lead">南塘云村使用区块链技术，把 NT 积分与你的贡献永久记录在链上。数字身份钱包，是这一切的入口。</p>
+        <div class="idea-cards">
+          <div class="idea-card"><span class="i-no">一</span><span class="i-text"><b>NT 上链不是为了炒作</b>，而是为了<b>不可篡改的劳动记录</b>。</span></div>
+          <div class="idea-card"><span class="i-no">二</span><span class="i-text"><b>NFT 不是投机品</b>，而是<b>永久链上劳动凭证</b>。</span></div>
+          <div class="idea-card"><span class="i-no">三</span><span class="i-text">技术选择以<b>低门槛、低成本</b>为首要标准。</span></div>
+        </div>
+      </section>
+
+      <!-- 四步 -->
+      <section>
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">FOUR STEPS</span></div>
+        <h2 class="h2">四步，领取你的数字身份</h2>
+
+        <!-- 第 1 步 -->
+        <div class="step-card">
+          <div class="step-head"><span class="step-no">1</span><span class="step-title">安装 MetaMask 钱包</span></div>
+          <p class="step-desc">MetaMask 是社区认知度最高、教程最多的数字钱包，支持 Chrome / Firefox 浏览器扩展与移动端 App。</p>
+          <p class="step-desc">下载地址：<a href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer" style="color: var(--pine)">metamask.io/download</a></p>
+          <p class="muted-note" style="margin-top: 8px">如无法使用 MetaMask，云村提供「托管钱包」模式：平台代为管理私钥，账户会明确标记为托管账户。</p>
+        </div>
+
+        <!-- 第 2 步 -->
+        <div class="step-card">
+          <div class="step-head"><span class="step-no">2</span><span class="step-title">添加 Polygon 网络</span></div>
+          <p class="step-desc">南塘云村选择 <b>Polygon（Matic）</b> 作为底层链：EVM 兼容、Gas 费极低（约 $0.01–0.05 / 笔）、生态成熟。</p>
+          <div class="kv">
+            <div class="kv-row"><span class="k">网络名称</span><span class="v">Polygon Mainnet</span></div>
+            <div class="kv-row"><span class="k">Chain ID</span><span class="v">137</span></div>
+            <div class="kv-row"><span class="k">RPC</span><span class="v">https://polygon-rpc.com</span></div>
+            <div class="kv-row"><span class="k">代币符号</span><span class="v">MATIC</span></div>
+            <div class="kv-row"><span class="k">区块浏览器</span><span class="v">https://polygonscan.com</span></div>
+          </div>
+          <p class="muted-note" style="margin-top: 10px">在 MetaMask 中手动添加网络即可；连接云村时也会引导你一键添加。</p>
+        </div>
+
+        <!-- 第 3 步 -->
+        <div class="step-card">
+          <div class="step-head"><span class="step-no">3</span><span class="step-title">领取数字身份凭证 NFT</span></div>
+          <p class="step-desc">当你的贡献达到里程碑，系统会为你铸造一枚 <b>Soulbound（不可转让）</b> NFT——这是对真实劳动记录的<b>永久链上证明</b>，Gas 费由社区承担。</p>
+          <div class="mile-steps">
+            <div class="mile-row"><span class="icon">🌱</span><span class="name">新芽</span><span class="th">贡献值 ≥ 100 CV</span></div>
+            <div class="mile-row"><span class="icon">🌿</span><span class="name">小树</span><span class="th">贡献值 ≥ 500 CV</span></div>
+            <div class="mile-row"><span class="icon">🌳</span><span class="name">大树</span><span class="th">贡献值 ≥ 1,000 CV</span></div>
+            <div class="mile-row"><span class="icon">🏔️</span><span class="name">山峰</span><span class="th">贡献值 ≥ 2,000 CV</span></div>
+            <div class="mile-row"><span class="icon">⭐</span><span class="name">星辰</span><span class="th">贡献值 ≥ 5,000 CV</span></div>
+          </div>
+          <p class="muted-note" style="margin-top: 10px">另有年度贡献证书 NFT，每年为活跃成员自动铸造。</p>
+        </div>
+
+        <!-- 第 4 步 -->
+        <div class="step-card">
+          <div class="step-head"><span class="step-no">4</span><span class="step-title">登录南塘云村</span></div>
+          <p class="step-desc">连接钱包，即可登录南塘云村，查看你的 NT 链上记录、贡献值与数字身份凭证。</p>
+          <a class="btn-primary" href="https://nantangyuncun.pages.dev" target="_blank" rel="noopener noreferrer">打开南塘云村 →</a>
+          <p class="muted-note" style="margin-top: 8px">认准域名：nantangyuncun.pages.dev</p>
+        </div>
+      </section>
+
+      <!-- 你需要知道的 -->
+      <section>
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">GOOD TO KNOW</span></div>
+        <h2 class="h2">你需要知道的</h2>
+        <ul class="tip-list">
+          <li><b>私钥安全：</b>平台绝不接触你的私钥，所有签名都在 MetaMask 弹窗内完成，平台代码看不到。</li>
+          <li><b>Gas 费：</b>个人转账时保持少量 MATIC 作为 Gas（建议 ≥ 0.5 MATIC）；里程碑 NFT 铸造的 Gas 由社区承担。</li>
+          <li><b>链的选择：</b>选择 Polygon 而非以太坊主网，是因为后者 Gas 太高（$5–50 / 笔），对小额高频的乡村劳动结算不现实。</li>
+        </ul>
+      </section>
+
+      <div style="text-align:center; margin-top:40px"><a class="btn-secondary" href="index.html">返回活动首页</a></div>
+    </div>
+
+    <script src="scripts/nav.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>报名 · 风格 C：档案</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --ink:#2b2b2b; --red:#a3281d; --pine:#1f4d3a; --line:#d8d2c4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#e8e4da;font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);
+    display:flex;justify-content:center;padding:26px 0}
+  .folio{width:430px;max-width:94vw;background:var(--paper);box-shadow:0 10px 40px rgba(0,0,0,.3);
+    padding:0 0 34px}
+  /* 档案头：红头 + 编号 */
+  .head{border-bottom:2px solid var(--ink);padding:22px 26px 14px;position:relative}
+  .head .org{font-size:11px;letter-spacing:.3em;color:var(--pine)}
+  .head h1{font-size:22px;margin-top:8px;letter-spacing:.12em}
+  .head .doc-no{position:absolute;right:26px;top:22px;font-size:11px;color:#8b8475;text-align:right;line-height:1.8}
+  .head .doc-no b{display:block;color:var(--red);font-weight:600;font-size:12px}
+  .seal-line{height:8px;background:repeating-linear-gradient(90deg,var(--red) 0 10px,transparent 10px 22px)}
+  /* 表单 */
+  .form{padding:24px 26px 0}
+  .field{margin-bottom:22px}
+  .field label{display:block;font-size:12px;letter-spacing:.18em;color:#8b8475;margin-bottom:7px}
+  .field label b{color:var(--red);margin-left:3px}
+  .field input,.field textarea,.field select{
+    width:100%;border:none;border-bottom:1.5px solid var(--line);background:transparent;
+    font-size:15px;padding:8px 2px;outline:none;font-family:inherit;color:var(--ink);
+    border-radius:0
+  }
+  .field input:focus,.field textarea:focus{border-bottom-color:var(--pine)}
+  .field textarea{min-height:64px;resize:vertical;line-height:1.7}
+  .grid{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+  .part{font-size:11px;letter-spacing:.25em;color:var(--pine);border-left:3px solid var(--pine);
+    padding-left:10px;margin:26px 0 14px}
+  .checks span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:7px 14px;
+    font-size:13px;margin:0 8px 8px 0;cursor:pointer;transition:all .15s;color:#5c564a}
+  .checks span.on{background:var(--pine);border-color:var(--pine);color:#fbfaf7}
+  /* 归档区 */
+  .archive{border:1.5px dashed var(--red);margin:26px 26px 0;padding:18px;text-align:center;border-radius:4px;
+    position:relative}
+  .archive .date{font-size:12px;color:#8b8475;letter-spacing:.1em}
+  .archive .no{font-size:26px;letter-spacing:.2em;color:var(--red);margin-top:8px;font-weight:700}
+  .archive .label{font-size:11px;letter-spacing:.3em;color:#8b8475;margin-top:6px}
+  .submit{text-align:center;margin-top:26px}
+  .btn{background:var(--red);color:#fbfaf7;border:none;border-radius:2px;padding:14px 52px;
+    font-size:14px;letter-spacing:.35em;font-family:inherit;cursor:pointer;box-shadow:0 4px 14px rgba(163,40,29,.28)}
+  .btn:active{transform:translateY(1px)}
+  .note{font-size:11px;color:#8b8475;text-align:center;margin-top:12px;letter-spacing:.06em}
+</style>
+</head>
+<body>
+<div class="folio">
+  <div class="head">
+    <span class="doc-no">编号<b>NT-CAMP-04</b>待编</span>
+    <div class="org">南塘艺术共创营 · 档案室</div>
+    <h1>第四期共创人报名档案</h1>
+  </div>
+  <div class="seal-line"></div>
+  <div class="form">
+
+    <div class="part">壹 · 基本情况</div>
+    <div class="grid">
+      <div class="field"><label>姓名 / 称呼<b>✳</b></label><input placeholder="怎么称呼你"></div>
+      <div class="field"><label>来自</label><input placeholder="城市 / 家乡"></div>
+    </div>
+    <div class="field"><label>联系方式<b>✳</b></label><input placeholder="微信 / 手机 / 邮箱" inputmode="text"></div>
+
+    <div class="part">贰 · 光谱技能</div>
+    <div class="field">
+      <label>你擅长的事（可多选）</label>
+      <div class="checks">
+        <span>绘画</span><span>写作</span><span>摄影</span><span>音乐</span>
+        <span>烹饪</span><span>手工</span><span>策划</span><span>传播</span><span>其他</span>
+      </div>
+    </div>
+
+    <div class="part">叁 · 为何相遇</div>
+    <div class="field"><label>为什么想加入第四期？</label><textarea placeholder="想到什么写什么——几句话就够。"></textarea></div>
+
+    <div class="part">肆 · 共同生活</div>
+    <div class="field"><label>在营地愿意承担什么？</label><input placeholder="值日 / 做饭 / 记录 / 带晨练……"></div>
+
+    <div class="part">伍 · 照顾你</div>
+    <div class="field"><label>饮食禁忌 / 过敏 / 身体状况</label><textarea placeholder="没有就写「无」。我们想更好地照顾你。"></textarea></div>
+
+    <div class="archive">
+      <div class="date">归档日期：____年__月__日</div>
+      <div class="no" id="no">NT-CAMP-04-000</div>
+      <div class="label">南塘共创营 · 档案室 存档</div>
+    </div>
+    <div class="submit"><button class="btn" id="submit">归 档</button></div>
+    <div class="note" id="note">提交即视为同意共创营与你联系 · 信息仅用于本期招募</div>
+  </div>
+</div>
+<script>
+  var chips=[].slice.call(document.querySelectorAll('.checks span'));
+  chips.forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('on')})});
+  document.getElementById('submit').addEventListener('click',function(){
+    var no=document.getElementById('no');
+    no.textContent='NT-CAMP-04-'+String(Math.floor(100+Math.random()*900));
+    document.getElementById('note').textContent='已归档。我们会认真读你的档案——南塘见。';
+  });
+</script>
+</body>
+</html>

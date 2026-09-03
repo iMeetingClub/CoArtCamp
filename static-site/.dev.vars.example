@@ -1,0 +1,13 @@
+# 复制为 .dev.vars 并填入真实凭证（本地 wrangler pages dev 用）
+# 部署到 Cloudflare Pages 时在项目设置 → 环境变量 里配置同名变量
+#
+# 复用南塘云村现有飞书应用（勿新建！）：
+#   app_id     → 南塘DAO/gnt计算机制/工具/feishu_config.json 的 app_id（cli_a92572c37fb99ced）
+#   app_secret → 同上文件的 app_secret
+#   app_token  → 同上文件的 app_token（TOL3bvfFhaCWMisRv8RcwV5xn77）
+#   table_id   → 现有 Base 中「共创营报名」表（已由 setup_enroll_table.py 建好：tblqCQbAxP8yoLTF）
+FEISHU_APP_ID=
+FEISHU_APP_SECRET=
+FEISHU_APP_TOKEN=
+FEISHU_TABLE_ID=
+ADMIN_CODE=

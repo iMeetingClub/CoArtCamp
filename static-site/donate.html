@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>第四期募捐 · 南塘艺术共创营</title>
+    <meta name="description" content="第三期共创营刚刚交出了答卷——现在，我们想邀请你一起，把第四期做出来。" />
+    <meta property="og:title" content="第四期募捐 · 南塘艺术共创营" />
+    <meta property="og:description" content="第三期共创营刚刚交出了答卷——现在，我们想邀请你一起，把第四期做出来。" />
+    <link rel="icon" type="image/png" href="assets/images/feature-bird-cutout.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <style>
+      :root {
+        --pine: #55644e;
+        --pine-soft: #6d7d64;
+        --seal: #a3281d;
+        --ink: #2b2b2b;
+        --muted: #55644e;
+        --line: #c9d4c6;
+        --card: #ffffff;
+        --bg: #edf4ed;
+        --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+        --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+      }
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        background: var(--bg);
+      }
+      .stage {
+        position: relative;
+        width: 100%;
+        max-width: 430px;
+        min-height: 100vh;
+        background: var(--bg);
+        padding: 0 20px 40px;
+      }
+      @media (min-width: 431px) {
+        body {
+          padding: 24px 0;
+        }
+        .stage {
+          border-radius: 28px;
+          box-shadow: 0 22px 48px rgba(126, 152, 142, 0.12);
+        }
+      }
+
+      /* ── 顶栏（避让抽屉按钮：42px 高 + 14px 顶距）── */
+      .page-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 66px 0 0;
+      }
+      .camp-label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .page-name {
+        font-family: var(--font-serif);
+        font-size: 15px;
+        color: var(--pine);
+        white-space: nowrap;
+      }
+
+      /* ── 区块 ── */
+      section {
+        margin-top: 44px;
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .eyebrow-line {
+        width: 22px;
+        height: 1px;
+        background: var(--pine);
+        flex-shrink: 0;
+      }
+      .eyebrow-text {
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: var(--muted);
+      }
+      .h1 {
+        font-family: var(--font-serif);
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--ink);
+        margin: 0 0 14px;
+      }
+      .h2 {
+        font-family: var(--font-serif);
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--ink);
+        margin: 0 0 12px;
+      }
+      .lead {
+        font-size: 15px;
+        line-height: 26px;
+        color: var(--ink);
+        margin: 0;
+      }
+      .body-text {
+        font-size: 14px;
+        line-height: 25px;
+        color: var(--ink);
+        margin: 0 0 12px;
+      }
+      .muted-note {
+        font-size: 12px;
+        line-height: 20px;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      /* ── Hero ── */
+      .hero {
+        padding-top: 8px;
+      }
+      .hero .h1 {
+        margin-bottom: 6px;
+      }
+      .hero-meta {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 10px;
+      }
+
+      /* ── 数字卡 ── */
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin: 16px 0 12px;
+      }
+      .stat-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px 14px 12px;
+      }
+      .stat-card .num {
+        font-family: var(--font-serif);
+        font-size: 21px;
+        font-weight: 700;
+        color: var(--pine);
+        font-variant-numeric: tabular-nums;
+        line-height: 1.25;
+      }
+      .stat-card .num small {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--pine-soft);
+      }
+      .stat-card .cap {
+        font-size: 11px;
+        line-height: 17px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      /* ── 验证清单 ── */
+      .check-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .check-list li {
+        display: flex;
+        gap: 10px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+        line-height: 23px;
+        color: var(--ink);
+      }
+      .check-list li:last-child {
+        border-bottom: none;
+      }
+      .check-list .tick {
+        color: var(--pine);
+        font-size: 13px;
+        flex-shrink: 0;
+        padding-top: 1px;
+      }
+      .check-list b {
+        color: var(--pine);
+        font-variant-numeric: tabular-nums;
+        font-weight: 700;
+      }
+
+      /* ── 资金盘子 ── */
+      .fund-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .fund-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px;
+      }
+      .fund-card .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .fund-card .row .label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .fund-card .row .value {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .fund-card .sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 6px;
+        line-height: 19px;
+      }
+
+      /* ── 参与方式（占位）── */
+      .method-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .method-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px;
+      }
+      .method-card .m-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .method-card .m-no {
+        font-family: var(--font-serif);
+        font-size: 12px;
+        color: var(--pine);
+        border: 1px solid var(--pine);
+        border-radius: 999px;
+        padding: 2px 9px;
+        flex-shrink: 0;
+      }
+      .method-card .m-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .method-card .m-desc {
+        font-size: 13px;
+        line-height: 22px;
+        color: var(--ink);
+      }
+      .placeholder {
+        margin-top: 10px;
+        border: 1.5px dashed var(--pine-soft);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 12px;
+        line-height: 19px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      /* ── 承诺 ── */
+      .promise-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .promise-list li {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 16px;
+        font-size: 14px;
+        line-height: 22px;
+        color: var(--ink);
+      }
+      .promise-list li b {
+        display: block;
+        font-size: 13px;
+        color: var(--pine);
+        margin-bottom: 3px;
+      }
+
+      /* ── 返还说明 ── */
+      .refund-note {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px;
+      }
+      .refund-note .t {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--seal); /* 印章红保留在标题文字，侧条纹已去 */
+        margin-bottom: 8px;
+      }
+      .refund-note .d {
+        font-size: 13px;
+        line-height: 22px;
+        color: var(--ink);
+      }
+
+      /* ── 结尾 CTA ── */
+      .closing {
+        margin-top: 48px;
+        text-align: center;
+      }
+      .closing .quote {
+        font-family: var(--font-serif);
+        font-size: 15px;
+        line-height: 27px;
+        color: var(--ink);
+        margin-bottom: 22px;
+      }
+      .btn-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 13px 34px;
+        border: none;
+        border-radius: 999px;
+        background: var(--pine);
+        color: #f2f5f2;
+        font-size: 14px;
+        font-family: var(--font-sans);
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .btn-cta:active {
+        transform: scale(0.98);
+      }
+      .closing .cta-note {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 10px;
+      }
+      .sign-off {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+        line-height: 22px;
+        color: var(--muted);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <header class="page-head">
+        <span class="camp-label">NANTANG ART CAMP</span>
+        <span class="page-name">第四期募捐</span>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">DONATE · 第四期</span></div>
+        <h1 class="h1">邀请你一起<br />把它做出来</h1>
+        <p class="lead">第三期共创营刚刚交出了答卷——现在，我们想邀请你一起，把第四期做出来。</p>
+        <p class="hero-meta">发布方：南塘艺术共创营项目组 · 2026 年 8 月 24 日</p>
+      </section>
+
+      <!-- 第三期验证了什么 -->
+      <section>
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">PHASE 3 · PROOF</span></div>
+        <h2 class="h2">第三期，我们一起验证了什么</h2>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="num">17 <small>天</small></div><div class="cap">10 位共创人、4 位工作人员，共同生活、共同决策、共同创作</div></div>
+          <div class="stat-card"><div class="num">555 <small>条</small></div><div class="cap">任务记录，NT 任务系统首次全流程线上运行</div></div>
+          <div class="stat-card"><div class="num">24,293 <small>NT</small></div><div class="cap">任务流转，系统运行无重大故障</div></div>
+          <div class="stat-card"><div class="num">1,250 <small>NT</small></div><div class="cap">共创人集体支付延时服务费，NT 首次在协商场景反向流动</div></div>
+          <div class="stat-card"><div class="num">+5,209 <small>元</small></div><div class="cap">人民币结余，财务完全自洽</div></div>
+          <div class="stat-card"><div class="num">3,114 <small>NT</small></div><div class="cap">为国库净回收，未给组织留下负债</div></div>
+        </div>
+        <ul class="check-list">
+          <li><span class="tick">✓</span><span>「劳动 → NT → 食宿支付 → 合作社回收」闭环完整跑通</span></li>
+          <li><span class="tick">✓</span><span>两次展览：从村里的大地书房，走进城市商业空间宝龙广场</span></li>
+          <li><span class="tick">✓</span><span>共创人自发用议事规则完成画展延期决策</span></li>
+        </ul>
+        <p class="muted-note">第三期证明了一件事：当一个系统被放进真实社区里运转，它会长出设计者没想过的可能性。</p>
+      </section>
+
+      <!-- 第四期要做什么 -->
+      <section>
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">PHASE 4 · WHAT</span></div>
+        <h2 class="h2">第四期，我们要做什么</h2>
+        <p class="body-text">第四期将是「南塘云村」——南塘实体空间数字化实景平台——的第一个完整测试场景。哪个房间可以住、哪块菜地种了什么、空间服务如何定价结算，都将在第四期中被真实使用和检验。</p>
+        <p class="body-text">同时，第三期总结的教学节奏、NT 审核效率、展览节点追踪等改进项，也将在这一期落地。</p>
+        <p class="body-text"><b>第三期是实验，第四期是迭代。</b></p>
+      </section>
+
+      <!-- 资金盘子 -->
+      <section>
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">THE BUDGET</span></div>
+        <h2 class="h2">我们的资金盘子</h2>
+        <div class="fund-cards">
+          <div class="fund-card">
+            <div class="row">
+              <span class="label">第三期结余转投</span>
+              <span class="value">5,209 元</span>
+            </div>
+            <p class="sub">已向 Web3 与乡建基金申请转作第四期启动经费，作为第四期的启动底座。</p>
+          </div>
+          <div class="fund-card">
+            <div class="row">
+              <span class="label">社区募捐 · NT（目标）</span>
+              <span class="value">30,000 NT</span>
+            </div>
+            <p class="sub">募捐进行中，每一笔都会被记录、被公开、被认真使用。</p>
+          </div>
+          <div class="fund-card">
+            <div class="row">
+              <span class="label">社区募捐 · 人民币（目标）</span>
+              <span class="value">20,000 元</span>
+            </div>
+            <p class="sub">募捐进行中，与 NT 同步进行。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 如何参与募捐 -->
+      <section>
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">HOW TO GIVE</span></div>
+        <h2 class="h2">如何参与募捐</h2>
+        <div class="method-list">
+          <div class="method-card">
+            <div class="m-head"><span class="m-no">方式一</span><span class="m-title">捐 NT</span></div>
+            <p class="m-desc">将你的 NT 转入共创营国库指定地址。</p>
+            <div class="placeholder">【NT 收款地址 / 国库流程说明 · 待公布】</div>
+          </div>
+          <div class="method-card">
+            <div class="m-head"><span class="m-no">方式二</span><span class="m-title">捐人民币</span></div>
+            <p class="m-desc">通过微信 / 支付宝转账。</p>
+            <div class="placeholder">【收款码 / 收款账号 · 待公布】</div>
+          </div>
+        </div>
+        <p class="muted-note" style="margin-top: 12px">无论金额大小，每一笔支持都会被记录、被公开、被认真使用。</p>
+      </section>
+
+      <!-- 我们的承诺 -->
+      <section>
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">OUR PROMISE</span></div>
+        <h2 class="h2">我们的承诺</h2>
+        <ul class="promise-list">
+          <li><b>账目全公开</b>募捐明细与支出明细实时可查，结项后发布完整财务报告。</li>
+          <li><b>专款专用</b>募捐款项仅用于第四期共创营的运营支出。</li>
+        </ul>
+      </section>
+
+      <!-- 返还说明 -->
+      <section>
+        <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">ABOUT RETURN</span></div>
+        <h2 class="h2">关于返还的特别说明</h2>
+        <div class="refund-note">
+          <p class="t">第四期募捐为纯捐赠性质，项目组不承诺以人民币返还。</p>
+          <p class="d">第三期的返还并非惯例，而是源于 S6-3 提案中的专项约定：若共创营为南塘 DAO 带来投资，筹备组提取 60% 奖励后，将其中一半返还社区募捐者。该条款已随 5 ETH 到账国库而触发并兑现。<br /><br />返还与否，一期一议，以当期提案约定为准。第四期如未来产生类似约定，项目组将另行公示，说到做到。</p>
+        </div>
+      </section>
+
+      <!-- 结尾 CTA -->
+      <div class="closing">
+        <p class="quote">从第一期的免费尝试，到第三期的自洽运转，<br />共创营的每一步都是社区托起来的。<br />第四期，希望依然有你。</p>
+        <a class="btn-cta" href="enroll.html">支持之外，成为共创人 → 报名加入</a>
+        <p class="cta-note">报名页 · 南塘艺术共创营第四期</p>
+      </div>
+
+      <div class="sign-off">
+        南塘艺术共创营项目组<br />砚仁、朝林、小红、若曦<br />联系人：【联系人姓名 / 微信 · 待补充】
+      </div>
+    </div>
+
+    <script src="scripts/nav.js" type="module"></script>
+  </body>
+</html>
