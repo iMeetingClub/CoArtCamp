@@ -244,10 +244,10 @@
         border-radius: 12px;
         background: var(--c-ta-bg);
         padding: 16px;
-        font-size: 13px;
-        line-height: 22px;
+        font-size: 16px; /* ≥16px：防 iOS Safari 聚焦自动缩放，行高找平 */
+        line-height: 1.5;
         resize: none;
-        min-height: 90px;
+        min-height: 96px;
       }
       textarea.input-line:focus {
         border-color: var(--c-underline);
@@ -473,6 +473,9 @@
         color: #a3281d; /* 朱砂系，浅绿底上 ≈9:1 */
         line-height: 1.5;
       }
+      .screen.dark .field-err {
+        color: #f2f5f2; /* 深墨绿底上朱砂红不可读 → 用既有亮墨色 */
+      }
 
       .sr-only {
         position: absolute;
@@ -526,9 +529,9 @@
             <div class="subq">性别</div>
             <div class="hint">便于我们安排住宿等后勤事宜。</div>
             <div class="chips" data-single="q2">
-              <button type="button" class="chip" data-v="男">男</button>
-              <button type="button" class="chip" data-v="女">女</button>
-              <button type="button" class="chip" data-v="其他">其他</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="男">男</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="女">女</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="其他">其他</button>
             </div>
           </div>
           <div class="field">
@@ -626,10 +629,10 @@
           <div class="question">请诚实评估你的绘画/艺术基础：*</div>
           <div class="hint">请完全无需担心水平！了解大家的起点，是为了让导师更好地准备分层教学，确保零基础跟得上，有基础有突破。</div>
           <div class="chips" data-single="q9">
-            <button type="button" class="chip" data-v="零基础，但充满好奇与热情">零基础，但充满好奇与热情</button>
-            <button type="button" class="chip" data-v="业余爱好者，有少量自学或体验经历">业余爱好者，有少量自学或体验经历</button>
-            <button type="button" class="chip" data-v="有一定基础，参加过系统课程">有一定基础，参加过系统课程</button>
-            <button type="button" class="chip" data-v="艺术相关专业/从业者">艺术相关专业/从业者</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="零基础，但充满好奇与热情">零基础，但充满好奇与热情</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="业余爱好者，有少量自学或体验经历">业余爱好者，有少量自学或体验经历</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="有一定基础，参加过系统课程">有一定基础，参加过系统课程</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="艺术相关专业/从业者">艺术相关专业/从业者</button>
           </div>
         </div>
         <div class="actions">
@@ -650,14 +653,14 @@
           <div class="question">除绘画外，你是否拥有其他可能对社区有益的技能？*</div>
           <div class="hint">社区因多元而精彩！无论是会摄影、爱做饭、懂园艺还是能组织活动，你的任何技能都可能成为点亮社区的时刻。</div>
           <div class="chips" data-multi="q10">
-            <button type="button" class="chip" data-v="摄影/摄像">摄影/摄像</button>
-            <button type="button" class="chip" data-v="写作/编辑">写作/编辑</button>
-            <button type="button" class="chip" data-v="音乐/乐器">音乐/乐器</button>
-            <button type="button" class="chip" data-v="活动组织">活动组织</button>
-            <button type="button" class="chip" data-v="烹饪/烘焙">烹饪/烘焙</button>
-            <button type="button" class="chip" data-v="园艺/农耕">园艺/农耕</button>
-            <button type="button" class="chip" data-v="手工技艺">手工技艺</button>
-            <button type="button" class="chip" data-v="其他">其他</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="摄影/摄像">摄影/摄像</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="写作/编辑">写作/编辑</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="音乐/乐器">音乐/乐器</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="活动组织">活动组织</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="烹饪/烘焙">烹饪/烘焙</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="园艺/农耕">园艺/农耕</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="手工技艺">手工技艺</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="其他">其他</button>
           </div>
         </div>
         <div class="actions">
@@ -678,12 +681,12 @@
           <div class="question">是什么吸引你报名本次共创营？*</div>
           <div class="hint">没有标准答案。我们想找到那些真正被「共创」、「DAO」、「社区」等核心概念吸引的同路人。</div>
           <div class="chips" data-multi="q11">
-            <button type="button" class="chip" data-v="对工笔画艺术的学习兴趣">对工笔画艺术的学习兴趣</button>
-            <button type="button" class="chip" data-v="体验一种不同的乡村生活">体验一种不同的乡村生活</button>
-            <button type="button" class="chip" data-v="对DAO、代币经济等概念感到好奇，想亲身实践">对DAO、代币经济等概念感到好奇，想亲身实践</button>
-            <button type="button" class="chip" data-v="希望暂时逃离都市，在自然中疗愈自己">希望暂时逃离都市，在自然中疗愈自己</button>
-            <button type="button" class="chip" data-v="渴望结识一群志同道合、有趣的朋友">渴望结识一群志同道合、有趣的朋友</button>
-            <button type="button" class="chip" data-v="其他">其他</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="对工笔画艺术的学习兴趣">对工笔画艺术的学习兴趣</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="体验一种不同的乡村生活">体验一种不同的乡村生活</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="对DAO、代币经济等概念感到好奇，想亲身实践">对DAO、代币经济等概念感到好奇，想亲身实践</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="希望暂时逃离都市，在自然中疗愈自己">希望暂时逃离都市，在自然中疗愈自己</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="渴望结识一群志同道合、有趣的朋友">渴望结识一群志同道合、有趣的朋友</button>
+            <button type="button" class="chip" aria-pressed="false" data-v="其他">其他</button>
           </div>
         </div>
         <div class="actions">
@@ -736,10 +739,10 @@
             <div class="subq">在团队中，你通常扮演什么角色？*</div>
             <div class="hint">一个平衡的团队需要不同的角色。你的自我认知能帮助我们组建一个角色互补、协作高效的团体。</div>
             <div class="chips" data-single="q15">
-              <button type="button" class="chip" data-v="积极的发起者和组织者">积极的发起者和组织者</button>
-              <button type="button" class="chip" data-v="踏实的支持者和执行者">踏实的支持者和执行者</button>
-              <button type="button" class="chip" data-v="活跃气氛的沟通者">活跃气氛的沟通者</button>
-              <button type="button" class="chip" data-v="冷静的观察者和思考者">冷静的观察者和思考者</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="积极的发起者和组织者">积极的发起者和组织者</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="踏实的支持者和执行者">踏实的支持者和执行者</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="活跃气氛的沟通者">活跃气氛的沟通者</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="冷静的观察者和思考者">冷静的观察者和思考者</button>
             </div>
           </div>
         </div>
@@ -777,10 +780,10 @@
             <div class="subq">你是通过什么渠道了解到本次活动的？*</div>
             <div class="hint">帮助我们了解哪些渠道连接了我和你，让我们能向推荐方致谢，并优化未来的传播。</div>
             <div class="chips" data-single="q19">
-              <button type="button" class="chip" data-v="朋友推荐">朋友推荐</button>
-              <button type="button" class="chip" data-v="微信公众号">微信公众号</button>
-              <button type="button" class="chip" data-v="小红书">小红书</button>
-              <button type="button" class="chip" data-v="其他">其他</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="朋友推荐">朋友推荐</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="微信公众号">微信公众号</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="小红书">小红书</button>
+              <button type="button" class="chip" aria-pressed="false" data-v="其他">其他</button>
             </div>
           </div>
         </div>
@@ -802,6 +805,11 @@
           <div class="hint">点击任意一条可返回修改。确认无误后，点击下方「提交」。</div>
           <div class="review-list" id="review-list"></div>
         </div>
+        <div class="fail-box" id="fail-box" hidden tabindex="-1">
+          <div class="t">提交可能未成功</div>
+          <div class="d">你的内容已保留在本地草稿，请勿盲目重试。可复制下方内容，直接发送给工作人员。</div>
+          <button type="button" id="btn-copy">一键复制报名内容</button>
+        </div>
         <div class="actions">
           <button class="btn-prev" data-prev="s-q11">上一步</button>
           <button class="btn-next" id="btn-submit">提交</button>
@@ -819,11 +827,6 @@
         <div class="done-lead">扫码加入微信群，与我们一起开始这个故事</div>
         <div class="done-qr">二维码</div>
         <div class="done-qr-note">（群聊二维码图待提供）</div>
-        <div class="fail-box" id="fail-box" hidden>
-          <div class="t">提交可能未成功</div>
-          <div class="d">你的内容已保留在本地草稿，请勿盲目重试。可复制下方内容，直接发送给工作人员。</div>
-          <button type="button" id="btn-copy">一键复制报名内容</button>
-        </div>
       </section>
     </div>
 
@@ -872,6 +875,7 @@
         var stage = document.getElementById("stage");
         var current = "s-q1";
         var answers = loadDraft() || {};
+        var booted = false; /* 初始化首跳前 DOM 未写入草稿值，禁止 readScreen 覆盖 answers */
 
         /* ── 草稿：Q17 健康信息不入草稿 ── */
         function loadDraft() {
@@ -925,6 +929,7 @@
             box.querySelectorAll(".chip").forEach(function (c) {
               c.classList.toggle("selected", c.getAttribute("data-v") === v);
             });
+            syncChipAria(box);
           });
           s.querySelectorAll("[data-multi]").forEach(function (box) {
             var q = box.getAttribute("data-multi");
@@ -932,6 +937,7 @@
             box.querySelectorAll(".chip").forEach(function (c) {
               c.classList.toggle("selected", arr.indexOf(c.getAttribute("data-v")) !== -1);
             });
+            syncChipAria(box);
           });
           s.querySelectorAll("input.input-line, textarea.input-line").forEach(function (el) {
             if (el.id && answers[el.id] != null) el.value = answers[el.id];
@@ -947,12 +953,14 @@
         }
         function go(id, opts) {
           opts = opts || {};
-          readScreen(current);
+          if (booted) readScreen(current);
+          booted = true;
           var prevEl = document.getElementById(current);
           var nextEl = document.getElementById(id);
           prevEl.classList.remove("active");
           nextEl.classList.add("active");
           current = id;
+          window.scrollTo(0, 0); /* 长屏滚动到底后切屏，新屏必须从顶部开始 */
 
           syncBg(id);
           var n = nextEl.querySelector(".p-n");
@@ -993,8 +1001,10 @@
             } else {
               chip.classList.toggle("selected");
             }
+            syncChipAria(box);
             readScreen(box.closest(".screen").id);
             saveDraft();
+            hideFormErr(current);
             return;
           }
           var nextBtn = e.target.closest(".btn-next[data-next]");
@@ -1010,11 +1020,14 @@
             }
             if (q5Err) q5Err.hidden = true;
             var req = REQUIRED_CHECK[target] || [];
+            var missing = [];
             for (var i = 0; i < req.length; i++) {
               var v = answers[req[i]];
               var ok = Array.isArray(v) ? v.length > 0 : !!v;
-              if (!ok) { shakeIt(nextBtn); return; }
+              if (!ok) missing.push(req[i]);
             }
+            if (missing.length) { showFormErr(current, missing); shakeIt(nextBtn); return; }
+            hideFormErr(current);
             go(target);
             return;
           }
@@ -1027,12 +1040,57 @@
           btn.classList.add("shake");
           setTimeout(function () { btn.classList.remove("shake"); }, 400);
         }
+        function syncChipAria(box) {
+          box.querySelectorAll(".chip").forEach(function (c) {
+            c.setAttribute("aria-pressed", c.classList.contains("selected") ? "true" : "false");
+          });
+        }
+        /* 必填短名：仅用于校验提示，措辞取自题面 */
+        var Q_SHORT = {
+          q1: "姓名", q5: "电话", q8: "职业/专业背景", q9: "绘画/艺术基础",
+          q10: "技能", q11: "吸引原因", q12: "共创看法", q13: "规则看法",
+          q14: "共同生活", q15: "团队角色", q16: "分歧处理", q17: "健康状况", q19: "了解渠道"
+        };
+        function ensureFormErr(screenEl) {
+          var err = screenEl.querySelector("[data-form-err]");
+          if (!err) {
+            err = document.createElement("div");
+            err.className = "field-err";
+            err.setAttribute("data-form-err", "");
+            err.setAttribute("role", "alert");
+            err.hidden = true;
+            var actions = screenEl.querySelector(".actions");
+            actions.parentNode.insertBefore(err, actions);
+          }
+          return err;
+        }
+        function showFormErr(screenId, missing) {
+          var err = ensureFormErr(document.getElementById(screenId));
+          err.textContent = "「" + missing.map(function (k) { return Q_SHORT[k] || k; }).join("」「") + "」还没填完";
+          err.hidden = false;
+        }
+        function hideFormErr(screenId) {
+          var screenEl = document.getElementById(screenId);
+          var err = screenEl && screenEl.querySelector("[data-form-err]");
+          if (err) err.hidden = true;
+        }
 
-        /* ── IME 守卫：Enter 前进（textarea 内回车除外）── */
+        /* ── 草稿：文本输入过程也落盘（400ms 防抖；q17 健康信息仍由 saveDraft 排除）── */
+        var draftTimer = null;
+        stage.addEventListener("input", function (e) {
+          var t = e.target;
+          if (!t.id || !t.classList || !t.classList.contains("input-line")) return;
+          answers[t.id] = t.value.trim();
+          clearTimeout(draftTimer);
+          draftTimer = setTimeout(saveDraft, 400);
+          hideFormErr(current);
+        });
+
+        /* ── IME 守卫：Enter 前进（textarea 与按钮/芯片除外，后者走原生激活）── */
         stage.addEventListener("keydown", function (e) {
           if (e.key === "Enter" && !e.isComposing && e.keyCode !== 229) {
             var t = e.target;
-            if (t.tagName === "TEXTAREA") return;
+            if (t.tagName === "TEXTAREA" || t.tagName === "BUTTON") return;
             var nextBtn = document.getElementById(current).querySelector(".btn-next[data-next]");
             if (nextBtn) { e.preventDefault(); nextBtn.click(); }
           }
@@ -1090,18 +1148,23 @@
           });
           payload.answers.q17 = answers.q17 || "";
 
+          var abortCtrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+          var abortTimer = setTimeout(function () { if (abortCtrl) abortCtrl.abort(); }, 15000); /* 15s 超时：弱网不再永远"提交中…" */
           fetch(API_ENDPOINT, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            signal: abortCtrl ? abortCtrl.signal : undefined
           })
             .then(function (r) {
               if (r.status === 409) throw { dup: true };
               if (!r.ok) throw new Error("http " + r.status);
-              return r.json();
+              /* 2xx 但响应体非 JSON → 显式走失败路径，避免"假成功" */
+              return r.json().catch(function () { throw new Error("bad json"); });
             })
-            .then(function () { finishSuccess(payload); })
+            .then(function () { clearTimeout(abortTimer); finishSuccess(payload); })
             .catch(function (e) {
+              clearTimeout(abortTimer);
               btn.disabled = false;
               btn.textContent = "提交";
               showFail(!!e.dup);
@@ -1126,6 +1189,7 @@
             box.querySelector("button").hidden = false;
           }
           box.scrollIntoView({ behavior: "smooth", block: "center" });
+          try { box.focus({ preventScroll: true }); } catch (e) {}
         }
         document.getElementById("btn-copy").addEventListener("click", function () {
           var text = REVIEW_GROUPS.map(function (g) {

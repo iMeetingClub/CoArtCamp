@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>合作的丰碑 · 南塘艺术共创营</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,6 +24,10 @@
       [data-gratitude-panel][hidden] {
         display: none !important;
       }
+      [data-gratitude-trigger]:focus-visible {
+        outline: 2px solid #55644e;
+        outline-offset: 3px;
+      }
       [data-gratitude-trigger].is-active {
         background-color: #d8e5de;
       }
@@ -37,14 +42,14 @@
     <link rel="stylesheet" href="styles/nav.css" />
   </head>
   <body>
-    <div style="box-sizing: border-box; width: 430px; display: flex; flex-direction: column; gap: 16px">
+    <div style="box-sizing: border-box; width: 100%; max-width: 430px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px">
       <div
         data-pencil-name="屏1 Hero与颂词"
-        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 430px"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 100%"
       >
         <div
           data-pencil-name="Hero 碑额"
-          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; padding: 44px 24px; width: 100%"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; padding: 76px 24px 44px; width: 100%"
         >
           <div
             data-pencil-name="英文小标签"
@@ -95,7 +100,7 @@
           style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 8px 24px; width: 100%"
         >
           <div
-            data-gratitude-trigger="phase-1" role="button" tabindex="0" aria-expanded="false" data-pencil-name="阶段一期"
+            data-gratitude-trigger="phase-1" role="button" tabindex="0" data-pencil-name="阶段一期"
             style="align-items: center; background-color: #EEF5EE; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; cursor: pointer; padding: 14px"
           >
             <div
@@ -112,7 +117,7 @@
             </div>
           </div>
           <div
-            data-gratitude-trigger="phase-2" role="button" tabindex="0" aria-expanded="false" data-pencil-name="阶段二期"
+            data-gratitude-trigger="phase-2" role="button" tabindex="0" data-pencil-name="阶段二期"
             style="align-items: center; background-color: #EEF5EE; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; cursor: pointer; padding: 14px"
           >
             <div
@@ -129,7 +134,7 @@
             </div>
           </div>
           <div
-            data-gratitude-trigger="phase-3" role="button" tabindex="0" aria-expanded="false" data-pencil-name="阶段三期"
+            data-gratitude-trigger="phase-3" role="button" tabindex="0" data-pencil-name="阶段三期"
             style="align-items: center; background-color: #EEF5EE; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; cursor: pointer; padding: 14px"
           >
             <div
@@ -146,7 +151,7 @@
             </div>
           </div>
           <div
-            data-gratitude-trigger="august" role="button" tabindex="0" aria-expanded="false" data-pencil-name="阶段八月"
+            data-gratitude-trigger="august" role="button" tabindex="0" data-pencil-name="阶段八月"
             style="align-items: center; background-color: #EEF5EE; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; cursor: pointer; padding: 14px"
           >
             <div
@@ -177,10 +182,10 @@
       </div>
       <div
         data-pencil-name="屏2 一期二期碑面"
-        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 430px"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 100%"
       >
         <div
-          data-gratitude-panel="phase-1" hidden
+          data-gratitude-panel="phase-1"
           data-pencil-name="面板一期"
           style="align-items: flex-start; background-color: #EEF5EE; border-radius: 26px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; padding: 22px; width: 100%"
         >
@@ -408,7 +413,7 @@
           </div>
         </div>
         <div
-          data-gratitude-panel="phase-2" hidden
+          data-gratitude-panel="phase-2"
           data-pencil-name="面板二期"
           style="align-items: flex-start; background-color: #EEF5EE; border-radius: 26px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; padding: 22px; width: 100%"
         >
@@ -736,10 +741,10 @@
       </div>
       <div
         data-pencil-name="屏3 三期碑面"
-        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 430px"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 100%"
       >
         <div
-          data-gratitude-panel="phase-3" hidden
+          data-gratitude-panel="phase-3"
           data-pencil-name="面板三期"
           style="align-items: flex-start; background-color: #EEF5EE; border-radius: 26px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; padding: 22px; width: 100%"
         >
@@ -1113,10 +1118,10 @@
       </div>
       <div
         data-pencil-name="屏4 八月碑面与落款"
-        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 430px"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 100%"
       >
         <div
-          data-gratitude-panel="august" hidden
+          data-gratitude-panel="august"
           data-pencil-name="面板八月"
           style="align-items: flex-start; background-color: #EEF5EE; border-radius: 26px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; padding: 22px; width: 100%"
         >
@@ -1331,8 +1336,8 @@
               data-pencil-name="提示正文"
               style='box-sizing: border-box; color: #6B7C63; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%'
             >
-              若您在 5-6 月向第三期募捐过 NT，可按地址后六位核对：····86 ····21 ····33 ····07 ····90
-              ····54 ····11 ····48 ····65
+              若您在 5-6 月向第三期募捐过 NT，可按地址后六位核对：····50ea6e ····9CC2cf
+              ····612a6F ····9313e2 ····baD3Ef ····51094E ····a0ff23 ····043289 ····4c86Ac
             </div>
           </div>
           <div
