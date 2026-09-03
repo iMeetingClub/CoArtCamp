@@ -23,6 +23,31 @@
       body {
         margin: 0;
       }
+
+      /* 手风琴交互（排他式，scripts/nt-flow.js） */
+      [data-nt-panel][hidden] {
+        display: none !important;
+      }
+      /* 展开滚动定位时避开左上角固定菜单按钮（42px + 14px 顶距） */
+      [data-nt-panel] {
+        scroll-margin-top: 70px;
+      }
+      /* 触发卡带内联背景色，需 !important 才能让展开态生效 */
+      [data-nt-trigger].is-active {
+        background-color: #d8e5de !important;
+      }
+      [data-nt-trigger]:focus-visible {
+        outline: 2px solid #55644e;
+        outline-offset: 3px;
+      }
+
+      /* 窄视口（<400px）：大数字降档防三列 nowrap 相撞，仅字号、不动数值 */
+      @media (max-width: 400px) {
+        [data-pencil-name="数据值"],
+        [data-pencil-name="大数字"] {
+          font-size: 22px !important;
+        }
+      }
     </style>
 
     <link rel="stylesheet" href="styles/nav.css" />
@@ -92,8 +117,8 @@
           style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 28px 24px 0px; width: 100%"
         >
           <div
-            data-pencil-name="阶段一期"
-            style="align-items: center; background-color: #EEF5EE; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 14px"
+            data-nt-trigger="phase-1" role="button" tabindex="0" data-pencil-name="阶段一期"
+            style="align-items: center; background-color: #EEF5EE; border-radius: 16px; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 14px"
           >
             <div
               data-pencil-name="期数"
@@ -115,14 +140,14 @@
             </div>
           </div>
           <div
-            data-pencil-name="阶段箭头1"
+            aria-hidden="true" data-pencil-name="阶段箭头1"
             style='box-sizing: border-box; color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 60px; text-align: center; white-space: nowrap'
           >
             ›
           </div>
           <div
-            data-pencil-name="阶段二期"
-            style="align-items: center; background-color: #EEF5EE; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 14px"
+            data-nt-trigger="phase-2" role="button" tabindex="0" data-pencil-name="阶段二期"
+            style="align-items: center; background-color: #EEF5EE; border-radius: 16px; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 14px"
           >
             <div
               data-pencil-name="期数"
@@ -144,14 +169,14 @@
             </div>
           </div>
           <div
-            data-pencil-name="阶段箭头2"
+            aria-hidden="true" data-pencil-name="阶段箭头2"
             style='box-sizing: border-box; color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 60px; text-align: center; white-space: nowrap'
           >
             ›
           </div>
           <div
-            data-pencil-name="阶段三期"
-            style="align-items: center; background-color: #F7F2E6; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 14px"
+            data-nt-trigger="phase-3" role="button" tabindex="0" data-pencil-name="阶段三期"
+            style="align-items: center; background-color: #F7F2E6; border-radius: 16px; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 14px"
           >
             <div
               data-pencil-name="期数"
@@ -174,7 +199,7 @@
           </div>
         </div>
         <div
-          data-pencil-name="往下引导"
+          aria-hidden="true" data-pencil-name="往下引导"
           style='box-sizing: border-box; color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: center; white-space: nowrap; padding-top: 30px; width: 100%'
         >
           ▾
@@ -183,7 +208,7 @@
 
       <!-- ═══════════ 屏 2 · 一期 完全手动 ═══════════ -->
       <div
-        data-pencil-name="屏2 一期"
+        data-nt-panel="phase-1" data-pencil-name="屏2 一期"
         style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; justify-content: flex-start; width: 100%"
       >
         <div
@@ -355,7 +380,7 @@
 
       <!-- ═══════════ 屏 3 · 二期 手动发任务 ═══════════ -->
       <div
-        data-pencil-name="屏3 二期"
+        data-nt-panel="phase-2" data-pencil-name="屏3 二期"
         style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; justify-content: flex-start; width: 100%"
       >
         <div
@@ -526,6 +551,7 @@
       </div>
 
       <!-- ═══════════ 屏 4 · 三期 平台任务系统 ═══════════ -->
+      <div data-nt-panel="phase-3">
       <div
         data-pencil-name="屏4 三期"
         style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; justify-content: flex-start; width: 100%"
@@ -1031,6 +1057,7 @@
           </div>
         </div>
       </div>
+      </div>
 
       <!-- ═══════════ 屏 6 · 落款 ═══════════ -->
       <div
@@ -1053,6 +1080,7 @@
       </div>
     </div>
 
+    <script src="scripts/nt-flow.js" defer></script>
     <script type="module" src="scripts/nav.js"></script>
   </body>
 </html>

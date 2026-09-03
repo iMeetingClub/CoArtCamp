@@ -28,12 +28,16 @@
       [data-gratitude-panel][hidden] {
         display: none !important;
       }
+      /* 展开滚动定位时避开左上角固定菜单按钮（42px + 14px 顶距） */
+      [data-gratitude-panel] {
+        scroll-margin-top: 70px;
+      }
       [data-gratitude-trigger]:focus-visible {
         outline: 2px solid #55644e;
         outline-offset: 3px;
       }
       [data-gratitude-trigger].is-active {
-        background-color: #d8e5de;
+        background-color: #d8e5de !important;
       }
       [data-gratitude-panel] svg[data-pencil-name="展开箭头"] {
         transition: transform 280ms ease;
@@ -1333,7 +1337,7 @@
           </div>
           <div
             data-pencil-name="待认领提示"
-            style="align-items: flex-start; background-color: #F7F2E6; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 14px; width: 100%"
+            style="align-items: flex-start; background-color: #F7F2E6; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 14px; width: 100%"
           >
             <div
               data-pencil-name="提示标题"
@@ -1345,8 +1349,71 @@
               data-pencil-name="提示正文"
               style='box-sizing: border-box; color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%'
             >
-              若您在 5-6 月向第三期募捐过 NT，可按地址后六位核对：····50ea6e ····9CC2cf
-              ····612a6F ····9313e2 ····baD3Ef ····51094E ····a0ff23 ····043289 ····4c86Ac
+              这 9 个地址在 2026 年 5–6 月向第三期募捐转入过 NT。按 S6-3 提案的约定，返还承诺已经兑现——现在，正在等地址的主人前来认领。
+            </div>
+            <div
+              data-pencil-name="待认领表格"
+              style="border: 1px solid rgba(85, 100, 78, 0.28); border-radius: 12px; box-sizing: border-box; overflow: hidden; width: 100%"
+            >
+            <div style="align-items: center; background-color: rgba(255, 255, 255, 0.55); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; font-weight: 700; width: 28px; flex-shrink: 0'>#</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; font-weight: 700; flex: 1 1 0'>地址后六位</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; font-weight: 700; flex-shrink: 0'>转入时间</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>1</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····50ea6e</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-05-23 / 05-24</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>2</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····9CC2cf</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-05-23</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>3</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····612a6F</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-05-23</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>4</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····9313e2</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-05-24</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>5</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····baD3Ef</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-05-24</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>6</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····51094E</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-05-24</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>7</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····a0ff23</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-05-27</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>8</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····043289</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-05-27</span>
+            </div>
+            <div style="align-items: center; border-top: 1px solid rgba(85, 100, 78, 0.18); box-sizing: border-box; display: flex; flex-direction: row; padding: 8px 12px; width: 100%">
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; width: 28px; flex-shrink: 0'>9</span>
+              <span style='color: #55644E; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; flex: 1 1 0'>····4c86Ac</span>
+              <span style='color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; flex-shrink: 0'>2026-06-04</span>
+            </div>
+            </div>
+            <div
+              data-pencil-name="认领方式"
+              style='box-sizing: border-box; color: #55644E; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; width: 100%'
+            >
+              认领方式：<br />
+              ① 核对：在上方列表里找到您的钱包地址后六位；<br />
+              ② 联系：微信联系项目组（联系人：【联系人姓名 / 微信 · 待补充】），提供您的完整钱包地址；<br />
+              ③ 返还：核对无误后安排返还。可领取的具体金额，微信联系时确认。
             </div>
           </div>
           <div
