@@ -6,3 +6,4 @@
 !.env.example
 .DS_Store
 enroll-fail-evidence.png
+_ui_preview/

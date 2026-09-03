@@ -31,7 +31,7 @@ const ok = (n, c, extra) => { console.log((c ? '✓' : '✗') + ' ' + n + (c ? '
     menuBtns: document.querySelectorAll('.site-nav .menu-button').length,
     noAbsoluteScreens: !Array.from(document.querySelectorAll('body > div > div')).some(d => getComputedStyle(d).position === 'absolute'),
     bodyH: document.body.scrollHeight,
-    text: document.body.innerText,
+    text: document.body.textContent, // 面板默认收起，innerText 取不到 display:none 内容；改核源码文本
   }));
   ok('nt title', ntChecks.title === 'NT 的流通 · 南塘艺术共创营', ntChecks.title);
   ok('nt 假菜单 SVG 已删', ntChecks.fakeSvgGone);
