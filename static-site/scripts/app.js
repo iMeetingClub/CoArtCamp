@@ -353,18 +353,25 @@ function renderStoryPhase(section) {
   const more = section.more ? `
     <a class="story-more" href="${esc(section.more.href)}">${esc(section.more.label)} →</a>
   ` : "";
+  const bodyId = "body-" + esc(section.id);
+  const toggleId = "toggle-" + esc(section.id);
   return `
     <section class="story-phase" id="${esc(section.id)}">
-      <header class="story-phase__head">
-        <span class="story-phase__index">${esc(section.phaseIndex)}</span>
-        <h2 class="story-phase__title">${esc(section.title)}</h2>
-      </header>
-      <div class="story-phase__hook">${esc(section.hook)}</div>
-      <div class="story-phase__body">
+      <h2 class="story-phase__head">
+        <button class="story-phase__toggle" type="button" id="${toggleId}" aria-expanded="true" aria-controls="${bodyId}">
+          <span class="story-phase__headrow">
+            <span class="story-phase__index">${esc(section.phaseIndex)}</span>
+            <span class="story-phase__title">${esc(section.title)}</span>
+            <span class="story-phase__chevron" aria-hidden="true">›</span>
+          </span>
+          <span class="story-phase__hook">${esc(section.hook)}</span>
+        </button>
+      </h2>
+      <div class="story-phase__body" id="${bodyId}" role="region" aria-labelledby="${toggleId}">
         ${children}
         ${gratitude}
+        ${more}
       </div>
-      ${more}
     </section>
   `;
 }
@@ -505,6 +512,64 @@ function renderPage() {
 
 renderPage();
 
+/* ═══════════ 章节卡手风琴（目录式故事书） ═══════════
+   默认全部收起（渐进增强：无 JS 时全部展开可读）；
+   排他——点开一章，其他章自动关上；锚点直达自动展开。 */
+const storyItems = (function initStoryAccordion() {
+  const items = [...document.querySelectorAll(".story-phase")]
+    .map((sec) => ({
+      sec,
+      toggle: sec.querySelector(".story-phase__toggle"),
+      body: sec.querySelector(".story-phase__body"),
+    }))
+    .filter((x) => x.toggle && x.body);
+  if (!items.length) return [];
+
+  const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function setOpen(item, open) {
+    item.body.hidden = !open;
+    item.toggle.setAttribute("aria-expanded", String(open));
+    item.sec.classList.toggle("is-open", open);
+  }
+
+  function openExclusive(item) {
+    items.forEach((x) => setOpen(x, x === item));
+  }
+
+  items.forEach((item) => {
+    setOpen(item, false);
+    item.toggle.addEventListener("click", () => {
+      if (item.body.hidden) {
+        openExclusive(item);
+        item.sec.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" });
+      } else {
+        setOpen(item, false);
+      }
+    });
+  });
+
+  // 章节列表上方的操作提示
+  const first = items[0].sec;
+  if (first && !document.querySelector(".story-hint")) {
+    first.insertAdjacentHTML("beforebegin", '<p class="story-hint">点一期，展开那一期</p>');
+  }
+
+  return items;
+})();
+
+function expandStoryPhase(id) {
+  const item = storyItems.find((x) => x.sec.id === id);
+  if (item) {
+    storyItems.forEach((x) => {
+      const open = x === item;
+      x.body.hidden = !open;
+      x.toggle.setAttribute("aria-expanded", String(open));
+      x.sec.classList.toggle("is-open", open);
+    });
+  }
+}
+
 // SPA 锚点：渲染后按 hash 定位（浏览器在 JS 注入前找不到锚点，需手动滚动）
 // 滚动途中懒加载图片会改变文档高度——分段校准，覆盖漂移
 function scrollToHash() {
@@ -512,6 +577,8 @@ function scrollToHash() {
   if (!hash) return;
   const el = document.getElementById(hash.slice(1));
   if (!el) return;
+  const phase = el.closest(".story-phase");
+  if (phase) expandStoryPhase(phase.id);
   let tries = 0;
   (function align() {
     el.scrollIntoView();

@@ -33,12 +33,12 @@ const URL = 'http://localhost:8898/index.html';
   );
   ok('4 个故事块钩子卡', hooks === 4);
 
-  // 3. timeline 只裁到 10 条（#story 块内）
+  // 3. 首页纪事精选 3 条（#story 块内；完整版在 story.html）
   const tlCount = await page.evaluate(() => {
     const story = document.getElementById('story');
     return story ? story.querySelectorAll('.timeline-item').length : -1;
   });
-  ok('#story 内 timeline = 10 条', tlCount === 10);
+  ok('#story 内 timeline = 3 条（首页精选）', tlCount === 3);
 
   // 4. 流通与感谢 ×3 + 捐助历史
   const gCount = await page.evaluate(() => document.querySelectorAll('.gratitude-note').length);
@@ -54,6 +54,14 @@ const URL = 'http://localhost:8898/index.html';
   ok('报名按钮 → enroll.html', enrollBtn === 'enroll.html');
 
   // 6. 数字抽查（红线：与核对清单一致）
+  // 章节卡默认收起是新设计——先逐章展开，确认数字真的可达可见，再取 innerText
+  await page.evaluate(() => {
+    document.querySelectorAll('.story-phase__toggle').forEach((t) => {
+      const body = document.getElementById(t.getAttribute('aria-controls'));
+      if (body) { body.hidden = false; t.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+  await page.waitForTimeout(200);
   const nums = await page.evaluate(() => document.body.innerText);
   const checks = [
     ['61,216.3 NT', '一期结项流通'],

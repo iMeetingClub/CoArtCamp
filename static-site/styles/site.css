@@ -112,7 +112,7 @@ body.drawer-open {
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .screen-extension {
@@ -1458,12 +1458,36 @@ body.lightbox-open {
   border: 1px solid var(--line);
   border-radius: var(--radius-l);
   background: var(--surface-soft);
-  padding: 20px 18px;
+  padding: 22px 18px;
   min-width: 0;
   scroll-margin-top: calc(var(--topbar-height) + var(--topbar-gap) + 12px);
 }
 
 .story-phase__head {
+  margin: 0;
+  font: inherit;
+}
+
+.story-phase__toggle {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.story-phase__toggle:focus-visible {
+  outline: 2px solid rgba(82, 100, 110, 0.82);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.story-phase__headrow {
   display: flex;
   align-items: baseline;
   gap: 10px;
@@ -1477,15 +1501,27 @@ body.lightbox-open {
 }
 
 .story-phase__title {
-  margin: 0;
   color: var(--green-900);
   font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 700;
 }
 
+.story-phase__chevron {
+  margin-left: auto;
+  color: #47626f;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 240ms ease;
+}
+
+.story-phase.is-open .story-phase__chevron {
+  transform: rotate(90deg);
+}
+
 .story-phase__hook {
-  margin-top: 14px;
+  display: block;
+  margin-top: 12px;
   padding: 14px 16px;
   border-radius: var(--radius-s);
   border: 1px solid var(--line-soft);
@@ -1497,10 +1533,30 @@ body.lightbox-open {
 }
 
 .story-phase__body {
-  margin-top: 16px;
+  margin-top: 18px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
+}
+
+.story-phase__body[hidden] {
+  display: none !important;
+}
+
+/* 展开区拆卡套卡：内层文字卡去框去底，靠留白分层 */
+.story-phase__body .section-card {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+/* 章节列表上方的操作提示 */
+.story-hint {
+  margin: 0;
+  padding: 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.5px;
 }
 
 .story-more {
@@ -1675,7 +1731,8 @@ body.lightbox-open {
   .drawer,
   .drawer-backdrop,
   .lightbox,
-  .lightbox__close {
+  .lightbox__close,
+  .story-phase__chevron {
     transition: none;
   }
 }

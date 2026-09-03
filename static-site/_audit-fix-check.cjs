@@ -88,6 +88,17 @@ const ok = (n, c, extra) => { console.log((c ? '✓' : '✗') + ' ' + n + (c ? '
   const augText = await gr.evaluate(() => document.body.innerText);
   ok('红榜数字未动(30,000/24,600/8,955/49,054)', ['30,000','24,600','8,955','49,054'].every(n => augText.includes(n)));
   ok('待认领掩码为真实后六位(出处:第三期募捐返还确认)', ['50ea6e','9CC2cf','612a6F','9313e2','baD3Ef','51094E','a0ff23','043289','4c86Ac'].every(t => augText.includes(t)) && !augText.includes('····86'));
+  // 排他式：august 展开中点击 phase-1 → phase-1 开、august 及其他期全关（置于文本断言后：innerText 不含 display:none 面板内容）
+  await gr.click('[data-gratitude-trigger="phase-1"]');
+  await gr.waitForTimeout(300);
+  const g4 = await gr.evaluate(() => ({
+    p1open: !document.querySelector('[data-gratitude-panel="phase-1"]').hidden,
+    augClosed: document.querySelector('[data-gratitude-panel="august"]').hidden,
+    augAria: document.querySelector('[data-gratitude-trigger="august"]').getAttribute('aria-expanded'),
+    augActive: document.querySelector('[data-gratitude-trigger="august"]').classList.contains('is-active'),
+    othersClosed: ['phase-2', 'phase-3'].every(k => document.querySelector('[data-gratitude-panel="' + k + '"]').hidden),
+  }));
+  ok('排他：开 phase-1 自动收起 august', g4.p1open && g4.augClosed && g4.augAria === 'false' && !g4.augActive && g4.othersClosed, JSON.stringify(g4));
   await gr.close();
 
   /* ── 禁用 JS：面板全部可见（渐进增强）── */

@@ -102,7 +102,7 @@ export const pages = {
         hook: "青年版可操作的民主——从表达，到共识。",
         ref: "story",
         include: [0],
-        slice: 10,
+        slice: 3,
         more: { label: "查看完整纪事", href: "story.html" },
       },
       {
